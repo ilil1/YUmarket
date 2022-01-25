@@ -32,7 +32,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
     override val viewModel by viewModel<CSListViewModel> {
         parametersOf(csCategory)
     }
-    private val csCategory: CSCategory by lazy {
+    private val csCategory by lazy {
         arguments?.getSerializable(CS_CATEGORY_KEY) as CSCategory
     }
 
@@ -50,7 +50,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
 
     private val adapter by lazy {
         CSModelRecyclerAdapter<CSModel, CSListViewModel>(
-            listOf(),
+           listOf(),
             viewModel,
             object : CSModelListener{
                 override fun onClickItem(listModel: CSModel) {

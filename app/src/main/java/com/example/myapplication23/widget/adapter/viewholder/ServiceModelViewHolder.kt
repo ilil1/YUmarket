@@ -19,7 +19,7 @@ import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
 
 
-abstract class ModelViewHolderService <M :Model>(
+abstract class ServiceModelViewHolder <M :Model>(
     binding: ViewholderCsItemBinding,
     protected val viewModel: BaseViewModel,
 ) : RecyclerView.ViewHolder(binding.root) {

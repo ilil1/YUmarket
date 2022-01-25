@@ -23,18 +23,18 @@ class CSModelRecyclerAdapter<M: CSModel,VM:BaseViewModel>(
     private var modelList: List<CSModel>,
     private val viewModel: VM,
     private val adapterListener: AdapterListener
-): ListAdapter<CSModel,ModelViewHolderService<M>>(CSModel.DIFF_CALLBACK){
+): ListAdapter<CSModel,ServiceModelViewHolder<M>>(CSModel.DIFF_CALLBACK){
 
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolderService<M> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceModelViewHolder<M> =
         ViewHolderMapperCS.map(parent,CSCategory.values()[viewType],viewModel)
 
 
     @Suppress("UNCHECKED_CAST")
-    override fun onBindViewHolder(holder: ModelViewHolderService<M>, position: Int) {
-        holder.bindData(modelList[position] as M)
-        holder.bindViews(modelList[position] as M, adapterListener)
+    override fun onBindViewHolder(holderModelViewHolder: ServiceModelViewHolder<M>, position: Int) {
+        holderModelViewHolder.bindData(modelList[position] as M)
+        holderModelViewHolder.bindViews(modelList[position] as M, adapterListener)
     }
 
     override fun submitList(list: List<CSModel>?) {

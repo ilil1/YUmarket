@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 class CSViewModel : BaseViewModel(){
 
     override fun fetchData(): Job = viewModelScope.launch {
-        // TODO get from repository
 
         
     }

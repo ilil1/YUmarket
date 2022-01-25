@@ -46,10 +46,12 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
         }
 
         binding.centerNumber.setOnClickListener {
-        callPopUp()
+            permissionCheck()
+            callYU()
         }
 
         binding.pollution.setOnClickListener {
+            permissionCheck()
             foodSafecall()
         }
 
@@ -73,7 +75,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
         startActivity(intent)
     }
 
-    private fun callPopUp() {
+    private fun callYU() {
         val items = "000-1111-2222"
         val alertDialog = AlertDialog.Builder(context)
             .setTitle("YU Market")
@@ -120,17 +122,18 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
     }
 
   private fun permissionCheck()
-    {   val list = arrayOf(
+    {   val callCheck =
         android.Manifest.permission.CALL_PHONE
-    )
-        val permission = ContextCompat
+
+        val permission =
+            ContextCompat
         .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
         if(permission == PackageManager.PERMISSION_GRANTED){
 
         }
         else {
-            Toast.makeText(context, "통화권한 필요합니다..", Toast.LENGTH_SHORT).show()
-            ActivityCompat.requestPermissions(Activity(),list,0)
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(android.Manifest.permission.CALL_PHONE),0)
         }
 
     }

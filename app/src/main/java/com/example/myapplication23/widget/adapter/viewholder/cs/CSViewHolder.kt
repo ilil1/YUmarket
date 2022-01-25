@@ -6,7 +6,7 @@ import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
 import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
-import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolderService
+import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHolder
 
 /**
  * @주 허희태
@@ -20,7 +20,7 @@ class CSViewHolder(
     private val binding: ViewholderCsItemBinding,
     viewModel: BaseViewModel,
 
-) : ModelViewHolderService<CSModel>(binding,viewModel) {
+) : ServiceModelViewHolder<CSModel>(binding,viewModel) {
 
     override fun reset() = Unit
 

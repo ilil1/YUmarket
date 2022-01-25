@@ -45,7 +45,7 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
 
     private fun initViewPager() = with(binding) {
-       orderChipGroupCs.isVisible = true
+       orderChipGroupCs.isVisible = false
         binding.CSTextView.text = "고객센터"
 
 
@@ -56,16 +56,18 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
                 CSListFragment.newInstance(it)
             }
 
+
             viewPagerAdapter = CSListFragmentPagerAdapter(
                 this@CSFragment,
                 csListFragmentList
 
             )
+        }
 
 
             viewPagerCs.adapter = viewPagerAdapter
 
-            viewPagerCs.offscreenPageLimit = csCategory.size
+            viewPagerCs.offscreenPageLimit = 1
 
 
             binding.intentmyinfo.setOnClickListener {
@@ -74,27 +76,9 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
 
 
-//            binding.chipLogin.setOnCloseIconClickListener { chipData(CSCategory.LOGIN)
-//
-//
-//            }
-        }
-    }
 
-//    private fun chipData(csCategory:CSCategory) = with(binding){
-//        val loginCategory = CSCategory.values()
-//        val loginList = loginCategory.map {
-//
-//        }
-//
-//        viewPagerAdapter = CSListFragmentPagerAdapter(
-//            this@CSFragment,
-//
-//        )
-//        viewPagerCs.adapter = viewPagerAdapter
-//
-//        viewPagerCs.offscreenPageLimit = 1
-//    }
+        }
+
 
 
 
