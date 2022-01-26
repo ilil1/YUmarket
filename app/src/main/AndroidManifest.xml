@@ -32,6 +32,7 @@
         </activity>
         <activity android:name=".screen.myinfo.customerservice.CSActivity"/>
         <activity android:name=".screen.myinfo.customerservice.list.CSCenterActivity"/>
+        <activity android:name=".screen.myinfo.customerservice.configuration.ConfigurationActivity" />
     </application>
 
 </manifest>

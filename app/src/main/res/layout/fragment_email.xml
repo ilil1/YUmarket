@@ -90,15 +90,7 @@
 <!--            android:textColor="@color/color_dark_000000_ffffff"-->
 <!--            android:backgroundTint="@color/color_dark_ffffff_000000"-->
 <!--            app:layout_constraintStart_toStartOf="parent" />-->
-        <ImageView
-            android:id="@+id/email_image"
-    android:src="@drawable/camera"
-    android:layout_marginLeft="20dp"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"/>
+
 
 
 

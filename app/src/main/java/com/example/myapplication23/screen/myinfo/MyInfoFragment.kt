@@ -3,6 +3,7 @@ package com.example.myapplication23.screen.myinfo
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -10,10 +11,13 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
+import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
+import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -64,10 +68,14 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
 
 
     private fun initViewPager() = with(binding) {
-        binding.profileImageChange.setOnClickListener { loadImage()}
+        binding.profileImageChange.setOnClickListener {
+            loadImage()
+
+        }
         binding.darkSwitch.setOnClickListener { darkMode() }
         binding.noticeText.setOnClickListener { popUp() }
         binding.centerTextview.setOnClickListener { openCSCenter() }
+        binding.setting.setOnClickListener { openSetting() }
 
     }
 
@@ -78,6 +86,14 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         intent_image.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(Intent.createChooser(intent_image,"Load Picture"),requestCode)
+
+    }
+
+    private fun openSetting(){
+        activity.let {
+            var intent = Intent(context, ConfigurationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
@@ -90,6 +106,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
                 val dataUri : Uri? = data?.data
                 try {
                     val bitmap : Bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,dataUri)
+                    binding.profileImage.setImageBitmap(bitmap)
                 }  catch (e: Exception) {
                     Toast.makeText(context,"$e",Toast.LENGTH_SHORT).show()
                 }
@@ -162,11 +179,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     }
 
 
-    private fun frag(fragment:MyInfoFragment){
-      requireActivity().supportFragmentManager.beginTransaction()
-         .replace(R.id.my_info,fragment,fragment.tag).commit()
 
-     }
 
 
 
