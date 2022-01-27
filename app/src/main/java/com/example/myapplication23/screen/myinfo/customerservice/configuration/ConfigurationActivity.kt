@@ -7,8 +7,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.myapplication23.BuildConfig
 import com.example.myapplication23.R
+import com.example.myapplication23.databinding.ActivityConfigurationBinding
 import com.example.myapplication23.databinding.ActivityCsBinding
 import com.example.myapplication23.databinding.ActivityCsCenterBinding
+import com.example.myapplication23.databinding.FragmentConfigurationBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseActivity
 import com.example.myapplication23.screen.home.HomeFragment
@@ -33,23 +35,23 @@ class ConfigurationActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
 
 
-    override fun getViewBinding(): ActivityCsBinding = ActivityCsBinding.inflate(layoutInflater)
+    override fun getViewBinding(): ActivityCsBinding
+    = ActivityCsBinding.inflate(layoutInflater)
 
-    override val viewModel by viewModel<CSViewModel>(
-
-    )
-
-    override fun observeData() = with(binding) {
-             //TODO()
-    }
+    override val viewModel by viewModel<CSViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
 
+    override fun observeData() = with(binding) {
+             //TODO()
+    }
 
-    override fun initViews() = with(binding) {
+
+
+    override fun initViews()  {
         showCSFragment(ConfigurationFragment.newInstance(),ConfigurationFragment.TAG)
 
     }

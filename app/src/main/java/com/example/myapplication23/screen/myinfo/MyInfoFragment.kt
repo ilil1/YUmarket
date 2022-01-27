@@ -18,6 +18,7 @@ import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
+import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -76,7 +77,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         binding.noticeText.setOnClickListener { popUp() }
         binding.centerTextview.setOnClickListener { openCSCenter() }
         binding.setting.setOnClickListener { openSetting() }
-
+        binding.terms.setOnClickListener { openTerms() }
     }
 
     private fun loadImage(){
@@ -92,6 +93,13 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     private fun openSetting(){
         activity.let {
             var intent = Intent(context, ConfigurationActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun openTerms(){
+        activity.let {
+            var intent = Intent(context, TermsActivity::class.java)
             startActivity(intent)
         }
     }

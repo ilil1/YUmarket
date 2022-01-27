@@ -2,19 +2,10 @@ package com.example.myapplication23.screen.myinfo.customerservice
 
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityCsBinding
-import com.example.myapplication23.databinding.ActivityCsCenterBinding
-import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseActivity
-import com.example.myapplication23.screen.home.HomeFragment
-import com.example.myapplication23.screen.like.LikeFragment
-import com.example.myapplication23.screen.map.MapFragment
-import com.example.myapplication23.screen.myinfo.MyInfoFragment
-import com.example.myapplication23.screen.orderlist.OrderListFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -29,7 +20,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
-    override fun getViewBinding(): ActivityCsBinding = ActivityCsBinding.inflate(layoutInflater)
+    override fun getViewBinding(): ActivityCsBinding
+    = ActivityCsBinding.inflate(layoutInflater)
 
     override val viewModel by viewModel<CSViewModel>(
 
@@ -46,11 +38,11 @@ class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
 
     override fun initViews() = with(binding) {
-        showCSFragment(CSCenterFragment.newInstance(),CSCenterFragment.TAG)
+        showCSCenterFragment(CSCenterFragment.newInstance(),CSCenterFragment.TAG)
 
     }
 
-        private fun showCSFragment(fragment: Fragment, tag: String) {
+        private fun showCSCenterFragment(fragment: Fragment, tag: String) {
                 supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
         }
 

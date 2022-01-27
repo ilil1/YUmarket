@@ -3,11 +3,9 @@ package com.example.myapplication23.screen.myinfo.customerservice.configuration
 import com.example.myapplication23.BuildConfig
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentConfigurationBinding
-import com.example.myapplication23.databinding.FragmentCsCenterBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.MyInfoFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSCenterFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 

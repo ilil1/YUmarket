@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     //통화 권환(서비스센터) author 허희태
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
@@ -33,6 +34,7 @@
         <activity android:name=".screen.myinfo.customerservice.CSActivity"/>
         <activity android:name=".screen.myinfo.customerservice.list.CSCenterActivity"/>
         <activity android:name=".screen.myinfo.customerservice.configuration.ConfigurationActivity" />
+        <activity android:name=".screen.myinfo.customerservice.terms.TermsActivity"/>
     </application>
 
 </manifest>
