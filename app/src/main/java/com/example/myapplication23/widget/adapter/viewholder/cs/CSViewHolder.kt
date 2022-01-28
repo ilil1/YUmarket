@@ -1,6 +1,7 @@
 package com.example.myapplication23.widget.adapter.viewholder.cs
 
 
+import android.content.Intent
 import com.example.myapplication23.databinding.ViewholderCsItemBinding
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel
@@ -21,6 +22,7 @@ class CSViewHolder(
     viewModel: BaseViewModel,
 
 ) : ServiceModelViewHolder<CSModel>(binding,viewModel) {
+
 
     override fun reset() = Unit
 

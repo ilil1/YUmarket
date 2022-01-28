@@ -16,6 +16,7 @@ import com.example.myapplication23.screen.myinfo.MyInfoViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
+import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailViewModel
 import com.example.myapplication23.screen.orderlist.OrderListViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.viewmodel.dsl.viewModel
@@ -37,6 +38,8 @@ val appModule = module {
         CSListViewModel(csCategory, get())
     }
 
+    //CSDetailViewModel 선언 매개변수 하나 get()
+    viewModel { CSDetailViewModel(get()) }
 
     viewModel { MainViewModel(get()) }
     viewModel { LikeViewModel() }

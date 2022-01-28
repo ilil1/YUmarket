@@ -1,6 +1,5 @@
 package com.example.myapplication23.screen.myinfo.customerservice
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,7 +13,6 @@ import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsCenterBinding
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
-import com.example.myapplication23.screen.myinfo.customerservice.list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -146,13 +144,13 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
     }
 
     companion object{
-        const val TAG = "CSCenterFragment"
+            const val TAG = "CSCenterFragment"
 
-        fun newInstance() : CSCenterFragment{
-            return CSCenterFragment().apply {
+            fun newInstance() : CSCenterFragment{
+                return CSCenterFragment().apply {
 
+                }
             }
-        }
     }
 
 

@@ -1,25 +1,12 @@
 package com.example.myapplication23.screen.myinfo.customerservice.email
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import android.provider.MediaStore
 import android.widget.Toast
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.drawToBitmap
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.clearFragmentResult
 import com.example.myapplication23.databinding.FragmentEmailBinding
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
-import com.example.myapplication23.screen.myinfo.customerservice.CSCenterFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSFragment
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.lang.Exception
 
 /**
  * @author HeeTae Heo(main),

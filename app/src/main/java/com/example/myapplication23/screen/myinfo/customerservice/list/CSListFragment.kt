@@ -1,20 +1,22 @@
 package com.example.myapplication23.screen.myinfo.customerservice.list
 
+import android.content.ClipData.newIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsListBinding
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.MyInfoFragment
-import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
+import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
+import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailActivity
+
 import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
 import com.example.myapplication23.widget.adapter.viewholder.CSModelRecyclerAdapter
+import com.stripe.android.view.AddSourceActivity.newIntent
+import com.stripe.android.view.PaymentMethodsActivity.newIntent
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -27,6 +29,8 @@ import org.koin.core.parameter.parametersOf
  */
 
 class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
+
+
 
 
     override val viewModel by viewModel<CSListViewModel> {
@@ -45,8 +49,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
         }
 
     }
-    private fun showMessage(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
 
     private val adapter by lazy {
         CSModelRecyclerAdapter<CSModel, CSListViewModel>(
@@ -54,7 +57,14 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
             viewModel,
             object : CSModelListener{
                 override fun onClickItem(listModel: CSModel) {
-                    showMessage(listModel.toString())
+                    val intent = Intent(context,CSDetailActivity::class.java).apply {
+                        putExtra("requireActivity",requireActivity().toString())
+                        putExtra("CSTitle",listModel.csTitle)
+                        putExtra("CSContent",listModel.csContent)
+                        putExtra("CSAuthor",listModel.csAuthor)
+                        putExtra("CSid",listModel.id)
+                    }
+                    startActivity(intent)
                 }
             }
         )

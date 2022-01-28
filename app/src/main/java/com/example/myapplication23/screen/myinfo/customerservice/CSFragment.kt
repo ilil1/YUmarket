@@ -1,4 +1,4 @@
-package com.example.myapplication23.screen.myinfo.customerservice.list
+package com.example.myapplication23.screen.myinfo.customerservice
 
 /**
  * @author HeeTae Heo(main),
@@ -8,24 +8,17 @@ package com.example.myapplication23.screen.myinfo.customerservice.list
  * @description
  */
 
-import android.content.Intent
-import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.MyInfoFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
-import com.example.myapplication23.util.mapper.ViewHolderMapper.map
-import com.example.myapplication23.util.mapper.ViewHolderMapperCS
+import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
+import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
 import com.example.myapplication23.widget.adapter.CSListFragmentPagerAdapter
-import okhttp3.internal.notify
 
 import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.experimental.property.inject
-import org.koin.ext.getOrCreateScope
 
 class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 

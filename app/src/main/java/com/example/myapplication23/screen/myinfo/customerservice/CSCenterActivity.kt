@@ -1,11 +1,10 @@
-package com.example.myapplication23.screen.myinfo.customerservice.list
+package com.example.myapplication23.screen.myinfo.customerservice
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityCsCenterBinding
 import com.example.myapplication23.screen.base.BaseActivity
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -34,7 +33,7 @@ class CSCenterActivity : BaseActivity<CSViewModel, ActivityCsCenterBinding>() {
 
 
     override fun initViews() = with(binding) {
-        showCSFragment(CSFragment.newInstance(),CSFragment.TAG)
+        showCSFragment(CSFragment.newInstance(), CSFragment.TAG)
 
     }
 
