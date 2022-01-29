@@ -28,7 +28,7 @@ class DefaultCSRepository(
                     0,
                     CellType.CUSTOMER_SERVICE_CELL,
                     0,
-                    csTitle = "고객센터 이용방법                                           ",
+                    csTitle = "   고객센터 이용방법                                        ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 고객센터 이용방법 입니다"
@@ -38,7 +38,7 @@ class DefaultCSRepository(
                     1,
                     CellType.CUSTOMER_SERVICE_CELL,
                     1,
-                    csTitle = "주문오류시 이용방법                                           ",
+                    csTitle = "   주문오류시 이용방법                                        ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 주문오류시 이용방법 입니다"
@@ -48,7 +48,7 @@ class DefaultCSRepository(
                     2,
                     CellType.CUSTOMER_SERVICE_CELL,
                     2,
-                    csTitle = "리뷰 오류시 이용방법                                           ",
+                    csTitle ="   리뷰 오류시 이용방법                                           ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 리뷰 오류시 입니다"
@@ -59,7 +59,7 @@ class DefaultCSRepository(
                     3,
                     CellType.CUSTOMER_SERVICE_CELL,
                     3,
-                    csTitle = "로그인 오류시 이용방법                                                ",
+                    csTitle ="   로그인 오류시 이용방법                                                ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 로그인 오류시 이용방법 입니다"
@@ -69,7 +69,7 @@ class DefaultCSRepository(
                     4,
                     CellType.CUSTOMER_SERVICE_CELL,
                     4,
-                    csTitle = "이용 오류시 이용방법                                           ",
+                    csTitle ="   이용 오류시 이용방법                                           ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 이용 오류시 이용방법 입니다"
@@ -79,7 +79,7 @@ class DefaultCSRepository(
                     5,
                     CellType.CUSTOMER_SERVICE_CELL,
                     5,
-                    csTitle = "기타 오류시 이용방법                                           ",
+                    csTitle ="   기타 오류시 이용방법                                           ",
                     csCategory = CSCategory.TOTAL,
                     csAuthor = "관리자",
                     csContent = "이 글은 기타 오류시 입니다"
@@ -92,7 +92,7 @@ class DefaultCSRepository(
                     id = 1,
 
                     csInfoId = 1,
-                    csTitle = "주문 오류시 대처방법                                         ",
+                    csTitle ="주문 오류시 대처방법                                         ",
                     csCategory = CSCategory.ORDER,
                     csAuthor = "관리자",
                     csContent = "이 글은 주문 오류시 입니다"
@@ -102,7 +102,7 @@ class DefaultCSRepository(
                 CSModel(
                     id = 2,
                     csInfoId = 2,
-                    csTitle = "리뷰 오류시 대처방법                                         ",
+                    csTitle ="리뷰 오류시 대처방법                                         ",
                     csCategory = CSCategory.REVIEW,
                     csAuthor = "관리자",
                     csContent = "이 글은 리뷰 오류시 입니다"
@@ -112,7 +112,7 @@ class DefaultCSRepository(
                 CSModel(
                     id = 3,
                     csInfoId = 3,
-                    csTitle = "로그인 오류시 대처방법                                         ",
+                    csTitle ="로그인 오류시 대처방법                                         ",
                     csCategory = CSCategory.REVIEW,
                     csAuthor = "관리자",
                     csContent = "이 글은 예시 입니다"

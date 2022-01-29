@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <TextView
-        android:paddingLeft="5dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="Title"
+        android:layout_height="50dp"
         android:textStyle="bold"
-        android:gravity="center"
+        android:gravity="center_vertical"
+        android:hint="title"
         android:textColor="@color/color_dark_000000_ffffff"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/margin"
         app:layout_constraintEnd_toEndOf="parent"
         />
+    <ImageView
+        android:id="@+id/uturn"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    app:layout_constraintEnd_toEndOf="@id/title"
+    app:layout_constraintTop_toTopOf="@id/title"
+    android:src="@drawable/uturn"/>
 
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -34,11 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="#B8B8B8"
-            app:layout_constraintBottom_toTopOf="@+id/content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/title"
-            android:orientation="horizontal" />
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintEnd_toEndOf="@id/title" />
 
         <TextView
             android:layout_marginTop="5dp"
@@ -46,22 +47,20 @@
             android:textColor="@color/color_dark_000000_ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/content"
-            app:layout_constraintTop_toTopOf="@id/content"
             android:textSize="16sp"
-            />
+            app:layout_constraintTop_toBottomOf="@id/margin"
+            app:layout_constraintStart_toStartOf="@id/content"/>
 
         <TextView
             android:textColor="@color/color_dark_000000_ffffff"
             android:layout_marginTop="10dp"
             android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:hint="Content"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/margin" />
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

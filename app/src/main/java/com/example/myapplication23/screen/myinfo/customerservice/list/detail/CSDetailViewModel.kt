@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 class CSDetailViewModel(
     private val csRepository: CSRepository
 ) : BaseViewModel() {
-   val csDetailData = MutableLiveData<List<CSModel>>()
 
     override fun fetchData(): Job = viewModelScope.launch {
 

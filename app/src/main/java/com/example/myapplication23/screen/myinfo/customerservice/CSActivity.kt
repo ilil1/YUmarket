@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityCsBinding
 import com.example.myapplication23.screen.base.BaseActivity
+import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
+import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -19,6 +21,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
  */
 
 class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
+
+    var number =0
 
     override fun getViewBinding(): ActivityCsBinding
     = ActivityCsBinding.inflate(layoutInflater)
@@ -34,6 +38,7 @@ class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
     }
 
 
@@ -50,6 +55,9 @@ class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
 
 }
+
+
+
 
 
 
