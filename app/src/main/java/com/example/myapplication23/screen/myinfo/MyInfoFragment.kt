@@ -42,9 +42,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     val requestCode = 101;
     private val check = true;
 
-
-
-
     override fun getViewBinding() =
         FragmentMyInfoBinding.inflate(layoutInflater)
 

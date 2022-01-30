@@ -78,67 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CSTextView">
 
-        // TODO 21.12.30 기본으로 chipDefault가 체크
 
-        <com.google.android.material.chip.ChipGroup
-            android:layout_marginTop="5dp"
-            android:id="@+id/orderChipGroup_cs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:visibility="gone"
-            app:checkedChip="@id/chip_total"
-            app:chipSpacingHorizontal="4dp"
-            app:chipSpacingVertical="6dp"
-            app:layout_constraintBottom_toTopOf="@id/viewPager_cs"
-            app:selectionRequired="true"
-            app:singleLine="true"
-            app:singleSelection="true"
-            tools:visibility="visible">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체"
-                app:chipIconEnabled="true"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그인"
-                app:chipIconEnabled="true" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="주문"
-                app:chipIconEnabled="true" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="리뷰 및 등록" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_use"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이용"
-                app:chipIconEnabled="true" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_etc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="기타"
-                app:chipIconEnabled="true" />
-
-        </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
     <androidx.viewpager2.widget.ViewPager2

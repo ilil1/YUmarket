@@ -14,6 +14,7 @@ import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.MyInfoFragment
+import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
 import com.example.myapplication23.widget.adapter.CSListFragmentPagerAdapter
@@ -38,7 +39,6 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
 
     private fun initViewPager() = with(binding) {
-       orderChipGroupCs.isVisible = false
         binding.CSTextView.text = "고객센터"
 
 
@@ -67,10 +67,22 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
                 showMyinfo(MainActivity())
             }
 
+        binding.editBtn.setOnClickListener {
+            editEmail(EmailFragment())
+        }
+
 
 
 
         }
+
+    private fun editEmail(fragment: EmailFragment){
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,EmailFragment.newInstance(),EmailFragment.TAG)
+            .commit()
+    }
+
 
 
 
