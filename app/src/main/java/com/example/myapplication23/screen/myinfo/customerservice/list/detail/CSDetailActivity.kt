@@ -31,12 +31,17 @@ class CSDetailActivity :BaseActivity<CSDetailViewModel,ActivityDetailBinding>() 
 
     uturn.setOnClickListener {
        changeFragment()
+        finish()
     }
     }
+
+
+
 
     private fun changeFragment(){
      val intent = Intent(this,CSActivity::class.java)
         startActivity(intent)
+
     }
 
 

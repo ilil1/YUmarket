@@ -5,6 +5,7 @@ import android.net.Uri
 import android.widget.Toast
 import com.example.myapplication23.databinding.FragmentEmailBinding
 import com.example.myapplication23.screen.base.BaseFragment
+import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -31,6 +32,9 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
     }
     private fun initViewPager() = with(binding){
         binding.emailSend.setOnClickListener { sendEmail() }
+        binding.back.setOnClickListener {
+            back()
+        }
     }
 
 
@@ -42,24 +46,27 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
             .apply {
                 type = "text/plain"
                 data = Uri.parse("mailto:")
-
-
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(emailAddress))
                 putExtra(Intent.EXTRA_SUBJECT, title )
                 putExtra(Intent.EXTRA_TEXT, content )
 
             }
 
-        if (Intent.EXTRA_SUBJECT != null) {
+        if (title =="" || title == null) {
+            Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+        }
+        else
 
-                startActivity(Intent.createChooser(intent,"Send Email"))
+        startActivity(Intent.createChooser(intent,"Send Email"))
 
-
-        } else
-        Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
     }
 
-
+    private fun back(){
+        activity.let {
+            var intent = Intent(context, CSActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 
     companion object{

@@ -5,7 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +25,9 @@
         android:textStyle="bold"
         android:textSize="30sp"
         android:textColor="@color/color_dark_000000_ffffff"
-        android:gravity="center"/>
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:layout_marginTop="20dp"

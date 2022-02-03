@@ -1,17 +1,22 @@
 package com.example.myapplication23.screen.myinfo.customerservice
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsCenterBinding
+import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
+import com.example.myapplication23.screen.myinfo.MyInfoFragment
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -25,6 +30,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
 
+    private lateinit var callback: OnBackPressedCallback
 
 
     override val viewModel by viewModel<CSViewModel>()
@@ -54,6 +60,11 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
 
         binding.emailCenter.setOnClickListener {
             emailBox(EmailFragment())
+
+        }
+
+        binding.back.setOnClickListener {
+            back(MainActivity())
         }
     }
 
@@ -121,7 +132,6 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
   private fun permissionCheck()
     {   val callCheck =
         android.Manifest.permission.CALL_PHONE
-
         val permission =
             ContextCompat
         .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
@@ -142,6 +152,23 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
             startActivity(intent)
         }
     }
+
+    private fun back(activity: MainActivity) {
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+
+
+
+        }
+
+
+    }
+
+
+
+
+
 
     companion object{
             const val TAG = "CSCenterFragment"

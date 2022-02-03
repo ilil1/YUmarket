@@ -8,6 +8,7 @@ package com.example.myapplication23.screen.myinfo.customerservice
  * @description
  */
 
+import android.content.Intent
 import androidx.core.view.isVisible
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
@@ -17,6 +18,7 @@ import com.example.myapplication23.screen.myinfo.MyInfoFragment
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
+import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
 import com.example.myapplication23.widget.adapter.CSListFragmentPagerAdapter
 
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -71,7 +73,9 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
             editEmail(EmailFragment())
         }
 
-
+        binding.back.setOnClickListener {
+            back()
+        }
 
 
         }
@@ -88,11 +92,17 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
 
     private fun showMyinfo(activity: MainActivity){
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer,MyInfoFragment.newInstance(),"myinfo")
-                .commit()
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
+    private fun back(){
+        activity.let {
+            var intent = Intent(context, CSActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

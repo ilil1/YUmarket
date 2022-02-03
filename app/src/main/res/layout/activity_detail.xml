@@ -23,12 +23,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
     <ImageView
-        android:id="@+id/uturn"
+    android:layout_marginRight="10dp"
+    android:id="@+id/uturn"
     android:layout_width="40dp"
     android:layout_height="40dp"
     app:layout_constraintEnd_toEndOf="@id/title"
     app:layout_constraintTop_toTopOf="@id/title"
-    android:src="@drawable/uturn"/>
+    android:src="@drawable/left"/>
 
         <LinearLayout
             android:layout_marginTop="10dp"
