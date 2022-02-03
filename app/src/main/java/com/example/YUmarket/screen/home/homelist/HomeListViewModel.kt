@@ -28,7 +28,7 @@ class HomeListViewModel(
 
     override fun fetchData(): Job = viewModelScope.launch {
         homeListLiveData.value = when(homeListCategory) {
-            HomeListCategory.TOWN_MARKET -> homeRepository.getAllMarketList()
+            HomeListCategory.TOWN_MARKET -> homeRepository.getMarketListByPage(0)
             HomeListCategory.MART -> homeRepository.findItemsByCategory(HomeListCategory.MART)
             HomeListCategory.FOOD -> homeRepository.findItemsByCategory(HomeListCategory.FOOD)
             HomeListCategory.FASHION -> homeRepository.findItemsByCategory(HomeListCategory.FASHION)

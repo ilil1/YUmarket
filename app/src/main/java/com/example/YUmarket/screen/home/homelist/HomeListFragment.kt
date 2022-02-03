@@ -1,6 +1,7 @@
 package com.example.YUmarket.screen.home.homelist
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.YUmarket.databinding.FragmentHomeListBinding
@@ -72,6 +73,7 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
     override fun observeData() = with(viewModel) {
         homeListLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            Log.d("목록", it.toString())
         }
     }
 

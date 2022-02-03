@@ -37,6 +37,11 @@ android {
     viewBinding {
         enabled = true
     }
+    // JUnit test에 대한 resource 접근 허용
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
     compileSdkVersion 31
 }
 
@@ -93,6 +98,14 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:2.4.0-rc01"
+    // ====================================================================================== //
+
+    // ===================================== Mockito Test ===================================== //
+    // Optional -- Robolectric environment
+    testImplementation 'androidx.test:core:1.0.0'
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+
     // ====================================================================================== //
 
 }
