@@ -2,7 +2,8 @@ package com.example.YUmarket.data.exceptions
 
 /**
  * RuntimeException을 상속받는 사용자 정의 예외의 최상단 예외
- * @author Doyeop Kim (main)
+ * @author Doyeop Kim (main),
+ * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
  * @since 2022/01/31
  */
 open class BusinessException(

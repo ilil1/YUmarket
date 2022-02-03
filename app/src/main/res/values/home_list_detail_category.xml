@@ -10,6 +10,7 @@
     <string name="home_detail_dessert">디저트</string>
     <string name="home_detail_fast_food">패스트푸드</string>
     <string name="home_detail_china_food">중국집</string>
+    <string name="home_detail_korean_food">한식</string>
     <string name="home_detail_pizza">피자</string>
     <string name="home_detail_snack_and_bread">과자/빵</string>
     <string name="home_detail_beverage_coffee_and_milk_product">음료/커피/유제품</string>
@@ -37,6 +38,7 @@
     <string name="home_detail_dessert_type">DESSERT</string>
     <string name="home_detail_fast_food_type">FAST_FOOD</string>
     <string name="home_detail_china_food_type">CHINA_FOOD</string>
+    <string name="home_detail_korean_food_type">KOREAN_FOOD</string>
     <string name="home_detail_pizza_type">PIZZA</string>
     <string name="home_detail_snack_and_bread_type">SNACK_BREAD</string>
     <string name="home_detail_beverage_coffee_and_milk_product_type">BEVERAGE_COFFEE_MILK_PRODUCT</string>

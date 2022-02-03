@@ -191,6 +191,12 @@ class DefaultHomeRepository(
         }
     }
 
+    /**
+     * 페이징 처리를 통해 동네마켓의 리스트를 불러오는 메소드
+     * @author Doyeop Kim (main)
+     * Sub 김건우, 김도엽, 배은호, 허희태
+     * @since 22.01.31
+     */
     override suspend fun getMarketListByPage(page: Int): List<TownMarketModel> = withContext(ioDispatcher) {
         val response = townMarketApiService.getList(page)
 

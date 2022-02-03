@@ -32,6 +32,7 @@ enum class HomeListDetailCategory(
     DESSERT(R.string.home_detail_dessert, R.string.home_detail_dessert_type, HomeListCategory.FOOD),
     FAST_FOOD(R.string.home_detail_fast_food, R.string.home_detail_fast_food_type, HomeListCategory.FOOD),
     CHINA_FOOD(R.string.home_detail_china_food, R.string.home_detail_china_food_type, HomeListCategory.FOOD),
+    KOREAN_FOOD(R.string.home_detail_korean_food, R.string.home_detail_korean_food_type, HomeListCategory.FOOD),
     PIZZA(R.string.home_detail_pizza, R.string.home_detail_pizza_type, HomeListCategory.FOOD),
     FOOD_EXTRA(R.string.home_detail_extra, R.string.home_detail_extra_type, HomeListCategory.FOOD),
 

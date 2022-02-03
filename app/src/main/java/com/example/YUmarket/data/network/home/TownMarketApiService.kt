@@ -1,7 +1,6 @@
 package com.example.YUmarket.data.network.home
 
 import com.example.YUmarket.data.response.common.BaseResponse
-import com.example.YUmarket.data.response.home.TownMarketDetailResponseDto
 import com.example.YUmarket.data.response.home.TownMarketResponseDto
 import com.example.YUmarket.data.url.Url
 import retrofit2.Response

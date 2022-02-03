@@ -7,7 +7,7 @@ import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.util.parser.TimeParser
 
 /**
- * Model로 변환을 해주는 mapper class
+ * Dto를 Model로 변환을 해주는 mapper class
  * @author Doyeop Kim (main),
  * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
  * @since 2022/01/28

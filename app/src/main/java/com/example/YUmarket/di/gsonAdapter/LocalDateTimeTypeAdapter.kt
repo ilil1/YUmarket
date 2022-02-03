@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter
 
 /**
  * LocalDateTime의 타입을 gson에 등록해주는 adapter
- * @author Doyeop Kim (main)
- *
+ * @author Doyeop Kim (main),
+ * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
  * @since 2022/01/28
  */
 class LocalDateTimeTypeAdapter : TypeAdapter<LocalDateTime>() {

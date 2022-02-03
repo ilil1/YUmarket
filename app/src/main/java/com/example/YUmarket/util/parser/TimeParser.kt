@@ -32,8 +32,4 @@ sealed class TimeParser {
             }
         }
     }
-
-    class LocalDateTImeParser(val time: String) {
-
-    }
 }

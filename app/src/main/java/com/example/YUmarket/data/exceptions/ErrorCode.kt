@@ -1,8 +1,9 @@
 package com.example.YUmarket.data.exceptions
 
 /**
- *
- * @author Doyeop Kim
+ * YU Market에서 발생할 수 있는 모든 에러의 코드를 보아둔 enum class
+ * @author Doyeop Kim (main),
+ * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
  * @since 2022/01/31
  */
 enum class ErrorCode(
@@ -15,5 +16,6 @@ enum class ErrorCode(
     ACCESS_DENIED(400, "C002", "Access is denied"),
 
     ENTITY_NOT_FOUND(500, "C101", "Entity is not found"),
+
     UNDEFINED_ERROR(500, "C201", "Undefined error")
 }
