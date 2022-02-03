@@ -54,7 +54,9 @@ class NearbyMarketViewHolder(
             nearbyMarketWorkDay.text = "연중무휴연중무휴연중무휴" // TODO remove hard coded
             
             // Extension을 사용하여 Glide로 ImageView에 이미지 로드
-            nearbyMarketImageView.load(model.marketImageUrl)
+            model.marketImageUrl?.let {
+                nearbyMarketImageView.load(model.marketImageUrl)
+            }
         }
     }
 }
