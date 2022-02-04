@@ -38,7 +38,7 @@ class HomeFragment
 
                     // 22.01.19 View Pager의 현재 Item을 SafeArgs로 받아온 Tab으로 설정
                     // by 정남진
-                    viewPager.currentItem = args.goToTab.ordinal
+                    viewPager.setCurrentItem(args.goToTab.ordinal, false)
                 }
             }
         }
@@ -81,7 +81,7 @@ class HomeFragment
     companion object {
         const val TAG = "HomeFragment"
 
-        fun newInstance() : HomeFragment {
+        fun newInstance(): HomeFragment {
             return HomeFragment().apply {
 
             }
