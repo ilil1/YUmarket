@@ -43,4 +43,4 @@
 2.3.0
 보일러플레이트 코드 제거 및 개인정보처리 Activity/Fragment 생성
 현재 문제점으로는 각 fragment마다 뒤로가기 버튼을 사용하는데 이때 MainActivity로 가게된다면 fragment.replace를 하게된다면
-MainActivity에 3개의 fragment가 존재하고 있어 하나를 불러오면 나머지 2개가 보이지않는 현상이
+MainActivity에 3개의 fragment가 존재하고 있어 하나를 불러오면 나머지 2개가 보이지않는 현상이 있음 (02.04)
