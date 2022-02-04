@@ -35,9 +35,6 @@ class CSDetailActivity :BaseActivity<CSDetailViewModel,ActivityDetailBinding>() 
     }
     }
 
-
-
-
     private fun changeFragment(){
      val intent = Intent(this,CSActivity::class.java)
         startActivity(intent)

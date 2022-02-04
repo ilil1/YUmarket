@@ -33,8 +33,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConfigurationActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
-
-
     override fun getViewBinding(): ActivityCsBinding
     = ActivityCsBinding.inflate(layoutInflater)
 

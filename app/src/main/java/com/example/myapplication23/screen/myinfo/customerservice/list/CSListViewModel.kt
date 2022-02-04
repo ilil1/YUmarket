@@ -25,14 +25,8 @@ class CSListViewModel (
     val csListData = MutableLiveData<List<CSModel>>()
 
    override fun fetchData(): Job = viewModelScope.launch {
-       csListData.value = when(csCategory){
-        CSCategory.TOTAL -> csRepository.findCsByCategory(CSCategory.TOTAL)
-        CSCategory.ORDER -> csRepository.findCsByCategory(CSCategory.ORDER)
-        CSCategory.REVIEW -> csRepository.findCsByCategory(CSCategory.REVIEW)
-        CSCategory.LOGIN -> csRepository.findCsByCategory(CSCategory.LOGIN)
-        CSCategory.USE -> csRepository.findCsByCategory(CSCategory.USE)
-        CSCategory.ETC -> csRepository.findCsByCategory(CSCategory.ETC)
-         }
+       csListData.value =
+       csRepository.findCsByCategory(CSCategory.TOTAL)
     }
 
     }

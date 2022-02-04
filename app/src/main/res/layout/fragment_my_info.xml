@@ -313,7 +313,7 @@
 
                         <TextView
                             android:layout_marginLeft="15dp"
-                            android:id="@+id/mypost_textview"
+                            android:id="@+id/personal_textview"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:backgroundTint="@color/color_dark_ffffff_000000"

@@ -1,20 +1,20 @@
-package com.example.myapplication23.screen.myinfo.customerservice.terms
+package com.example.myapplication23.screen.myinfo.customerservice.personal
 
 import com.example.myapplication23.R
-import com.example.myapplication23.databinding.FragmentTermsBinding
+import com.example.myapplication23.databinding.FragmentPersonalBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.MyInfoFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
+class PersonalFragment : BaseFragment<CSViewModel, FragmentPersonalBinding>() {
 
 
     override val viewModel by viewModel<CSViewModel>()
 
-    override fun getViewBinding(): FragmentTermsBinding =
-        FragmentTermsBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentPersonalBinding =
+        FragmentPersonalBinding.inflate(layoutInflater)
 
     override fun observeData() {
         initViewPager()
@@ -22,7 +22,7 @@ class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
 
     private fun initViewPager() = with(binding) {
         binding.configurationLeft.setOnClickListener { showMyinfo(MainActivity())  }
-        //binding.textView.text = getString(R.string.configuration)
+
     }
 
     private fun showMyinfo(activity: MainActivity){
@@ -33,10 +33,10 @@ class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
 
     }
     companion object{
-        const val TAG = "TermsFragment"
+        const val TAG = "PersonalFragment"
 
-        fun newInstance() : TermsFragment {
-            return TermsFragment().apply {
+        fun newInstance() : PersonalFragment {
+            return PersonalFragment().apply {
 
             }
         }

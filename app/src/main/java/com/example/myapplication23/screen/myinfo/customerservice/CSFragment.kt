@@ -39,7 +39,6 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
     }
 
-
     private fun initViewPager() = with(binding) {
         binding.CSTextView.text = "고객센터"
 
@@ -86,9 +85,6 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
             .replace(R.id.fragmentContainer,EmailFragment.newInstance(),EmailFragment.TAG)
             .commit()
     }
-
-
-
 
 
     private fun showMyinfo(activity: MainActivity){

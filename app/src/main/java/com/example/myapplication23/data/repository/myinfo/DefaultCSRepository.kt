@@ -22,8 +22,7 @@ class DefaultCSRepository(
 
 
     override fun findCsByCategory(csCategory: CSCategory): List<CSModel> {
-        return when(csCategory){
-            CSCategory.TOTAL-> listOf(
+          val csList = listOf(
                 CSModel(
                     0,
                     CellType.CUSTOMER_SERVICE_CELL,
@@ -84,61 +83,8 @@ class DefaultCSRepository(
                     csAuthor = "관리자",
                     csContent = "이 글은 기타 오류시 입니다"
                 ),
-
                 )
-            CSCategory.ORDER -> listOf(
-                CSModel(
-
-                    id = 1,
-
-                    csInfoId = 1,
-                    csTitle ="주문 오류시 대처방법                                         ",
-                    csCategory = CSCategory.ORDER,
-                    csAuthor = "관리자",
-                    csContent = "이 글은 주문 오류시 입니다"
-                ),
-            )
-                CSCategory.REVIEW -> listOf(
-                CSModel(
-                    id = 2,
-                    csInfoId = 2,
-                    csTitle ="리뷰 오류시 대처방법                                         ",
-                    csCategory = CSCategory.REVIEW,
-                    csAuthor = "관리자",
-                    csContent = "이 글은 리뷰 오류시 입니다"
-                )
-            )
-            CSCategory.LOGIN -> listOf(
-                CSModel(
-                    id = 3,
-                    csInfoId = 3,
-                    csTitle ="로그인 오류시 대처방법                                         ",
-                    csCategory = CSCategory.REVIEW,
-                    csAuthor = "관리자",
-                    csContent = "이 글은 예시 입니다"
-                )
-            )
-            CSCategory.USE -> listOf(
-                CSModel(
-                    id = 4,
-                    csInfoId =4,
-                    csTitle = "이용 오류시 대처방법                                         ",
-                    csCategory = CSCategory.REVIEW,
-                    csAuthor = "관리자",
-                    csContent = "이 글은 예시 입니다"
-                )
-            )
-
-            CSCategory.ETC -> listOf(
-                CSModel(
-                    id = 5,
-                    csInfoId = 5,
-                    csTitle = "기타 오류시 대처방법                                         ",
-                    csCategory = CSCategory.REVIEW,
-                    csAuthor = "관리자",
-                    csContent = "이 글은 예시 입니다"
-                )
-            )
+        return csList
         }
     }
 
@@ -146,7 +92,7 @@ class DefaultCSRepository(
 
 
 
-}
+
 
 
 

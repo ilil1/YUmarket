@@ -18,6 +18,7 @@ import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
+import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalActivity
 import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
@@ -36,9 +37,6 @@ import java.util.*
 class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     override val viewModel by viewModel<MyInfoViewModel>()
 
-    /**
-     *  requestCode를 설정해줘서 정상적인 기능작동인지 확인
-     */
     val requestCode = 101;
     private val check = true;
 
@@ -75,6 +73,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         binding.centerTextview.setOnClickListener { openCSCenter() }
         binding.setting.setOnClickListener { openSetting() }
         binding.terms.setOnClickListener { openTerms() }
+        binding.personalTextview.setOnClickListener { openPersonal() }
     }
 
     private fun loadImage(){
@@ -84,7 +83,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         intent_image.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(Intent.createChooser(intent_image,"Load Picture"),requestCode)
-
     }
 
     private fun openSetting(){
@@ -101,8 +99,13 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         }
     }
 
+    private fun openPersonal(){
+        activity.let {
+            var intent = Intent(context, PersonalActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
-        // 추후 공부하기
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -123,16 +126,17 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     private fun darkMode(){
         if(check  == binding.darkSwitch.isChecked){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            //setDefualNightMode의 메서드가 Activity를 다시 생성하게 만든다 즉 MainActivity를 다시 만들어
-            //버튼을 누르면 시작화면으로 돌아간다.
-
-
         }
         else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         }
+    }
 
+    private fun darkPopUp(){
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("주의")
+            // 다크모드 사용시 어플의 재시작으로 저장되어있던 데이터가 사라질 수 있다는 경고 식의 dialog 생성후
+            // 사용자가 선택하여 사용할 수 있도록 도와줌
     }
 
     private fun popUp(){
@@ -141,9 +145,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         val dateAndTime =
             SimpleDateFormat("MM-dd KK:mm ")
         val str_date = dateAndTime.format(date)
-
-
-
             val items = arrayOf("켜기", "끄기")
             var selectionItem: String? = null
             val alertDialog = AlertDialog.Builder(context)
@@ -165,15 +166,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
                 }
                 .setPositiveButton("확인"){dialog,which->
                 }
-
                 .show()
-
-    }
-
-
-    override fun initViews() {
-        super.initViews()
-
     }
 
     private fun openCSCenter(){

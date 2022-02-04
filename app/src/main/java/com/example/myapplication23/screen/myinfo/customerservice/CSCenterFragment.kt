@@ -166,10 +166,6 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
     }
 
 
-
-
-
-
     companion object{
             const val TAG = "CSCenterFragment"
 
