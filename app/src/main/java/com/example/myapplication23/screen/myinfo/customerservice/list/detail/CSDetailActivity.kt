@@ -32,7 +32,7 @@ class CSDetailActivity :BaseActivity<CSDetailViewModel,ActivityDetailBinding>() 
     uturn.setOnClickListener {
        changeFragment()
         finish()
-    }
+     }
     }
 
     private fun changeFragment(){

@@ -31,8 +31,6 @@ object ViewHolderMapperCS {
                 ViewholderCsItemBinding.inflate(inflater),
                 viewModel
             )
-
-
        return viewHolderService as ServiceModelViewHolder<M>
     }
 

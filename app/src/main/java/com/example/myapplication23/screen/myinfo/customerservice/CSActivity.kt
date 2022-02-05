@@ -41,11 +41,11 @@ class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
 
     override fun initViews() = with(binding) {
-        showCSCenterFragment(CSCenterFragment.newInstance(),CSCenterFragment.TAG)
+        showCSFragment(CSFragment.newInstance(),CSCenterFragment.TAG)
 
     }
 
-        private fun showCSCenterFragment(fragment: Fragment, tag: String) {
+        private fun showCSFragment(fragment: Fragment, tag: String) {
                 supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
         }
 

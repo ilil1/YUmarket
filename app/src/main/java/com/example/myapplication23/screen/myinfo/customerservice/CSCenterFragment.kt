@@ -30,9 +30,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
-    private lateinit var callback: OnBackPressedCallback
-
-
     override val viewModel by viewModel<CSViewModel>()
 
     override fun getViewBinding(): FragmentCsCenterBinding =
@@ -70,14 +67,12 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
 
     private fun YUcall(){
-
         val myuri =Uri.parse("tel:00011112222")
         var intent = Intent(Intent.ACTION_CALL,myuri)
         startActivity(intent)
     }
 
     private fun foodcall(){
-
         val myuri =Uri.parse("tel:1399")
         var intent = Intent(Intent.ACTION_CALL,myuri)
         startActivity(intent)
@@ -147,7 +142,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
     private fun transfer(fragment: CSFragment) {
         activity?.let {
-            var intent = Intent(context, CSCenterActivity::class.java)
+            var intent = Intent(context, CSActivity::class.java)
             startActivity(intent)
         }
     }

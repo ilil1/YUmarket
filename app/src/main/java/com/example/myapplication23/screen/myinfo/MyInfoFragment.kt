@@ -16,6 +16,7 @@ import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
+import com.example.myapplication23.screen.myinfo.customerservice.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
 import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalActivity
@@ -44,7 +45,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
         FragmentMyInfoBinding.inflate(layoutInflater)
 
     override fun observeData() = with(binding) {
-        initViewPager()
 
         /**
          * 추후 로그인 acesss->로 기능작동 하도록 initViewPager()뒤로 이동예정
@@ -59,7 +59,9 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
             }
         }
     }
-    private fun initViewPager() = with(binding) {
+
+    override fun initViews() {
+        super.initViews()
         binding.profileImageChange.setOnClickListener { loadImage()}
         binding.darkSwitch.setOnClickListener { darkMode() }
         binding.noticeText.setOnClickListener { popUp() }
@@ -113,8 +115,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
             }
         }
     }
-
-
     private fun darkMode(){
         if(check  == binding.darkSwitch.isChecked){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -123,7 +123,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
-
     private fun darkPopUp(){
         val alertDialog = AlertDialog.Builder(context)
             .setTitle("주의")
@@ -162,7 +161,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     }
     private fun openCSCenter(){
         activity?.let {
-            var intent = Intent(context, CSActivity::class.java)
+            var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
         }
     }

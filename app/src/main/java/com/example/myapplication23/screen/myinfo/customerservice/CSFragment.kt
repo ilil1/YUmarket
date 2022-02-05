@@ -9,23 +9,20 @@ package com.example.myapplication23.screen.myinfo.customerservice
  */
 
 import android.content.Intent
-import androidx.core.view.isVisible
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.MyInfoFragment
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
-import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
-import com.example.myapplication23.widget.adapter.CSListFragmentPagerAdapter
+import com.example.myapplication23.widget.adapter.CSListAdapter
 
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
-    private lateinit var viewPagerAdapter: CSListFragmentPagerAdapter
+    private lateinit var viewAdapter: CSListAdapter
 
     override val viewModel by viewModel<CSViewModel>()
 
@@ -43,7 +40,7 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
         binding.CSTextView.text = "고객센터"
 
 
-        if (::viewPagerAdapter.isInitialized.not()) {
+        if (::viewAdapter.isInitialized.not()) {
             val csCategory = CSCategory.values()
 
             val csListFragmentList = csCategory.map {
@@ -51,13 +48,13 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
             }
 
 
-            viewPagerAdapter = CSListFragmentPagerAdapter(
+            viewAdapter = CSListAdapter(
                 this@CSFragment,
                 csListFragmentList
 
             )
         }
-            viewPagerCs.adapter = viewPagerAdapter
+            viewPagerCs.adapter = viewAdapter
 
 
 

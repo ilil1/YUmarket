@@ -8,6 +8,7 @@ import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.util.mapper.ViewHolderMapperCS
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
+import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolder
 
 /**
  * @author HeeTae Heo(main),
@@ -28,6 +29,7 @@ class CSModelRecyclerAdapter<M: CSModel,VM:BaseViewModel>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceModelViewHolder<M> =
         ViewHolderMapperCS.put(parent,viewModel)
+
 
 
     @Suppress("UNCHECKED_CAST")

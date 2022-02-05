@@ -23,7 +23,6 @@ class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
 
     private fun initViewPager() = with(binding) {
         binding.configurationLeft.setOnClickListener { back(MainActivity())  }
-        //binding.textView.text = getString(R.string.configuration)
     }
 
     private fun back(activity: MainActivity){
