@@ -33,13 +33,13 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
         FragmentCsBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initViewPager()
+        initView()
 
         //TODO(로그인 확인) ->Success->
 
     }
 
-    private fun initViewPager() = with(binding) {
+    private fun initView() = with(binding) {
         binding.CSTextView.text = "고객센터"
 
 
@@ -57,11 +57,9 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
             )
         }
-
-
             viewPagerCs.adapter = viewPagerAdapter
 
-            viewPagerCs.offscreenPageLimit = 1
+
 
 
             binding.intentmyinfo.setOnClickListener {

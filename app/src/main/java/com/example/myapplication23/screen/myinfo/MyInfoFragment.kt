@@ -59,15 +59,8 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
             }
         }
     }
-
-
-
-
     private fun initViewPager() = with(binding) {
-        binding.profileImageChange.setOnClickListener {
-            loadImage()
-
-        }
+        binding.profileImageChange.setOnClickListener { loadImage()}
         binding.darkSwitch.setOnClickListener { darkMode() }
         binding.noticeText.setOnClickListener { popUp() }
         binding.centerTextview.setOnClickListener { openCSCenter() }
@@ -108,7 +101,6 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(101 == requestCode){
             if(resultCode == RESULT_OK){
                 val dataUri : Uri? = data?.data
@@ -149,7 +141,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
             var selectionItem: String? = null
             val alertDialog = AlertDialog.Builder(context)
                 .setTitle("알림 설정")
-                .setSingleChoiceItems(items,-1){
+                .setSingleChoiceItems(items,0){
                     dialog,which->selectionItem = items[which]
                     while(selectionItem != null) {
                         if (selectionItem == "켜기") {
@@ -168,22 +160,10 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
                 }
                 .show()
     }
-
     private fun openCSCenter(){
-        activity.let {
+        activity?.let {
             var intent = Intent(context, CSActivity::class.java)
             startActivity(intent)
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 }

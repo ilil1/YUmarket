@@ -55,7 +55,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
             object : CSModelListener{
                 override fun onClickItem(listModel: CSModel) {
                     val intent = Intent(context,CSDetailActivity::class.java).apply {
-                        putExtra("requireActivity",requireActivity().toString())
+                        putExtra("CSCategory",listModel.csCategory)
                         putExtra("CSTitle",listModel.csTitle)
                         putExtra("CSContent",listModel.csContent)
                         putExtra("CSAuthor",listModel.csAuthor)
@@ -71,15 +71,9 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
         csRecyclerView.adapter = adapter
         csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
 
-
-
-
-
     }
     companion object {
         const val CS_CATEGORY_KEY = "CSCategoryKey"
-
-
         fun newInstance(csCategory: CSCategory): CSListFragment {
             val bundle = Bundle().apply {
                 putSerializable(CS_CATEGORY_KEY, csCategory)

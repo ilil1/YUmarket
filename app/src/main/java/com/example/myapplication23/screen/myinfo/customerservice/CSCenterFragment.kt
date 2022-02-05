@@ -28,7 +28,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @description
  */
 
-class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
+class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
     private lateinit var callback: OnBackPressedCallback
 
@@ -38,13 +38,12 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
     override fun getViewBinding(): FragmentCsCenterBinding =
         FragmentCsCenterBinding.inflate(layoutInflater)
 
-
     override fun observeData() {
-        initViewPager()
+        initViews()
     }
-
-    private fun initViewPager() = with(binding){
-        binding.questionCenter.setOnClickListener{
+    override fun initViews() = with(binding) {
+        super.initViews()
+        binding.questionCenter.setOnClickListener {
             transfer(CSFragment())
         }
 
@@ -67,6 +66,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
             back(MainActivity())
         }
     }
+
 
 
     private fun YUcall(){
@@ -120,12 +120,11 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
     }
 
     private fun emailBox(fragment: Fragment) {
-        activity?.let {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, EmailFragment.newInstance(),"myinfo")
                 .commit()
-        }
+
 
     }
 
@@ -157,15 +156,10 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
         activity?.let {
             var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
-
-
-
         }
 
 
     }
-
-
     companion object{
             const val TAG = "CSCenterFragment"
 
@@ -175,6 +169,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>(){
                 }
             }
     }
+
 
 
 

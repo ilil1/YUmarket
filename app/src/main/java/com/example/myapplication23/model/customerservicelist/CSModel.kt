@@ -36,12 +36,6 @@ data class CSModel(
 
     }
 
-
-
-
-
-
-
     companion object {
         val DIFF_CALLBACK = object: DiffUtil.ItemCallback<CSModel>() {
             override fun areItemsTheSame(oldItem: CSModel, newItem: CSModel): Boolean {

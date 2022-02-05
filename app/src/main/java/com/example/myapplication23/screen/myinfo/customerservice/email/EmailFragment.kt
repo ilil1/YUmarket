@@ -27,10 +27,10 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
 
 
     override fun observeData() {
-        initViewPager()
+        initView()
 
     }
-    private fun initViewPager() = with(binding){
+    private fun initView() = with(binding){
         binding.emailSend.setOnClickListener { sendEmail() }
         binding.back.setOnClickListener {
             back()
@@ -56,13 +56,11 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
             Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
         }
         else
-
         startActivity(Intent.createChooser(intent,"Send Email"))
 
     }
-
     private fun back(){
-        activity.let {
+        activity?.let {
             var intent = Intent(context, CSActivity::class.java)
             startActivity(intent)
         }

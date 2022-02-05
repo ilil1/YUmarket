@@ -44,7 +44,7 @@ class ConfigurationActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
     }
 
     override fun observeData() = with(binding) {
-             //TODO()
+        initViews()
     }
 
 

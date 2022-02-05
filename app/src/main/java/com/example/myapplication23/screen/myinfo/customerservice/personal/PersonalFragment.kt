@@ -1,5 +1,6 @@
 package com.example.myapplication23.screen.myinfo.customerservice.personal
 
+import android.content.Intent
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentPersonalBinding
 import com.example.myapplication23.screen.MainActivity
@@ -21,15 +22,15 @@ class PersonalFragment : BaseFragment<CSViewModel, FragmentPersonalBinding>() {
     }
 
     private fun initViewPager() = with(binding) {
-        binding.configurationLeft.setOnClickListener { showMyinfo(MainActivity())  }
+        binding.configurationLeft.setOnClickListener { back(MainActivity())  }
 
     }
 
-    private fun showMyinfo(activity: MainActivity){
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, MyInfoFragment.newInstance(),"myinfo")
-            .commit()
+    private fun back(activity: MainActivity){
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     companion object{

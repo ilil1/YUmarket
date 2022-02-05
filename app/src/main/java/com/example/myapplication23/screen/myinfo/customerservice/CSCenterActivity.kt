@@ -40,9 +40,4 @@ class CSCenterActivity : BaseActivity<CSViewModel, ActivityCsCenterBinding>() {
     private fun showCSFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
     }
-
-
-
-
-
 }

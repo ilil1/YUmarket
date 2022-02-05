@@ -1,5 +1,6 @@
 package com.example.myapplication23.screen.myinfo.customerservice.terms
 
+import android.content.Intent
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentTermsBinding
 import com.example.myapplication23.screen.MainActivity
@@ -21,15 +22,15 @@ class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
     }
 
     private fun initViewPager() = with(binding) {
-        binding.configurationLeft.setOnClickListener { showMyinfo(MainActivity())  }
+        binding.configurationLeft.setOnClickListener { back(MainActivity())  }
         //binding.textView.text = getString(R.string.configuration)
     }
 
-    private fun showMyinfo(activity: MainActivity){
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, MyInfoFragment.newInstance(),"myinfo")
-            .commit()
+    private fun back(activity: MainActivity){
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     companion object{

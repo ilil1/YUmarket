@@ -1,5 +1,6 @@
 package com.example.myapplication23.screen.myinfo.customerservice.configuration
 
+import android.content.Intent
 import com.example.myapplication23.BuildConfig
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentConfigurationBinding
@@ -20,19 +21,19 @@ class ConfigurationFragment : BaseFragment<CSViewModel, FragmentConfigurationBin
         FragmentConfigurationBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initViewPager()
+        initView()
     }
 
-    private fun initViewPager() = with(binding){
+    private fun initView() = with(binding){
         binding.versionCode.text = versionNumber
-        binding.configurationLeft.setOnClickListener { showMyinfo(MainActivity()) }
+        binding.configurationLeft.setOnClickListener { back(MainActivity()) }
     }
 
-    private fun showMyinfo(activity: MainActivity){
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, MyInfoFragment.newInstance(),"myinfo")
-            .commit()
+    private fun back(activity: MainActivity){
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
