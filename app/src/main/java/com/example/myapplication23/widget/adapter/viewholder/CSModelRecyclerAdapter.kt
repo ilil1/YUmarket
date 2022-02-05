@@ -10,13 +10,12 @@ import com.example.myapplication23.util.mapper.ViewHolderMapperCS
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
 /**
- * @주 허희태
- * @부 김건우 정남진 김도엽 배은호
+ * @author HeeTae Heo(main),
+ * Geonwoo Kim, Doyeop Kim, Namjin Jeong, Eunho Bae (sub)
  * @since
  * @throws
  * @description
  */
-
 
 
 class CSModelRecyclerAdapter<M: CSModel,VM:BaseViewModel>(
@@ -28,7 +27,7 @@ class CSModelRecyclerAdapter<M: CSModel,VM:BaseViewModel>(
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceModelViewHolder<M> =
-        ViewHolderMapperCS.map(parent,CSCategory.values()[viewType],viewModel)
+        ViewHolderMapperCS.put(parent,viewModel)
 
 
     @Suppress("UNCHECKED_CAST")

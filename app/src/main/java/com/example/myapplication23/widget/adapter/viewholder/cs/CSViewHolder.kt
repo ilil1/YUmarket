@@ -10,8 +10,8 @@ import com.example.myapplication23.widget.adapter.listener.customerservice.CSMod
 import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHolder
 
 /**
- * @주 허희태
- * @부 김건우 정남진 김도엽 배은호
+ * @author HeeTae Heo(main),
+ * Geonwoo Kim, Doyeop Kim, Namjin Jeong, Eunho Bae (sub)
  * @since
  * @throws
  * @description
@@ -19,8 +19,7 @@ import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHol
 
 class CSViewHolder(
     private val binding: ViewholderCsItemBinding,
-    viewModel: BaseViewModel,
-
+    viewModel: BaseViewModel
 ) : ServiceModelViewHolder<CSModel>(binding,viewModel) {
 
 
@@ -29,14 +28,12 @@ class CSViewHolder(
     override fun bindData(listModel: CSModel) {
         super.bindData(listModel)
 
-        with(binding){
-            questionText.text= listModel.csTitle
+        with(binding) {
+            questionText.text = listModel.csTitle
             author.text = listModel.csAuthor
 
         }
-
     }
-
 
 
     override fun bindViews(listmodel: CSModel, listener: AdapterListener) = with(binding){

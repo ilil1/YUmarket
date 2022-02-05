@@ -20,20 +20,19 @@ import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolder
 
 object ViewHolderMapperCS {
     @Suppress("UNCHECKED_CAST")
-    fun <M : Model> map(
+    fun <M : Model> put(
         parent: ViewGroup,
-        category : CSCategory,
         viewModel: BaseViewModel,
     ): ServiceModelViewHolder<M> {
         val inflater = LayoutInflater.from(parent.context)
 
-        val viewHolderService = when(category){
-            is CSCategory -> CSViewHolder(
+        val viewHolderService =
+            CSViewHolder(
                 ViewholderCsItemBinding.inflate(inflater),
                 viewModel
             )
 
-        }
+
        return viewHolderService as ServiceModelViewHolder<M>
     }
 
