@@ -18,13 +18,16 @@ class PersonalFragment : BaseFragment<CSViewModel, FragmentPersonalBinding>() {
         FragmentPersonalBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initViewPager()
+
     }
 
-    private fun initViewPager() = with(binding) {
+    override fun initViews() = with(binding) {
+        super.initViews()
         binding.configurationLeft.setOnClickListener { back(MainActivity())  }
-
     }
+
+
+
 
     private fun back(activity: MainActivity){
         activity?.let {

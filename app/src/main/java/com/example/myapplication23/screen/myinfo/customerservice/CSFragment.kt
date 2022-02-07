@@ -13,6 +13,7 @@ import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
+import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
@@ -30,13 +31,13 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
         FragmentCsBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initView()
+
 
         //TODO(로그인 확인) ->Success->
 
     }
 
-    private fun initView() = with(binding) {
+    override fun initViews() = with(binding) {
         binding.CSTextView.text = "고객센터"
 
 
@@ -91,7 +92,7 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
     private fun back(){
         activity.let {
-            var intent = Intent(context, CSActivity::class.java)
+            var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
         }
     }

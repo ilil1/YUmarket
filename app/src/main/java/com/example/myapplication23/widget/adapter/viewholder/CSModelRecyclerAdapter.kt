@@ -5,10 +5,8 @@ import androidx.recyclerview.widget.ListAdapter
 
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
-import com.example.myapplication23.util.mapper.ViewHolderMapperCS
+import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolderAdapter
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
-import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolder
 
 /**
  * @author HeeTae Heo(main),
@@ -28,7 +26,7 @@ class CSModelRecyclerAdapter<M: CSModel,VM:BaseViewModel>(
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceModelViewHolder<M> =
-        ViewHolderMapperCS.put(parent,viewModel)
+        CSViewHolderAdapter.put(parent,viewModel)
 
 
 

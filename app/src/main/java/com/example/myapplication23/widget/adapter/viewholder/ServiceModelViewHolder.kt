@@ -10,8 +10,8 @@ import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
 /**
- * @주 허희태
- * @부 김건우 정남진 김도엽 배은호
+ * @author HeeTae Heo(main),
+ * Geonwoo Kim, Doyeop Kim, Namjin Jeong, Eunho Bae (sub)
  * @since
  * @throws
  * @description

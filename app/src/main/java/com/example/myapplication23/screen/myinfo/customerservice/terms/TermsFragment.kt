@@ -18,10 +18,11 @@ class TermsFragment : BaseFragment<CSViewModel,FragmentTermsBinding>() {
         FragmentTermsBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initViewPager()
+
     }
 
-    private fun initViewPager() = with(binding) {
+    override fun initViews() {
+        super.initViews()
         binding.configurationLeft.setOnClickListener { back(MainActivity())  }
     }
 

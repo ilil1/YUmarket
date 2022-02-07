@@ -1,22 +1,21 @@
-package com.example.myapplication23.screen.myinfo.customerservice
+package com.example.myapplication23.screen.myinfo.customerservice.center
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsCenterBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.MyInfoFragment
+import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
+import com.example.myapplication23.screen.myinfo.customerservice.CSFragment
+import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -36,7 +35,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
         FragmentCsCenterBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initViews()
+
     }
     override fun initViews() = with(binding) {
         super.initViews()
@@ -158,7 +157,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
     companion object{
             const val TAG = "CSCenterFragment"
 
-            fun newInstance() : CSCenterFragment{
+            fun newInstance() : CSCenterFragment {
                 return CSCenterFragment().apply {
 
                 }

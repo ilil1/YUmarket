@@ -3,7 +3,6 @@ package com.example.myapplication23.screen.myinfo
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -11,14 +10,10 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.Fragment
-import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
-import com.example.myapplication23.screen.myinfo.customerservice.CSCenterActivity
+import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
-import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
 import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalActivity
 import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -47,7 +42,7 @@ class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     override fun observeData() = with(binding) {
 
         /**
-         * 추후 로그인 acesss->로 기능작동 하도록 initViewPager()뒤로 이동예정
+         * 추후 로그인 acesss->로 기능작동 하도록 initView()뒤로 이동예정
          */
     }
     companion object {

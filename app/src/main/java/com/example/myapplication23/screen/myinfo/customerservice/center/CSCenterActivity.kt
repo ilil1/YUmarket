@@ -1,10 +1,12 @@
-package com.example.myapplication23.screen.myinfo.customerservice
+package com.example.myapplication23.screen.myinfo.customerservice.center
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityCsCenterBinding
 import com.example.myapplication23.screen.base.BaseActivity
+import com.example.myapplication23.screen.myinfo.customerservice.CSFragment
+import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**

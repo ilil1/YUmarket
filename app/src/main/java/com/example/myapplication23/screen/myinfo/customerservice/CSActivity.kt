@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityCsBinding
 import com.example.myapplication23.screen.base.BaseActivity
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
+import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -41,12 +40,12 @@ class CSActivity : BaseActivity<CSViewModel, ActivityCsBinding>() {
 
 
     override fun initViews() = with(binding) {
-        showCSFragment(CSFragment.newInstance(),CSCenterFragment.TAG)
+        showCSFragment(CSFragment.newInstance(), CSCenterFragment.TAG)
 
     }
 
-        private fun showCSFragment(fragment: Fragment, tag: String) {
-                supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
+    private fun showCSFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
         }
 
 

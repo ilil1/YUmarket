@@ -21,10 +21,10 @@ class ConfigurationFragment : BaseFragment<CSViewModel, FragmentConfigurationBin
         FragmentConfigurationBinding.inflate(layoutInflater)
 
     override fun observeData() {
-        initView()
+
     }
 
-    private fun initView() = with(binding){
+    override fun initViews() = with(binding){
         binding.versionCode.text = versionNumber
         binding.configurationLeft.setOnClickListener { back(MainActivity()) }
     }

@@ -27,10 +27,10 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
 
 
     override fun observeData() {
-        initView()
 
     }
-    private fun initView() = with(binding){
+    override fun initViews() = with(binding){
+        super.initViews()
         binding.emailSend.setOnClickListener { sendEmail() }
         binding.back.setOnClickListener {
             back()

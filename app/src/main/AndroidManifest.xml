@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".screen.myinfo.customerservice.CSActivity"/>
-        <activity android:name=".screen.myinfo.customerservice.CSCenterActivity"/>
+        <activity android:name=".screen.myinfo.customerservice.center.CSCenterActivity"/>
         <activity android:name=".screen.myinfo.customerservice.configuration.ConfigurationActivity" />
         <activity android:name=".screen.myinfo.customerservice.terms.TermsActivity"/>
         <activity android:name=".screen.myinfo.customerservice.list.detail.CSDetailActivity"/>

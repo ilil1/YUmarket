@@ -68,6 +68,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
     }
 
     override fun initViews() = with(binding){
+        super.initViews()
         csRecyclerView.adapter = adapter
         csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
 

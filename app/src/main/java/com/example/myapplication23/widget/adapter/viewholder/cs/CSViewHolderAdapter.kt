@@ -1,13 +1,11 @@
-package com.example.myapplication23.util.mapper
+package com.example.myapplication23.widget.adapter.viewholder.cs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.myapplication23.databinding.ViewholderCsItemBinding
 import com.example.myapplication23.model.Model
 import com.example.myapplication23.screen.base.BaseViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHolder
-import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolder
 
 /**
  * @author HeeTae Heo(main),
@@ -18,7 +16,7 @@ import com.example.myapplication23.widget.adapter.viewholder.cs.CSViewHolder
  */
 
 
-object ViewHolderMapperCS {
+object CSViewHolderAdapter {
     @Suppress("UNCHECKED_CAST")
     fun <M : Model> put(
         parent: ViewGroup,
