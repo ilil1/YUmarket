@@ -34,9 +34,8 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
     override fun getViewBinding(): FragmentCsCenterBinding =
         FragmentCsCenterBinding.inflate(layoutInflater)
 
-    override fun observeData() {
+    override fun observeData() {}
 
-    }
     override fun initViews() = with(binding) {
         super.initViews()
         binding.questionCenter.setOnClickListener {
@@ -44,13 +43,11 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
         }
 
         binding.centerNumber.setOnClickListener {
-            permissionCheck()
-            callYU()
+            permissionCheck_CallYU()
         }
 
         binding.pollution.setOnClickListener {
-            permissionCheck()
-            foodSafecall()
+            permissionCheck_food()
         }
 
         binding.emailCenter.setOnClickListener {
@@ -94,7 +91,6 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
             .show()
 
     }
-
     private fun foodSafecall() {
         val items = "1399"
         val alertDialog = AlertDialog.Builder(context)
@@ -122,18 +118,36 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
     }
 
-  private fun permissionCheck()
+  private fun permissionCheck_CallYU()
     {   val callCheck =
         android.Manifest.permission.CALL_PHONE
         val permission =
             ContextCompat
         .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
         if(permission == PackageManager.PERMISSION_GRANTED){
-
+            callYU()
         }
         else {
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(android.Manifest.permission.CALL_PHONE),0)
+            Toast.makeText(context,"권한에 동의되었습니다. 다시 버튼을 눌러주새요",Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun permissionCheck_food()
+    {   val callCheck =
+        android.Manifest.permission.CALL_PHONE
+        val permission =
+            ContextCompat
+                .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
+        if(permission == PackageManager.PERMISSION_GRANTED){
+            foodSafecall()
+        }
+        else {
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(android.Manifest.permission.CALL_PHONE),0)
+            Toast.makeText(context,"권한에 동의되었습니다. 다시 버튼을 눌러주새요",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -151,7 +165,6 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
             var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
-
 
     }
     companion object{

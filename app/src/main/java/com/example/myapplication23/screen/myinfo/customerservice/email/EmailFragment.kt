@@ -5,8 +5,8 @@ import android.net.Uri
 import android.widget.Toast
 import com.example.myapplication23.databinding.FragmentEmailBinding
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
+import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -61,7 +61,7 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
     }
     private fun back(){
         activity?.let {
-            var intent = Intent(context, CSActivity::class.java)
+            var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
         }
     }

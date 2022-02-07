@@ -1,6 +1,7 @@
 package com.example.myapplication23.screen.myinfo.customerservice.list
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication23.data.repository.myinfo.CSRepository
@@ -22,11 +23,13 @@ class CSListViewModel (
     private val csCategory: CSCategory,
     private val csRepository: CSRepository
     ): BaseViewModel() {
-    val csListData = MutableLiveData<List<CSModel>>()
+    private val _csListData = MutableLiveData<List<CSModel>>()
+        val csListData :  LiveData<List<CSModel>>
+        get() = _csListData
 
-   override fun fetchData(): Job = viewModelScope.launch {
-       csListData.value =
+
+    override fun fetchData(): Job = viewModelScope.launch {
+       _csListData.value =
        csRepository.findCsByCategory(CSCategory.TOTAL)
     }
-
     }
