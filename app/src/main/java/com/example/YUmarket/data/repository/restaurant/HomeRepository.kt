@@ -12,8 +12,6 @@ import com.example.YUmarket.model.homelist.category.HomeListCategory
  */
 interface HomeRepository {
 
-    // TODO Spring과 연결 후 service와 연결해야함
-
     /** HomeListCategory에 따라서 분기하여 해당하는 아이템들을 모두 호출하는 메서드 */
     fun findItemsByCategory(homeListCategory: HomeListCategory): List<HomeItemModel>
 

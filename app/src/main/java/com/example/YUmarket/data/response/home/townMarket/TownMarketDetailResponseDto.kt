@@ -1,5 +1,6 @@
-package com.example.YUmarket.data.response.home
+package com.example.YUmarket.data.response.home.townMarket
 
+import com.example.YUmarket.data.response.home.homeItem.HomeItemResponseDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.time.LocalTime

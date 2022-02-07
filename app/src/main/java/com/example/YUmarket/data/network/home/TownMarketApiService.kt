@@ -1,7 +1,7 @@
 package com.example.YUmarket.data.network.home
 
 import com.example.YUmarket.data.response.common.BaseResponse
-import com.example.YUmarket.data.response.home.TownMarketResponseDto
+import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
 import com.example.YUmarket.data.url.Url
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,7 +28,7 @@ interface TownMarketApiService {
         @Path("id") id: Long
     ) : Response<BaseResponse<TownMarketResponseDto>>
 
-    // read list : TownMarket의 리스트를 뽑아오는 메소드 - test x
+    // read list : TownMarket의 리스트를 뽑아오는 메소드
     @GET(Url.TOWN_MARKET_LIST)
     suspend fun getList(
         @Query("page") page: Int

@@ -1,7 +1,7 @@
 package com.example.YUmarket.util.mapper
 
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
-import com.example.YUmarket.data.response.home.TownMarketResponseDto
+import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
 import com.example.YUmarket.model.CellType
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.util.parser.TimeParser

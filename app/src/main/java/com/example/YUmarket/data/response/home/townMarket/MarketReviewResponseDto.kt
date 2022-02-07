@@ -1,4 +1,4 @@
-package com.example.YUmarket.data.response.home
+package com.example.YUmarket.data.response.home.townMarket
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

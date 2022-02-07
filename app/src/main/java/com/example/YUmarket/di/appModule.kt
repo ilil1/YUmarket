@@ -51,6 +51,7 @@ val appModule = module {
     // YUMarket의 자체 서버에 대한 dependency 추가 by 김도엽
     single(named("YUMarket")) { provideYuMarketRetrofit(get(), get()) }
     single { provideTownMarketApiService(get(qualifier = named("YUMarket"))) } // townMarket
+    single { provideHomeItemApiService(get(qualifier = named("YUMarket"))) } // homeItem
 
     single<MapRepository> { DefaultMapRepository(get(), get()) }
 

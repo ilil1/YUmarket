@@ -3,6 +3,7 @@ package com.example.YUmarket.di
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.YUmarket.data.network.MapApiService
+import com.example.YUmarket.data.network.home.HomeItemApiService
 import com.example.YUmarket.data.network.home.TownMarketApiService
 import com.example.YUmarket.data.url.Url
 import com.example.YUmarket.di.gsonAdapter.LocalDateTimeTypeAdapter
@@ -20,11 +21,22 @@ fun provideMapApiService(retrofit: Retrofit): MapApiService {
 
 /**
  * TownMarket에 대한 network service를 제공하는 메소드
- * @author Doyeop Kim (main)
+ * @author Doyeop Kim (main),
+ * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
  * @since 2022/01/28
  */
 fun provideTownMarketApiService(retrofit: Retrofit): TownMarketApiService = retrofit.create(
     TownMarketApiService::class.java
+)
+
+/**
+ * HomeItem에 대한 network service를 제공하는 메소드
+ * @author Doyeop Kim (main),
+ * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
+ * @since 2022/02/07
+ */
+fun provideHomeItemApiService(retrofit: Retrofit): HomeItemApiService = retrofit.create(
+    HomeItemApiService::class.java
 )
 
 fun provideMapRetrofit(

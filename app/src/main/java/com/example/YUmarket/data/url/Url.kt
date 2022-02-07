@@ -9,7 +9,7 @@ object Url {
     // ===============Request urls made by Doyeop Kim (since 2022/01/28)===============
 
     // base url
-    const val YU_MARKET_URL = "https://564d-2001-e60-b203-4f3f-9d8d-5080-d4b-1d3c.ngrok.io"
+    const val YU_MARKET_URL = "https://4e62-2001-e60-b603-3453-65ea-c2d9-ee04-340a.ngrok.io"
 
     // urls about town-market
     const val TOWN_MARKET = "/api/town-market"
@@ -20,4 +20,7 @@ object Url {
 
     // urls about home-item
     const val HOME_ITEM = "/api/item"
+
+    const val HOME_ITEM_DETAIL = "$HOME_ITEM-detail"
+    const val HOME_ITEM_DETAIL_LIST = "$HOME_ITEM_DETAIL/list"
 }

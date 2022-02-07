@@ -6,7 +6,7 @@ import com.example.YUmarket.data.exceptions.UndefinedErrorException
 import com.example.YUmarket.data.network.home.TownMarketApiService
 import com.example.YUmarket.data.response.common.BaseResponse
 import com.example.YUmarket.data.response.common.ErrorResponse
-import com.example.YUmarket.data.response.home.TownMarketResponseDto
+import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory
@@ -211,6 +211,7 @@ class DefaultHomeRepository(
                 ModelMapper.transformMarketDtoToModel(townMarketResponseDto)
             }.toList()
         } else {
+            // TODO 22.02.07 (김도엽) 예외 처리 다시 구현 -> TownMarketApiService에 에러 전용 메소드 구현
             val responseBody = response.body() as ErrorResponse
             when(responseBody.code) {
                 "ENTITY_NOT_FOUND" -> throw EntityNotFoundException("해당 데이터가 존재하지 않습니다")
@@ -218,6 +219,8 @@ class DefaultHomeRepository(
             }
         }
     }
+
+    // TODO 22.02.07 (김도엽) HomeItem에 대한 메소드 구현
 
     // TODO 22.01.25 임시로 만든 Method 나중에 제대로 구현
     override fun getAllNewSaleItems(): List<HomeItemModel> {

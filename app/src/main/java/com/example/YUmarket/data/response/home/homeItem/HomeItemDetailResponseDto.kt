@@ -1,20 +1,24 @@
-package com.example.YUmarket.data.response.home
+package com.example.YUmarket.data.response.home.homeItem
 
+import com.example.YUmarket.data.response.home.townMarket.TownMarketSimpleResponseDto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDateTime
 
 /**
- * Spring server에서 날아오는 HomeItem Response
+ * HomeItem에 대한 상세한 response를 담당하는 클래스
  * @author Doyeop Kim (main),
  * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
- * @since 2022/01/28
+ * @since 2022/02/07
  */
-data class HomeItemResponseDto(
-
+data class HomeItemDetailResponseDto(
     @SerializedName("id")
     @Expose
     val id: Long,
+
+    @SerializedName("category")
+    @Expose
+    val category: String,
 
     @SerializedName("detail_category")
     @Expose
@@ -50,5 +54,9 @@ data class HomeItemResponseDto(
 
     @SerializedName("town_market_id")
     @Expose
-    val townMarketId: Long
+    val townMarketId: Long,
+
+    @SerializedName("market_info")
+    @Expose
+    val marketInfo: TownMarketSimpleResponseDto
 )
