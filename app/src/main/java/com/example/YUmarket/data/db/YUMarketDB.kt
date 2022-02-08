@@ -6,9 +6,13 @@ import com.example.YUmarket.data.db.dao.BasketDao
 import com.example.YUmarket.data.db.dao.LikeItemDao
 import com.example.YUmarket.data.db.dao.LikeMarketDao
 import com.example.YUmarket.data.entity.room.BasketEntity
+import com.example.YUmarket.data.entity.room.LikeItemEntity
+import com.example.YUmarket.data.entity.room.LikeMarketEntity
 
 @Database(
-    entities = [BasketEntity::class],
+    entities = [
+        BasketEntity::class, LikeItemEntity::class, LikeMarketEntity::class
+    ],
     version = 1,
     exportSchema = false
 )
