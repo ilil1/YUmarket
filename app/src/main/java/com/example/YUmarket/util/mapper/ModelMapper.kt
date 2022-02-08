@@ -1,8 +1,11 @@
 package com.example.YUmarket.util.mapper
 
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
+import com.example.YUmarket.data.response.home.homeItem.HomeItemDetailResponseDto
 import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
+import com.example.YUmarket.data.response.home.townMarket.TownMarketSimpleResponseDto
 import com.example.YUmarket.model.CellType
+import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.util.parser.TimeParser
 
@@ -13,17 +16,6 @@ import com.example.YUmarket.util.parser.TimeParser
  * @since 2022/01/28
  * */
 object ModelMapper {
-
-    /**
-     * data part를 전달하여 모델로 변환시키는 메소드
-     * @param data response의 data part
-     */
-    fun map(data: Any): Any? {
-        return when(data) {
-            is TownMarketResponseDto -> transformMarketDtoToModel(data)
-            else -> null
-        }
-    }
 
     // TownMarketResponseDto를 TownMarketModel로 변환시키는 메소드
     fun transformMarketDtoToModel(responseDto: TownMarketResponseDto) : TownMarketModel {
@@ -53,6 +45,41 @@ object ModelMapper {
             likeQuantity = responseDto.likeQuantity,
             reviewQuantity = responseDto.reviewQuantity,
             type = CellType.HOME_TOWN_MARKET_CELL
+        )
+    }
+
+    // ItemDetailResponse를 HomeItemModel로 변환시키는 메소드
+    fun transformItemDetailDtoToModel(responseDto: HomeItemDetailResponseDto) : HomeItemModel {
+
+        return HomeItemModel(
+            id = responseDto.id,
+            homeListCategory = responseDto.category,
+            homeListDetailCategory = responseDto.detailCategory,
+            itemImageUrl = responseDto.itemImageUrl,
+            itemName = responseDto.name,
+            originalPrice = responseDto.originalPrice,
+            salePrice = responseDto.salePrice,
+            stockQuantity = responseDto.stockQuantity,
+            likeQuantity = responseDto.likeQuantity,
+            reviewQuantity = responseDto.reviewQuantity,
+            townMarketModel = transformSimpleMarketToModel(responseDto.marketInfo)
+        )
+    }
+
+    // HomeListFragment에서 HomeItem을 띄울 시 필요없는 정보들은 모두 가짜 데이터로 padding한 상태로 TownMarketModel을 리턴하는 메소드
+    private fun transformSimpleMarketToModel(responseDto: TownMarketSimpleResponseDto) : TownMarketModel {
+        return TownMarketModel(
+            id = responseDto.id,
+            locationLatLngEntity = LocationLatLngEntity(latitude = responseDto.latitude, longitude = responseDto.longitude),
+            marketName = responseDto.name,
+            isMarketOpen = false,
+            distance = 0.0f,
+            itemQuantity = 0,
+            likeQuantity = 0,
+            reviewQuantity = 0,
+            openTime = null,
+            closeTime = null,
+            marketImageUrl = null
         )
     }
 }

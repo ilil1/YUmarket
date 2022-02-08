@@ -40,7 +40,7 @@ val appModule = module {
     viewModel { MyInfoViewModel() }
     viewModel { OrderListViewModel() }
 
-    single<HomeRepository> { DefaultHomeRepository(get(), get()) }
+    single<HomeRepository> { DefaultHomeRepository(get(), get(), get(), get()) }
 
     single { buildOkHttpClient() }
     single { provideGsonConverterFactory() }

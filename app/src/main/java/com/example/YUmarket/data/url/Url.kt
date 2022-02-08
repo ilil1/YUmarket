@@ -9,7 +9,7 @@ object Url {
     // ===============Request urls made by Doyeop Kim (since 2022/01/28)===============
 
     // base url
-    const val YU_MARKET_URL = "https://4e62-2001-e60-b603-3453-65ea-c2d9-ee04-340a.ngrok.io"
+    const val YU_MARKET_URL = "https://bed9-2001-e60-b605-e84a-e07b-cd75-f06d-8aef.ngrok.io"
 
     // urls about town-market
     const val TOWN_MARKET = "/api/town-market"

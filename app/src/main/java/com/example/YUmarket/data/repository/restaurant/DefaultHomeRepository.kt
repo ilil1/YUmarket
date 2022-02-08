@@ -2,15 +2,16 @@ package com.example.YUmarket.data.repository.restaurant
 
 import android.util.Log
 import com.example.YUmarket.data.exceptions.EntityNotFoundException
+import com.example.YUmarket.data.exceptions.HttpMethodArgumentNotValidException
 import com.example.YUmarket.data.exceptions.UndefinedErrorException
+import com.example.YUmarket.data.network.home.HomeItemApiService
 import com.example.YUmarket.data.network.home.TownMarketApiService
-import com.example.YUmarket.data.response.common.BaseResponse
 import com.example.YUmarket.data.response.common.ErrorResponse
-import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.util.mapper.ModelMapper
+import com.example.YUmarket.util.provider.ResourcesProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -22,6 +23,8 @@ import kotlinx.coroutines.withContext
  */
 class DefaultHomeRepository(
     private val townMarketApiService: TownMarketApiService,
+    private val homeItemApiService: HomeItemApiService,
+    private val resourcesProvider: ResourcesProvider,
     private val ioDispatcher: CoroutineDispatcher
 ) : HomeRepository {
 
@@ -204,7 +207,7 @@ class DefaultHomeRepository(
         Log.d("getMarketList", response.body().toString())
 
         if(response.isSuccessful) {
-            val responseBody = response.body() as BaseResponse<List<TownMarketResponseDto>>
+            val responseBody = response.body()!!
             val data = responseBody.data
 
             data!!.map { townMarketResponseDto ->
@@ -214,13 +217,33 @@ class DefaultHomeRepository(
             // TODO 22.02.07 (김도엽) 예외 처리 다시 구현 -> TownMarketApiService에 에러 전용 메소드 구현
             val responseBody = response.body() as ErrorResponse
             when(responseBody.code) {
-                "ENTITY_NOT_FOUND" -> throw EntityNotFoundException("해당 데이터가 존재하지 않습니다")
+                "C101" -> throw EntityNotFoundException("해당 데이터가 존재하지 않습니다")
                 else -> throw UndefinedErrorException("정의되지 않은 에러입니다")
             }
         }
     }
 
-    // TODO 22.02.07 (김도엽) HomeItem에 대한 메소드 구현
+    override suspend fun getItemListByPageAndCategory(
+        page: Int,
+        category: HomeListCategory
+    ): List<HomeItemModel> = withContext(ioDispatcher) {
+        val response = homeItemApiService.searchDetailByPageAndCategory(page, resourcesProvider.getString(category.categoryTypeId))
+
+        Log.d("getItemList", response.body().toString() + response.code())
+        Log.d("getItemList", resourcesProvider.getString(category.categoryTypeId))
+        // OK
+        if(response.code() == 200) {
+            val responseBody = response.body()!!
+            val data = responseBody.data
+
+            data!!.map {
+                ModelMapper.transformItemDetailDtoToModel(it)
+            }.toList()
+        } else {
+
+            throw HttpMethodArgumentNotValidException("Invalid method arguments")
+        }
+    }
 
     // TODO 22.01.25 임시로 만든 Method 나중에 제대로 구현
     override fun getAllNewSaleItems(): List<HomeItemModel> {

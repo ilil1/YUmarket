@@ -1,5 +1,7 @@
 package com.example.YUmarket.data.response.home.homeItem
 
+import com.example.YUmarket.model.homelist.category.HomeListCategory
+import com.example.YUmarket.model.homelist.category.HomeListDetailCategory
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDateTime
@@ -18,11 +20,11 @@ data class HomeItemResponseDto(
 
     @SerializedName("category")
     @Expose
-    val category: String,
+    val category: HomeListCategory,
 
     @SerializedName("detail_category")
     @Expose
-    val detailCategory: String,
+    val detailCategory: HomeListDetailCategory,
 
     @SerializedName("item_image_url")
     @Expose
@@ -43,6 +45,14 @@ data class HomeItemResponseDto(
     @SerializedName("stock_quantity")
     @Expose
     val stockQuantity: Int,
+
+    @SerializedName("like_quantity")
+    @Expose
+    val likeQuantity: Int,
+
+    @SerializedName("review_quantity")
+    @Expose
+    val reviewQuantity: Int,
 
     @SerializedName("created_at")
     @Expose

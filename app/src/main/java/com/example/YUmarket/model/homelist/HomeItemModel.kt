@@ -16,7 +16,7 @@ data class HomeItemModel(
     override val id: Long,
     val homeListCategory: HomeListCategory,
     val homeListDetailCategory: HomeListDetailCategory,
-    val itemImageUrl: String,
+    val itemImageUrl: String?,
     val townMarketModel: TownMarketModel,
     val itemName: String,
     val originalPrice: Int,

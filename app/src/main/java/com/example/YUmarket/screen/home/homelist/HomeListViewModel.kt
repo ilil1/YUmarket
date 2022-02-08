@@ -29,12 +29,12 @@ class HomeListViewModel(
     override fun fetchData(): Job = viewModelScope.launch {
         homeListLiveData.value = when(homeListCategory) {
             HomeListCategory.TOWN_MARKET -> homeRepository.getMarketListByPage(0)
-            HomeListCategory.MART -> homeRepository.findItemsByCategory(HomeListCategory.MART)
-            HomeListCategory.FOOD -> homeRepository.findItemsByCategory(HomeListCategory.FOOD)
-            HomeListCategory.FASHION -> homeRepository.findItemsByCategory(HomeListCategory.FASHION)
-            HomeListCategory.ACCESSORY -> homeRepository.findItemsByCategory(HomeListCategory.ACCESSORY)
-            HomeListCategory.SERVICE -> homeRepository.findItemsByCategory(HomeListCategory.SERVICE)
-            HomeListCategory.ETC -> homeRepository.findItemsByCategory(HomeListCategory.ETC)
+            HomeListCategory.MART -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.MART)
+            HomeListCategory.FOOD -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.FOOD)
+            HomeListCategory.FASHION -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.FASHION)
+            HomeListCategory.ACCESSORY -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.ACCESSORY)
+            HomeListCategory.SERVICE -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.SERVICE)
+            HomeListCategory.ETC -> homeRepository.getItemListByPageAndCategory(0, HomeListCategory.ETC)
         }
     }
 }
