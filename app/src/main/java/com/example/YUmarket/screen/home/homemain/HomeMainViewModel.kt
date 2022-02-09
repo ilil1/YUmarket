@@ -52,7 +52,7 @@ class HomeMainViewModel(
             _marketData.value = HomeMainState.Success(
                 // 임시로 CellType을 ViewModel에서 변경
                 modelList = homeRepository.getMarketListByPage(0)!!.map {
-                    it.copy(type = CellType.HOME_CELL)
+                    it.copy(type = CellType.HOME_MAIN_MARKET_CELL)
                 }.sortedBy { it.distance }
             )
         }
