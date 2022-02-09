@@ -195,49 +195,19 @@ class HomeMainFragment
      */
     private fun setCategoryButtonListener() = with(binding) {
         val navController = findNavController()
+        val buttonList = listOf(
+            foodCategoryListButton, martCategoryListButton, serviceCategoryListButton,
+            fashionCategoryListButton, accessoryCategoryListButton, etcCategoryListButton
+        )
 
-        foodCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.FOOD)
-            )
+        categories.forEachIndexed { index, homeListCategory ->
+            buttonList[index].setOnClickListener {
+                navController.navigate(
+                    HomeMainFragmentDirections
+                        .actionHomeMainFragmentToHomeFragment(homeListCategory)
+                )
+            }
         }
-
-        martCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.MART)
-            )
-        }
-
-        serviceCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.SERVICE)
-            )
-        }
-
-        fashionCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.FASHION)
-            )
-        }
-
-        accessoryCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.ACCESSORY)
-            )
-        }
-
-        etcCategoryListButton.setOnClickListener {
-            navController.navigate(
-                HomeMainFragmentDirections
-                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.ETC)
-            )
-        }
-
     }
 
     /**
