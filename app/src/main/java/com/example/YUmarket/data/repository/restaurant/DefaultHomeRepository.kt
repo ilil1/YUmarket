@@ -10,6 +10,7 @@ import com.example.YUmarket.data.response.common.ErrorResponse
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory
+import com.example.YUmarket.util.api.throwBusinessExceptions
 import com.example.YUmarket.util.mapper.ModelMapper
 import com.example.YUmarket.util.provider.ResourcesProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -200,39 +201,41 @@ class DefaultHomeRepository(
      * Sub 김건우, 김도엽, 배은호, 허희태
      * @since 22.01.31
      */
-    override suspend fun getMarketListByPage(page: Int): List<TownMarketModel> = withContext(ioDispatcher) {
-        val response = townMarketApiService.getList(page)
+    override suspend fun getMarketListByPage(page: Int): List<TownMarketModel>? =
+        withContext(ioDispatcher) {
+            val response = townMarketApiService.getList(page)
 
-        // Log
-        Log.d("getMarketList", response.body().toString())
+            // Log
+            Log.d("getMarketList", response.body().toString())
 
-        if(response.isSuccessful) {
-            val responseBody = response.body()!!
-            val data = responseBody.data
+            if (response.isSuccessful) {
+                val responseBody = response.body()!!
+                val data = responseBody.data
 
-            data!!.map { townMarketResponseDto ->
-                ModelMapper.transformMarketDtoToModel(townMarketResponseDto)
-            }.toList()
-        } else {
-            // TODO 22.02.07 (김도엽) 예외 처리 다시 구현 -> TownMarketApiService에 에러 전용 메소드 구현
-            val responseBody = response.body() as ErrorResponse
-            when(responseBody.code) {
-                "C101" -> throw EntityNotFoundException("해당 데이터가 존재하지 않습니다")
-                else -> throw UndefinedErrorException("정의되지 않은 에러입니다")
+                data!!.map { townMarketResponseDto ->
+                    ModelMapper.transformMarketDtoToModel(townMarketResponseDto)
+                }.toList()
+            } else {
+                val response = townMarketApiService.failGetList(page)
+                throwBusinessExceptions(response)
+
+                null
             }
         }
-    }
 
     override suspend fun getItemListByPageAndCategory(
         page: Int,
         category: HomeListCategory
-    ): List<HomeItemModel> = withContext(ioDispatcher) {
-        val response = homeItemApiService.searchDetailByPageAndCategory(page, resourcesProvider.getString(category.categoryTypeId))
+    ): List<HomeItemModel>? = withContext(ioDispatcher) {
+        val response = homeItemApiService.searchDetailByPageAndCategory(
+            page,
+            resourcesProvider.getString(category.categoryTypeId)
+        )
 
-        Log.d("getItemList", response.body().toString() + response.code())
-        Log.d("getItemList", resourcesProvider.getString(category.categoryTypeId))
+        Log.d("getItemList", response.body().toString())
+
         // OK
-        if(response.code() == 200) {
+        if (response.isSuccessful) {
             val responseBody = response.body()!!
             val data = responseBody.data
 
@@ -240,8 +243,10 @@ class DefaultHomeRepository(
                 ModelMapper.transformItemDetailDtoToModel(it)
             }.toList()
         } else {
+            val response = homeItemApiService.failSearchDetail(page, resourcesProvider.getString(category.categoryTypeId))
+            throwBusinessExceptions(response)
 
-            throw HttpMethodArgumentNotValidException("Invalid method arguments")
+            null
         }
     }
 

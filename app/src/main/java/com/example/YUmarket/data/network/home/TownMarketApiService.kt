@@ -1,6 +1,7 @@
 package com.example.YUmarket.data.network.home
 
 import com.example.YUmarket.data.response.common.BaseResponse
+import com.example.YUmarket.data.response.common.ErrorResponse
 import com.example.YUmarket.data.response.home.townMarket.TownMarketResponseDto
 import com.example.YUmarket.data.url.Url
 import retrofit2.Response
@@ -33,4 +34,10 @@ interface TownMarketApiService {
     suspend fun getList(
         @Query("page") page: Int
     ): Response<BaseResponse<List<TownMarketResponseDto>>>
+
+    // fail read list
+    @GET(Url.TOWN_MARKET_LIST)
+    suspend fun failGetList(
+        @Query("page") page: Int
+    ): Response<ErrorResponse>
 }

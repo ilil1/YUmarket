@@ -23,4 +23,11 @@ interface HomeItemApiService {
         @Query("page") page: Int,
         @Query("category") category: String
     ): Response<BaseResponse<List<HomeItemDetailResponseDto>>>
+
+    // searchDetailByPageAndCategory에서 에러가 발생시 호출이 되는 메소드
+    @GET(Url.HOME_ITEM_DETAIL_LIST)
+    suspend fun failSearchDetail(
+        @Query("page") page: Int,
+        @Query("category") category: String
+    ): Response<ErrorResponse>
 }

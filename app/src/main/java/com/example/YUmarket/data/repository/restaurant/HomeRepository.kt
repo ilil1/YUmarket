@@ -29,7 +29,7 @@ interface HomeRepository {
      * Sub 김건우, 김도엽, 배은호, 허희태
      * @since 22.01.31
      */
-    suspend fun getMarketListByPage(page: Int) : List<TownMarketModel>
+    suspend fun getMarketListByPage(page: Int) : List<TownMarketModel>?
 
     /**
      * 페이징 처리를 통해 HomeItem의 리스트를 불러오는 메소드
@@ -37,5 +37,5 @@ interface HomeRepository {
      * Sub 김건우, 김도엽, 배은호, 허희태
      * @since 22.01.31
      */
-    suspend fun getItemListByPageAndCategory(page: Int, category: HomeListCategory) : List<HomeItemModel>
+    suspend fun getItemListByPageAndCategory(page: Int, category: HomeListCategory) : List<HomeItemModel>?
 }
