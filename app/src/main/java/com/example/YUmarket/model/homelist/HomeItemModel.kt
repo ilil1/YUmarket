@@ -12,12 +12,11 @@ import com.example.YUmarket.model.homelist.category.HomeListDetailCategory
  * @since 2022/01/18
  * @param townMarketModel HomeItemModel과 TownMarketModel과는 서로 연관관계가 존재해야함 (1 : N)
  */
-// TODO repository를 통해서 entity -> model 매핑 시 연관관계를 반영해주기
 data class HomeItemModel(
     override val id: Long,
     val homeListCategory: HomeListCategory,
     val homeListDetailCategory: HomeListDetailCategory,
-    val itemImageUrl: String,
+    val itemImageUrl: String?,
     val townMarketModel: TownMarketModel,
     val itemName: String,
     val originalPrice: Int,
