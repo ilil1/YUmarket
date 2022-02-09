@@ -18,6 +18,8 @@ import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFrag
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
 import com.example.myapplication23.widget.adapter.CSListAdapter
+import com.example.myapplication23.widget.adapter.HomeListFragmentPagerAdapter
+
 
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -51,13 +53,11 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
             viewAdapter = CSListAdapter(
                 this@CSFragment,
-                csListFragmentList
+               csListFragmentList
 
             )
         }
             viewPagerCs.adapter = viewAdapter
-
-
 
 
             binding.intentmyinfo.setOnClickListener {

@@ -1,7 +1,6 @@
 package com.example.myapplication23.screen.home
 
 
-import android.util.Log
 import androidx.core.view.isVisible
 import com.example.myapplication23.databinding.FragmentHomeBinding
 import com.example.myapplication23.screen.base.BaseFragment
@@ -12,6 +11,7 @@ import com.example.myapplication23.util.LocationState
 import com.example.myapplication23.widget.adapter.HomeListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 
 class HomeFragment

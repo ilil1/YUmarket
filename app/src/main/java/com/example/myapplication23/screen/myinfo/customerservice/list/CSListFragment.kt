@@ -1,22 +1,18 @@
 package com.example.myapplication23.screen.myinfo.customerservice.list
 
-import android.content.ClipData.newIntent
-import android.content.Context
 import android.content.Intent
+import android.content.res.loader.ResourcesProvider
+
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsListBinding
+
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailActivity
-
+import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
 import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
-import com.example.myapplication23.widget.adapter.viewholder.CSModelRecyclerAdapter
-import com.stripe.android.view.AddSourceActivity.newIntent
-import com.stripe.android.view.PaymentMethodsActivity.newIntent
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -44,26 +40,27 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
         csListData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-
     }
 
+    private val resourcesProvider by inject<ResourcesProvider>()
 
     private val adapter by lazy {
-        CSModelRecyclerAdapter<CSModel, CSListViewModel>(
-           listOf(),
-            viewModel,
-            object : CSModelListener{
-                override fun onClickItem(listModel: CSModel) {
-                    val intent = Intent(context,CSDetailActivity::class.java).apply {
-                        putExtra("CSCategory",listModel.csCategory)
-                        putExtra("CSTitle",listModel.csTitle)
-                        putExtra("CSContent",listModel.csContent)
-                        putExtra("CSAuthor",listModel.csAuthor)
-                        putExtra("CSid",listModel.id)
+        ModelRecyclerAdapter<CSModel, CSListViewModel>(
+           listOf(), viewModel,
+            adapterListener = when(csCategory){
+                CSCategory.TOTAL -> object : CSModelListener {
+                    override fun onClickItem(listModel: CSModel) {
+                        val intent = Intent(context, CSDetailActivity::class.java).apply {
+                            putExtra("CSTitle", listModel.csTitle)
+                            putExtra("CSContent", listModel.csContent)
+                            putExtra("CSAuthor", listModel.csAuthor)
+                            putExtra("CSid", listModel.id)
+                        }
+                        startActivity(intent)
                     }
-                    startActivity(intent)
                 }
             }
+
         )
     }
 

@@ -25,7 +25,7 @@ data class CSModel(
     val csAuthor:String,
     val csContent:String
 
-    ): Model(id,type) {
+): Model(id,type) {
 
     fun CSModel(csRepository: CSRepository){
         id
@@ -51,4 +51,4 @@ data class CSModel(
         }
     }
 
-    }
+}

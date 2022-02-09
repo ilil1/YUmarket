@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.myapplication23.databinding.ViewholderCsItemBinding
 import com.example.myapplication23.model.Model
+
 import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHolder
 
@@ -14,6 +15,7 @@ import com.example.myapplication23.widget.adapter.viewholder.ServiceModelViewHol
  * @throws
  * @description
  */
+
 
 
 object CSViewHolderAdapter {
@@ -29,7 +31,7 @@ object CSViewHolderAdapter {
                 ViewholderCsItemBinding.inflate(inflater),
                 viewModel
             )
-       return viewHolderService as ServiceModelViewHolder<M>
+        return viewHolderService as ServiceModelViewHolder<M>
     }
 
 

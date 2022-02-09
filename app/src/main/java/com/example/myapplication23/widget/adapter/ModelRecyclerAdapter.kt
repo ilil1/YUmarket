@@ -1,8 +1,8 @@
 package com.example.myapplication23.widget.adapter
 
+import android.content.res.loader.ResourcesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-
 import com.example.myapplication23.model.CellType
 import com.example.myapplication23.model.Model
 import com.example.myapplication23.screen.base.BaseViewModel
@@ -20,15 +20,15 @@ class ModelRecyclerAdapter<M : Model, VM : BaseViewModel>(
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder<M>{
-      return  ViewHolderMapper.map(parent, CellType.values()[viewType], viewModel)
+        return  ViewHolderMapper.map(parent, CellType.values()[viewType], viewModel)
     }
 
 
 
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: ModelViewHolder<M>, position: Int) {
-            holder.bindData(modelList[position] as M)
-            holder.bindViews(modelList[position] as M, adapterListener)
+        holder.bindData(modelList[position] as M)
+        holder.bindViews(modelList[position] as M, adapterListener)
 
     }
 
@@ -36,9 +36,5 @@ class ModelRecyclerAdapter<M : Model, VM : BaseViewModel>(
         list?.let { modelList = it }
         super.submitList(list)
     }
-
-
-
-
 
 }

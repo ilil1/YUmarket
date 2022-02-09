@@ -1,15 +1,18 @@
 package com.example.myapplication23.screen.home.homelist
 
+import android.content.res.loader.ResourcesProvider
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.databinding.FragmentHomeListBinding
+import com.example.myapplication23.model.Model
 import com.example.myapplication23.model.homelist.HomeListModel
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
 import com.example.myapplication23.widget.adapter.listener.home.HomeListListener
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.android.ext.android.inject
 
 class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding>() {
     override fun getViewBinding(): FragmentHomeListBinding =
@@ -40,8 +43,8 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
         restaurantRecyclerView.adapter = adapter
         restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
 
-       // TODO delete
-       testView.text = context?.getText(homeCategory.categoryNameId)
+        // TODO delete
+
     }
 
     private fun showMessage(message: String) =

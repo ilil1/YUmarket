@@ -2,6 +2,8 @@ package com.example.myapplication23.widget.adapter.viewholder
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.example.myapplication23.model.Model
+import com.example.myapplication23.model.Model.Companion.DIFF_CALLBACK
 
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel

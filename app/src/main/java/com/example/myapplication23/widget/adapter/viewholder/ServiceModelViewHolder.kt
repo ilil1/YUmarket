@@ -1,11 +1,9 @@
 package com.example.myapplication23.widget.adapter.viewholder
 
-import android.content.res.loader.ResourcesProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication23.databinding.ViewholderCsItemBinding
-
 import com.example.myapplication23.model.Model
-//import com.example.myapplication23.model.customerservicelist.CSItemModel
+import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
@@ -19,7 +17,7 @@ import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
 
 
-abstract class ServiceModelViewHolder <M :Model>(
+abstract class ServiceModelViewHolder <M : Model>(
     binding: ViewholderCsItemBinding,
     protected val viewModel: BaseViewModel,
 ) : RecyclerView.ViewHolder(binding.root) {

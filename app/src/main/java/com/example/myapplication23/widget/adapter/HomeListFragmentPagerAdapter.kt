@@ -1,6 +1,7 @@
 package com.example.myapplication23.widget.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.ListFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.myapplication23.screen.home.homelist.HomeListFragment
 

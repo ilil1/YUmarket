@@ -3,6 +3,12 @@ package com.example.myapplication23.data.repository.restaurant
 import com.example.myapplication23.model.homelist.HomeListModel
 import com.example.myapplication23.screen.home.homelist.HomeCategory
 
+///**
+// * HomeListFragment의 Item에 대한 repository
+// * @author Doyeop Kim (main),
+// * Geonwoo Kim, Heetae Heo, Namjin Jeong, Eunho Bae (sub)
+// * @since 2022/01/18
+// */
 class DefaultHomeRepository : HomeRepository {
     override fun getList(homeCategory: HomeCategory): List<HomeListModel> {
         // TODO Delete category all?
@@ -74,7 +80,7 @@ class DefaultHomeRepository : HomeRepository {
                 1, "mart7", HomeCategory.MART
             ),
 
-            
+
             HomeListModel(
                 1, "service1", HomeCategory.SERVICE
             ),
@@ -145,6 +151,6 @@ class DefaultHomeRepository : HomeRepository {
         )
 
 
-        return mockList.filter { it.category == homeCategory }
+        return mockList.filter{ it.category == homeCategory }
     }
 }

@@ -1,8 +1,8 @@
 package com.example.myapplication23.data.repository.myinfo
 
-
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
+
 
 /**
  * @주 허희태
@@ -14,6 +14,7 @@ import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 
 
 interface CSRepository {
-     //Entity 제거
-    fun findCsByCategory(csCategory: CSCategory) : List<CSModel>
+
+
+     fun findCsByCategory(csCategory: CSCategory) : List<CSModel>
 }

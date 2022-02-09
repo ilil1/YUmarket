@@ -2,8 +2,7 @@ package com.example.myapplication23.util.mapper
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.myapplication23.databinding.ViewholderCsItemBinding
-import com.example.myapplication23.databinding.ViewholderRestaurantBinding
+import com.example.myapplication23.databinding.*
 import com.example.myapplication23.model.CellType
 import com.example.myapplication23.model.Model
 import com.example.myapplication23.screen.base.BaseViewModel
@@ -37,7 +36,7 @@ object ViewHolderMapper {
                 )
             }
 
-                CellType.CUSTOMER_SERVICE_CELL -> {
+            CellType.CUSTOMER_SERVICE_CELL -> {
                 CSViewHolder(
                     ViewholderCsItemBinding.inflate(inflater),
                     viewModel,

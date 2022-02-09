@@ -45,34 +45,10 @@
         android:layout_height="43dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:id="@+id/tabLayout"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:foregroundGravity="center"-->
-<!--        app:tabGravity="fill"-->
-<!--        app:tabIndicatorFullWidth="false"-->
-<!--        app:tabMaxWidth="0dp"-->
-<!--        app:tabMode="auto" />-->
-
-
-<!--        <View -->
-<!--            android:layout_marginTop="40dp"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0.5dp"-->
-<!--        android:background="#535353"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/filterScrollView_cs" />-->
 
 
     <HorizontalScrollView
