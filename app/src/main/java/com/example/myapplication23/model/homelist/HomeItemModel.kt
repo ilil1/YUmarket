@@ -4,7 +4,7 @@ import com.example.myapplication23.model.CellType
 import com.example.myapplication23.model.Model
 import com.example.myapplication23.screen.home.homelist.HomeCategory
 
-data class HomeListModel(
+data class HomeItemModel(
     override val id: Long,
     val title: String,
     val category: HomeCategory,

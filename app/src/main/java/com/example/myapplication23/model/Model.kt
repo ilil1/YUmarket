@@ -8,23 +8,52 @@ abstract class Model(
     open val id : Long,
     open val type : CellType
 ) {
+    /**
+     * 두 Item이 같은지 판단하는 Method
+     * @author Main 정남진, Sub 김건우, 김도엽, 배은호, 허희태
+     * @since 2022.01.21
+     * @param item 비교할 Item
+     * @return 두 Item이 같으면 True, 다르면 False
+     */
+    open fun isTheSame(item: Model) =
+        this.id == item.id && this.type == item.type
+
+
     companion object {
-        val DIFF_CALLBACK = object: DiffUtil.ItemCallback<Model>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Model>() {
             override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {
-                return oldItem.id == newItem.id && oldItem.type == newItem.type
+                return oldItem.isTheSame(newItem)
             }
 
-            // TODO equal?
-            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: Model, newItem: Model): Boolean {
-                return oldItem == newItem  //참조객체가 같은지 즉 메모리의 주소가 같은지 확인
-                //카테고리에 따라 다시 시작하면서 id가 같은경우가 존재할
-                //수가 있는데 그럴경우 참조객체를 검사해서 같은 카테고리인지
-                //확인하는 느낌
-                // 문자열의 경우 두 개의 문자열의 value가 같다면 하나의 메모리에서
-                //value를 reference하기때문에 === 검사를 했을 때 true가 나온다.
+                return oldItem == newItem
             }
 
         }
     }
+
+
+    /**
+     * [DIFF_CALLBACK]의 areContentsTheSame에서 사용할 equals
+     * equals가 없으면 areContentsTheSame에 @SuppressLint("DiffUtilEquals")를 붙여야한다.
+     * Model 클래스를 비교할 일이 없으므로 Annotation을 붙여도 상관없다.
+     */
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Model
+
+        if (id != other.id) return false
+        if (type != other.type) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + type.hashCode()
+        return result
+    }
+
 }

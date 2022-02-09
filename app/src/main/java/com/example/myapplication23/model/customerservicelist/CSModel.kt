@@ -24,31 +24,6 @@ data class CSModel(
     val csTitle: String,
     val csAuthor:String,
     val csContent:String
+): Model(id,type)
 
-): Model(id,type) {
 
-    fun CSModel(csRepository: CSRepository){
-        id
-        csTitle
-        csAuthor
-        csInfoId
-        csContent
-
-    }
-
-    companion object {
-        val DIFF_CALLBACK = object: DiffUtil.ItemCallback<CSModel>() {
-            override fun areItemsTheSame(oldItem: CSModel, newItem: CSModel): Boolean {
-                return oldItem.id == newItem.id && oldItem.type == newItem.type
-            }
-
-            // TODO equal?
-            @SuppressLint("DiffUtilEquals")
-            override fun areContentsTheSame(oldItem: CSModel, newItem: CSModel): Boolean {
-                return oldItem == newItem
-            }
-
-        }
-    }
-
-}
