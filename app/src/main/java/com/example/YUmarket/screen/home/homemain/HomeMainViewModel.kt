@@ -44,8 +44,7 @@ class HomeMainViewModel(
     private suspend fun fetchMarketData() {
         // 22.01.19 성공적으로 불러온 뒤에는 reloadData 이외에 Data는 계속 불러오는 것을 방지
         // by 정남진
-        if (marketData.value !is HomeMainState.Success<*>
-        ) {
+        if (marketData.value !is HomeMainState.Success<*>) {
             _marketData.value = HomeMainState.Loading
 
             // sorted by distance
@@ -59,11 +58,12 @@ class HomeMainViewModel(
     }
 
     private suspend fun fetchItemData() {
-        if (itemData.value !is HomeMainState.Success<*>
-        ) {
+        if (itemData.value !is HomeMainState.Success<*>) {
             _itemData.value = HomeMainState.Loading
 
-            allNewSaleItemsList = homeRepository.getAllNewSaleItems()
+            allNewSaleItemsList = homeRepository.getAllNewSaleItems().map {
+                it.copy(type = CellType.HOME_MAIN_ITEM_CELL)
+            }
             _itemData.value = HomeMainState.ListLoaded
         }
     }

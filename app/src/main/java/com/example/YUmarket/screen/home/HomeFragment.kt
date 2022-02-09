@@ -81,7 +81,7 @@ class HomeFragment
     companion object {
         const val TAG = "HomeFragment"
 
-        fun newInstance() : HomeFragment {
+        fun newInstance(): HomeFragment {
             return HomeFragment().apply {
 
             }

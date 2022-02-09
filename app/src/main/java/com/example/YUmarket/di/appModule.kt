@@ -64,6 +64,8 @@ val appModule = module {
 
     single { provideDB(androidContext()) }
     single { provideBasketDao(get()) }
+    single { provideLikeItemDao(get()) }
+    single { provideLikeMarketDao(get()) }
 
     single<BasketRepository> { DefaultBasketRepository(get(), get()) }
 }

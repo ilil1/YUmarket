@@ -42,7 +42,7 @@ class HomeMainFragment
     // drop(1)을 하여 동네마켓 항목은 제외
     private val categories = HomeListCategory.values().drop(1)
 
-    override fun observeData() = with (viewModel) {
+    override fun observeData() = with(viewModel) {
         // marketData가 변경되면 update
         marketData.observe(viewLifecycleOwner) {
             when (it) {
@@ -163,7 +163,7 @@ class HomeMainFragment
 
             // 근처 마켓 RecyclerView 설정
             nearbyMarketRecyclerView.adapter = nearbyMarketAdapter
-            
+
             // 한줄에 2개씩 띄우도록 설정(spanCount)
             nearbyMarketRecyclerView.layoutManager = GridLayoutManager(
                 requireContext(),
@@ -180,6 +180,11 @@ class HomeMainFragment
             }
 
             newSaleItemRecyclerView.adapter = newSaleItemsAdapter
+//            newSaleItemRecyclerView.addItemDecoration(
+//                DividerItemDecoration(
+//                    context, LinearLayoutManager.HORIZONTAL
+//                )
+//            )
 
             setCategoryButtonListener()
         }
@@ -189,40 +194,47 @@ class HomeMainFragment
      * 카테고리 버튼별 동작을 Navigation을 이용하여 설정
      */
     private fun setCategoryButtonListener() = with(binding) {
+        val navController = findNavController()
 
         foodCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.FOOD)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.FOOD)
             )
         }
 
         martCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.MART)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.MART)
             )
         }
 
         serviceCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.SERVICE)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.SERVICE)
             )
         }
 
         fashionCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.FASHION)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.FASHION)
             )
         }
 
         accessoryCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.ACCESSORY)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.ACCESSORY)
             )
         }
 
         etcCategoryListButton.setOnClickListener {
-            findNavController().navigate(
-                HomeMainFragmentDirections.actionHomeMainFragmentToHomeFragment(HomeListCategory.ETC)
+            navController.navigate(
+                HomeMainFragmentDirections
+                    .actionHomeMainFragmentToHomeFragment(HomeListCategory.ETC)
             )
         }
 
@@ -231,9 +243,9 @@ class HomeMainFragment
     /**
      * Spinner에서 Item을 선택할때 동작 설정
      */
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
         viewModel.setItemFilter(categories[position])
-    }
+
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
