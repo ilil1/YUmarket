@@ -7,7 +7,7 @@ import com.example.myapplication23.screen.home.homelist.HomeListFragment
 
 class HomeListFragmentPagerAdapter(
     fragment: Fragment,
-    private val fragmentList: List<HomeListFragment>,
+    private val fragmentList: List<Fragment>,
     // TODO latlngEntity
 ) : FragmentStateAdapter(fragment) {
     override fun getItemCount() = fragmentList.size

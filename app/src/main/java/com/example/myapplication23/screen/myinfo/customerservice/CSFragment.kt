@@ -9,6 +9,7 @@ package com.example.myapplication23.screen.myinfo.customerservice
  */
 
 import android.content.Intent
+import androidx.core.view.get
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
@@ -17,7 +18,6 @@ import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenter
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
-import com.example.myapplication23.widget.adapter.CSListAdapter
 import com.example.myapplication23.widget.adapter.HomeListFragmentPagerAdapter
 
 
@@ -25,7 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
 
-    private lateinit var viewAdapter: CSListAdapter
+    private lateinit var viewAdapter: HomeListFragmentPagerAdapter
 
     override val viewModel by viewModel<CSViewModel>()
 
@@ -51,14 +51,11 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
             }
 
 
-            viewAdapter = CSListAdapter(
+            viewPagerCs.adapter = HomeListFragmentPagerAdapter(
                 this@CSFragment,
-               csListFragmentList
-
+                csListFragmentList
             )
         }
-            viewPagerCs.adapter = viewAdapter
-
 
             binding.intentmyinfo.setOnClickListener {
                 showMyinfo(MainActivity())
