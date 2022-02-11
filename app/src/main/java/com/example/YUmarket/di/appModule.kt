@@ -11,9 +11,6 @@ import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.HomeViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
-import com.example.YUmarket.screen.like.LikeViewModel
-import com.example.YUmarket.screen.map.MapViewModel
-import com.example.YUmarket.screen.myinfo.MyInfoViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
 import com.example.YUmarket.util.provider.DefaultResourcesProvider
 import com.example.YUmarket.util.provider.ResourcesProvider
@@ -32,9 +29,6 @@ val appModule = module {
     }
 
     viewModel { MainViewModel(get()) }
-    viewModel { LikeViewModel() }
-    viewModel { MapViewModel() }
-    viewModel { MyInfoViewModel() }
     viewModel { OrderListViewModel() }
 
     single<HomeRepository> { DefaultHomeRepository() }
