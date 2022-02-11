@@ -28,10 +28,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @since 2022.01.18
  */
 class HomeMainFragment
-    : BaseFragment<HomeMainViewModel, FragmentHomeMainBinding>(),
+    : BaseFragment<FragmentHomeMainBinding>(),
     AdapterView.OnItemSelectedListener {
 
-    override val viewModel by viewModel<HomeMainViewModel>()
+    private val viewModel by viewModel<HomeMainViewModel>()
 
     private val resourcesProvider by inject<ResourcesProvider>()
 

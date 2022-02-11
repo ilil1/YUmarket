@@ -5,29 +5,21 @@ import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isGone
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavHost
 import androidx.navigation.ui.setupWithNavController
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
-import com.example.YUmarket.screen.home.homemain.HomeMainFragment
-import com.example.YUmarket.screen.like.LikeFragment
-import com.example.YUmarket.screen.map.MapFragment
-import com.example.YUmarket.screen.myinfo.MyInfoFragment
-import com.example.YUmarket.screen.orderlist.OrderListFragment
 import com.example.YUmarket.util.LocationData
 import com.example.YUmarket.util.LocationState
-import com.google.android.material.navigation.NavigationBarView
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
-    : BaseActivity<MainViewModel, ActivityMainBinding>() {
+    : BaseActivity<ActivityMainBinding>() {
 
     companion object {
         val locationPermissions = arrayOf(
@@ -70,7 +62,8 @@ class MainActivity
     private lateinit var locationManager: LocationManager
     private lateinit var myLocationListener: MyLocationListener
 
-    override val viewModel by viewModel<MainViewModel>()
+    private val viewModel by viewModel<MainViewModel>()
+
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 

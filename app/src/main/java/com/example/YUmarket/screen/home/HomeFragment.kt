@@ -14,11 +14,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment
-    : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
+    : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var viewPagerAdapter: HomeListFragmentPagerAdapter
 
-    override val viewModel by viewModel<HomeViewModel>()
+    private val viewModel by viewModel<HomeViewModel>()
 
     // 22.01.19 Navigation SafeArgs by 정남진
     private val args by navArgs<HomeFragmentArgs>()
