@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import kotlinx.coroutines.Job
 
-abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment() {
-
-    abstract val viewModel: VM
+abstract class BaseFragment<VB: ViewBinding>: Fragment() {
 
     protected lateinit var binding: VB
 
     abstract fun getViewBinding(): VB
 
-    private lateinit var fetchJob: Job
+//    private lateinit var fetchJob: Job
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getViewBinding()
@@ -29,23 +26,19 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment() {
     }
 
     open fun initState() {
-        arguments?.let {
-            viewModel.storeState(it)
-        }
         initViews()
-        fetchJob = viewModel.fetchData()
         observeData()
     }
 
     open fun initViews() = Unit
 
-    abstract fun observeData()
+    open fun observeData() = Unit
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        if (fetchJob.isActive) {
-            fetchJob.cancel()
-        }
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        if (fetchJob.isActive) {
+//            fetchJob.cancel()
+//        }
+//    }
 
 }
