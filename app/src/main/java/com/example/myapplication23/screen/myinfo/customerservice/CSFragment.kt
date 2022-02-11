@@ -55,6 +55,7 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
                 this@CSFragment,
                 csListFragmentList
             )
+            viewPagerCs.offscreenPageLimit = 1
         }
 
             binding.intentmyinfo.setOnClickListener {
@@ -88,7 +89,7 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
     }
 
     private fun back(){
-        activity.let {
+        activity?.let {
             var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
         }
