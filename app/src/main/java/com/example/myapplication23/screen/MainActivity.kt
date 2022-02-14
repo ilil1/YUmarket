@@ -10,6 +10,7 @@ import android.os.Build
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
@@ -37,6 +38,8 @@ class MainActivity
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
     }
+
+
     var darkCode = false
     private val permissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->

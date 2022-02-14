@@ -8,6 +8,8 @@ import com.example.myapplication23.data.repository.restaurant.DefaultHomeReposit
 import com.example.myapplication23.data.repository.restaurant.HomeRepository
 import com.example.myapplication23.screen.MainViewModel
 import com.example.myapplication23.screen.home.HomeViewModel
+import com.example.myapplication23.screen.home.homelist.HomeCategory
+import com.example.myapplication23.screen.home.homelist.HomeListViewModel
 import com.example.myapplication23.screen.like.LikeViewModel
 import com.example.myapplication23.screen.map.MapViewModel
 import com.example.myapplication23.screen.myinfo.MyInfoViewModel
@@ -26,9 +28,9 @@ val appModule = module {
 
     viewModel { HomeViewModel() }
 
-//    factory { (homeCategory: HomeCategory) ->
-//        HomeListViewModel(homeCategory, get())
-//    }
+    factory { (homeCategory: HomeCategory) ->
+        HomeListViewModel(homeCategory, get())
+    }
     /*  CSViewModel 추가  의존성 주입   factory추가
     *   csCategory factory                     */
     viewModel { CSViewModel() }

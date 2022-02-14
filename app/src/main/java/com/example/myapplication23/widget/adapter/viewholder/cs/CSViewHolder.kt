@@ -1,8 +1,10 @@
 package com.example.myapplication23.widget.adapter.viewholder.cs
 
+import android.content.res.loader.ResourcesProvider
 import com.example.myapplication23.databinding.ViewholderCsItemBinding
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseViewModel
+import com.example.myapplication23.util.provider.ResoucesProvider
 import com.example.myapplication23.widget.adapter.listener.AdapterListener
 import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
 import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
@@ -18,6 +20,7 @@ import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
 class CSViewHolder(
     private val binding: ViewholderCsItemBinding,
     viewModel: BaseViewModel,
+//    resourcesProvider: ResoucesProvider
 ) : ModelViewHolder<CSModel>(binding,viewModel){
 
     override fun reset() = Unit

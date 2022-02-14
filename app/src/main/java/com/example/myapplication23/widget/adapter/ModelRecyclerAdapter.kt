@@ -1,6 +1,8 @@
 package com.example.myapplication23.widget.adapter
 
-import android.content.res.loader.ResourcesProvider
+
+
+import com.example.myapplication23.util.provider.ResoucesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.myapplication23.model.CellType
@@ -14,7 +16,8 @@ import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
 class ModelRecyclerAdapter<M : Model, VM : BaseViewModel>(
     private var modelList: List<Model>,
     private val viewModel: VM,
-    private val adapterListener: AdapterListener
+    private val adapterListener: AdapterListener,
+//    private val resourcesProvider: ResoucesProvider
 ) : ListAdapter<Model, ModelViewHolder<M>>(Model.DIFF_CALLBACK) {
 
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal

@@ -1,5 +1,6 @@
 package com.example.myapplication23.util.mapper
 
+import com.example.myapplication23.util.provider.ResoucesProvider
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.myapplication23.databinding.*
@@ -17,6 +18,7 @@ object ViewHolderMapper {
         parent: ViewGroup,
         type: CellType,
         viewModel: BaseViewModel,
+//        resourcesProvider: ResoucesProvider
     ): ModelViewHolder<M> {
 
         val inflater = LayoutInflater.from(parent.context)
@@ -26,6 +28,8 @@ object ViewHolderMapper {
                 RestaurantViewHolder(
                     ViewholderRestaurantBinding.inflate(inflater),
                     viewModel,
+
+
                 )
             }
 
@@ -33,6 +37,7 @@ object ViewHolderMapper {
                 RestaurantViewHolder(
                     ViewholderRestaurantBinding.inflate(inflater),
                     viewModel,
+
                 )
             }
 

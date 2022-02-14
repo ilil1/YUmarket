@@ -1,15 +1,18 @@
 package com.example.myapplication23.screen.home.homelist
 
+import com.example.myapplication23.util.provider.ResoucesProvider
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.databinding.FragmentHomeListBinding
+import com.example.myapplication23.model.Model
 import com.example.myapplication23.model.homelist.HomeItemModel
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
 import com.example.myapplication23.widget.adapter.listener.home.HomeListListener
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.android.ext.android.inject
 
 class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding>() {
     override fun getViewBinding(): FragmentHomeListBinding =
@@ -23,10 +26,14 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
         parametersOf(homeCategory)
     }
 
+    private val resourcesProvider by inject<ResoucesProvider>()
+
     private val adapter by lazy {
-        ModelRecyclerAdapter<HomeItemModel, HomeListViewModel>(
+        ModelRecyclerAdapter<Model, HomeListViewModel>(
             listOf(),
             viewModel,
+//            resourcesProvider,
+
             object: HomeListListener {
                 override fun onClickItem(listModel: HomeItemModel) {
                     // TODO change to detail activity
@@ -37,8 +44,8 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
     }
 
     override fun initViews() = with(binding) {
-        restaurantRecyclerView.adapter = adapter
-        restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
+    restaurantRecyclerView.adapter = adapter
+    restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
 
         // TODO delete
 

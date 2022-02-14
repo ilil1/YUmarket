@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.viewModels
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
@@ -32,6 +33,10 @@ import java.util.*
 @RequiresApi(Build.VERSION_CODES.O)
 class MyInfoFragment : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>() {
     override val viewModel by viewModel<MyInfoViewModel>()
+
+
+
+
 
     val requestCode = 101;
     private val check = true;
