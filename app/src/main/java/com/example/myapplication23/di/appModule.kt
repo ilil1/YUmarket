@@ -18,6 +18,8 @@ import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailViewModel
 import com.example.myapplication23.screen.orderlist.OrderListViewModel
+import com.example.myapplication23.util.provider.DefaultResourcesProvider
+import com.example.myapplication23.util.provider.ResoucesProvider
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -52,7 +54,7 @@ val appModule = module {
 
     // mockList 의존성 주입
     single<CSRepository>{DefaultCSRepository(get())}
-
+    single<ResoucesProvider>{ DefaultResourcesProvider(androidContext())}
     single { buildOkHttpClient() }
     single { provideGsonConverterFactory() }
 

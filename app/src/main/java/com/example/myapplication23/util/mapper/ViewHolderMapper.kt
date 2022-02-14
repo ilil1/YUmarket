@@ -18,26 +18,35 @@ object ViewHolderMapper {
         parent: ViewGroup,
         type: CellType,
         viewModel: BaseViewModel,
-//        resourcesProvider: ResoucesProvider
+        resourcesProvider: ResoucesProvider
     ): ModelViewHolder<M> {
 
         val inflater = LayoutInflater.from(parent.context)
 
         return when (type) {
-            CellType.RESTAURANT_CELL -> {
+            CellType.HOME_ITEM_CELL -> {
                 RestaurantViewHolder(
                     ViewholderRestaurantBinding.inflate(inflater),
                     viewModel,
-
+                    resourcesProvider
 
                 )
+            }
+
+            CellType.HOME_TOWN_MARKET_CELL -> {
+                RestaurantViewHolder(
+                    ViewholderRestaurantBinding.inflate(inflater),
+                    viewModel,
+                    resourcesProvider
+
+                    )
             }
 
             CellType.HOME_CELL -> {
                 RestaurantViewHolder(
                     ViewholderRestaurantBinding.inflate(inflater),
                     viewModel,
-
+                    resourcesProvider
                 )
             }
 
@@ -45,9 +54,10 @@ object ViewHolderMapper {
                 CSViewHolder(
                     ViewholderCsItemBinding.inflate(inflater),
                     viewModel,
-
+                    resourcesProvider
                     )
             }
+
 
 
         } as ModelViewHolder<M>

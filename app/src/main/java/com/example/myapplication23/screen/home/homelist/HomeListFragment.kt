@@ -29,15 +29,14 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
     private val resourcesProvider by inject<ResoucesProvider>()
 
     private val adapter by lazy {
-        ModelRecyclerAdapter<Model, HomeListViewModel>(
+        ModelRecyclerAdapter<HomeItemModel, HomeListViewModel>(
             listOf(),
             viewModel,
-//            resourcesProvider,
-
+            resourcesProvider,
             object: HomeListListener {
-                override fun onClickItem(listModel: HomeItemModel) {
+                override fun onClickItem(Model: HomeItemModel) {
                     // TODO change to detail activity
-                    showMessage(listModel.toString())
+                    showMessage(Model.toString())
                 }
             }
         )

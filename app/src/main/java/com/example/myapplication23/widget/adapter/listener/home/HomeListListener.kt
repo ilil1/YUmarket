@@ -5,5 +5,5 @@ import com.example.myapplication23.widget.adapter.listener.AdapterListener
 
 interface HomeListListener : AdapterListener {
 
-    fun onClickItem(listModel: HomeItemModel)
+    fun onClickItem(Model: HomeItemModel)
 }

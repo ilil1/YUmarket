@@ -11,7 +11,7 @@ import com.example.myapplication23.widget.adapter.listener.AdapterListener
 abstract class ModelViewHolder<M : Model>(
     binding: ViewBinding,
     protected val viewModel: BaseViewModel,
-//    protected val resourcesProvider: ResoucesProvider
+    protected val resourcesProvider: ResoucesProvider
 ) : RecyclerView.ViewHolder(binding.root) {
 
     abstract fun reset()

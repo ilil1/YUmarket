@@ -9,5 +9,5 @@ data class HomeItemModel(
     val title: String,
     val category: HomeCategory,
     // TODO add more
-    override val type: CellType = CellType.RESTAURANT_CELL,
+    override val type: CellType = CellType.HOME_ITEM_CELL,
 ) : Model(id, type)

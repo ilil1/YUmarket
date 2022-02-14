@@ -20,8 +20,8 @@ import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
 class CSViewHolder(
     private val binding: ViewholderCsItemBinding,
     viewModel: BaseViewModel,
-//    resourcesProvider: ResoucesProvider
-) : ModelViewHolder<CSModel>(binding,viewModel){
+    resourcesProvider: ResoucesProvider
+) : ModelViewHolder<CSModel>(binding,viewModel,resourcesProvider){
 
     override fun reset() = Unit
 

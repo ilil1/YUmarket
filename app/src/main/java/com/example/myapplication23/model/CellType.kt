@@ -8,6 +8,7 @@ package com.example.myapplication23.model
  */
 enum class CellType {
     HOME_CELL,
-    RESTAURANT_CELL,
+    HOME_TOWN_MARKET_CELL,
+    HOME_ITEM_CELL,
     CUSTOMER_SERVICE_CELL
 }

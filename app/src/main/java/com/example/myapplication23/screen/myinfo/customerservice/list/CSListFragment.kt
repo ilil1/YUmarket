@@ -1,12 +1,11 @@
 package com.example.myapplication23.screen.myinfo.customerservice.list
 
 import android.content.Intent
-import android.content.res.loader.ResourcesProvider
 
+import com.example.myapplication23.util.provider.ResoucesProvider
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.databinding.FragmentCsListBinding
-
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailActivity
@@ -42,13 +41,12 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
         }
     }
 
-    private val resourcesProvider by inject<ResourcesProvider>()
+    private val resourcesProvider by inject<ResoucesProvider>()
 
     private val adapter by lazy {
         ModelRecyclerAdapter<CSModel, CSListViewModel>(
-           listOf(), viewModel,
-            adapterListener = when(csCategory){
-                CSCategory.TOTAL -> object : CSModelListener {
+           listOf(), viewModel,resourcesProvider,
+                    object : CSModelListener {
                     override fun onClickItem(listModel: CSModel) {
                         val intent = Intent(context, CSDetailActivity::class.java).apply {
                             putExtra("CSTitle", listModel.csTitle)
@@ -58,9 +56,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
                         }
                         startActivity(intent)
                     }
-                }
             }
-
         )
     }
 

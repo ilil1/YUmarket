@@ -11,8 +11,8 @@ import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
 class RestaurantViewHolder(
     private val binding: ViewholderRestaurantBinding,
     viewModel: BaseViewModel,
-//    resourcesProvider: ResoucesProvider
-) : ModelViewHolder<HomeItemModel>(binding, viewModel) {
+    resourcesProvider: ResoucesProvider
+) : ModelViewHolder<HomeItemModel>(binding, viewModel,resourcesProvider) {
     override fun reset() = Unit
 
     override fun bindData(listModel: HomeItemModel) {

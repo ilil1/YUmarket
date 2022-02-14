@@ -16,14 +16,14 @@ import com.example.myapplication23.widget.adapter.viewholder.ModelViewHolder
 class ModelRecyclerAdapter<M : Model, VM : BaseViewModel>(
     private var modelList: List<Model>,
     private val viewModel: VM,
-    private val adapterListener: AdapterListener,
-//    private val resourcesProvider: ResoucesProvider
+    private val resourcesProvider: ResoucesProvider,
+    private val adapterListener: AdapterListener
 ) : ListAdapter<Model, ModelViewHolder<M>>(Model.DIFF_CALLBACK) {
 
     override fun getItemViewType(position: Int): Int = modelList[position].type.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder<M>{
-        return  ViewHolderMapper.map(parent, CellType.values()[viewType], viewModel)
+        return  ViewHolderMapper.map(parent, CellType.values()[viewType], viewModel, resourcesProvider)
     }
 
 
