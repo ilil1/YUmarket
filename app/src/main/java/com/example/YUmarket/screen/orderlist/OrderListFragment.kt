@@ -7,4 +7,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun getViewBinding() =
         FragmentOrderListBinding.inflate(layoutInflater)
+
+    private val viewModel by viewModel<OrderListViewModel>()
+
+    override fun initState() {
+        super.initState()
+        viewModel.fetchData()
+    }
 }

@@ -59,14 +59,15 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
         )
     }
 
+    override fun initState() {
+        super.initState()
+        viewModel.fetchData()
+    }
+
     override fun initViews() = with(binding) {
         restaurantRecyclerView.adapter = adapter
         restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
     }
-
-    private fun showMessage(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-
 
 
     override fun observeData() = with(viewModel) {
