@@ -3,7 +3,7 @@ package com.example.YUmarket.screen.home.homemain
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.YUmarket.data.repository.restaurant.HomeRepository
+import com.example.YUmarket.data.repository.home.HomeRepository
 import com.example.YUmarket.model.CellType
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory

@@ -2,7 +2,7 @@ package com.example.YUmarket.screen.home.homelist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.YUmarket.data.repository.restaurant.HomeRepository
+import com.example.YUmarket.data.repository.home.HomeRepository
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory

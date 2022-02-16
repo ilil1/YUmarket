@@ -1,4 +1,4 @@
-package com.example.YUmarket.data.repository.restaurant
+package com.example.YUmarket.data.repository.home
 
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel

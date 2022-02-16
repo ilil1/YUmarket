@@ -4,8 +4,8 @@ import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
 import com.example.YUmarket.data.repository.map.DefaultMapRepository
 import com.example.YUmarket.data.repository.map.MapRepository
-import com.example.YUmarket.data.repository.restaurant.DefaultHomeRepository
-import com.example.YUmarket.data.repository.restaurant.HomeRepository
+import com.example.YUmarket.data.repository.home.DefaultHomeRepository
+import com.example.YUmarket.data.repository.home.HomeRepository
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
