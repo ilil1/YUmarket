@@ -27,5 +27,6 @@
     <string name="new_sale_item">새로운 할인상품</string>
     <string name="nearby_market">가까운 동네마켓</string>
     <string name="show_more">더보기 ></string>
+    <string name="no_address_info_found">주소 정보 없음</string>
 
 </resources>
