@@ -1,5 +1,6 @@
 package com.example.YUmarket.di
 
+import com.example.YUmarket.BuildConfig
 import com.example.YUmarket.data.network.MapApiService
 import com.example.YUmarket.data.url.Url
 import okhttp3.OkHttpClient
@@ -30,11 +31,9 @@ fun provideGsonConverterFactory(): GsonConverterFactory {
 fun buildOkHttpClient(): OkHttpClient {
     val interceptor = HttpLoggingInterceptor()
 
-//        if (BuildConfig.DEBUG) {
-//            interceptor.level = HttpLoggingInterceptor.Level.BODY
-//        } else {
-//            interceptor.level = HttpLoggingInterceptor.Level.NONE
-//        }
+    interceptor.level =
+        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
 
     return OkHttpClient.Builder()
         .connectTimeout(5, TimeUnit.SECONDS)
