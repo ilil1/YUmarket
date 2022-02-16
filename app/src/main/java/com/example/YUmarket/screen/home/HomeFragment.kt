@@ -5,20 +5,20 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.example.YUmarket.databinding.FragmentHomeBinding
 import com.example.YUmarket.model.homelist.category.HomeListCategory
+import com.example.YUmarket.screen.MainState
+import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.screen.home.homelist.HomeListFragment
-import com.example.YUmarket.util.LocationData
-import com.example.YUmarket.util.LocationState
 import com.example.YUmarket.widget.adapter.HomeListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment
     : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var viewPagerAdapter: HomeListFragmentPagerAdapter
 
-    private val viewModel by viewModel<HomeViewModel>()
+    private val activityViewModel by sharedViewModel<MainViewModel>()
 
     // 22.01.19 Navigation SafeArgs by 정남진
     private val args by navArgs<HomeFragmentArgs>()
@@ -31,9 +31,9 @@ class HomeFragment
     }
 
     override fun observeData() = with(binding) {
-        LocationData.locationStateLiveData.observe(viewLifecycleOwner) {
+        activityViewModel.locationData.observe(viewLifecycleOwner) {
             when (it) {
-                is LocationState.Success -> {
+                is MainState.Success -> {
                     initViewPager()
 
                     // 22.01.19 View Pager의 현재 Item을 SafeArgs로 받아온 Tab으로 설정
@@ -77,14 +77,4 @@ class HomeFragment
 //        }
     }
 
-
-    companion object {
-        const val TAG = "HomeFragment"
-
-        fun newInstance(): HomeFragment {
-            return HomeFragment().apply {
-
-            }
-        }
-    }
 }

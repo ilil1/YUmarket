@@ -11,14 +11,15 @@ import com.example.YUmarket.databinding.FragmentHomeMainBinding
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.TownMarketModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory
+import com.example.YUmarket.screen.MainState
+import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.base.BaseFragment
-import com.example.YUmarket.util.LocationData
-import com.example.YUmarket.util.LocationState
 import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.home.HomeItemListener
 import com.example.YUmarket.widget.adapter.listener.home.TownMarketListener
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -32,6 +33,7 @@ class HomeMainFragment
     AdapterView.OnItemSelectedListener {
 
     private val viewModel by viewModel<HomeMainViewModel>()
+    private val activityViewModel by sharedViewModel<MainViewModel>()
 
     private val resourcesProvider by inject<ResourcesProvider>()
 
@@ -102,9 +104,9 @@ class HomeMainFragment
         }
 
         // 위치 정보를 불러오고 fetchData
-        LocationData.locationStateLiveData.observe(viewLifecycleOwner) {
+        activityViewModel.locationData.observe(viewLifecycleOwner) {
             // get list after get location
-            if (it is LocationState.Success) {
+            if (it is MainState.Success) {
                 viewModel.fetchData()
             }
         }
@@ -221,10 +223,4 @@ class HomeMainFragment
         TODO("Not yet implemented")
     }
 
-
-    companion object {
-        const val TAG = "HomeMainFragment"
-
-        fun newInstance() = HomeMainFragment()
-    }
 }

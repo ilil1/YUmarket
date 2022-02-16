@@ -14,8 +14,6 @@ import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
-import com.example.YUmarket.util.LocationData
-import com.example.YUmarket.util.LocationState
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
@@ -68,22 +66,22 @@ class MainActivity
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun observeData() = with(binding) {
-            LocationData.locationStateLiveData.observe(this@MainActivity) {
+            viewModel.locationData.observe(this@MainActivity) {
             when (it) {
-                is LocationState.Uninitialized -> {
+                is MainState.Uninitialized -> {
                     getMyLocation()
                 }
 
-                is LocationState.Loading -> {
+                is MainState.Loading -> {
 
                 }
 
-                is LocationState.Success -> {
+                is MainState.Success -> {
                     locationLoading.isGone = true
                     locationTitleTextView.text = it.mapSearchInfoEntity.fullAddress
                 }
 
-                is LocationState.Error -> {
+                is MainState.Error -> {
                     locationTitleTextView.text = getString(it.errorMessage)
                 }
             }

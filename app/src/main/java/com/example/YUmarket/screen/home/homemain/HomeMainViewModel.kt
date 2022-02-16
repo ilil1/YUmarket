@@ -8,8 +8,6 @@ import com.example.YUmarket.model.CellType
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.screen.base.BaseViewModel
-import com.example.YUmarket.util.LocationData
-import com.example.YUmarket.util.LocationState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -34,11 +32,10 @@ class HomeMainViewModel(
     private lateinit var allNewSaleItemsList: List<HomeItemModel>
 
     override fun fetchData(): Job = viewModelScope.launch {
-        // get list after get location data
-        if (LocationData.locationStateLiveData.value is LocationState.Success) {
+        // 더 이상 fetchData가 initState에서 실행되지 않고 위치 정보를 불러온 뒤에
+        // 실행 되므로 위치 정보를 불러왔는지 확인할 필요가 없음
             fetchMarketData()
             fetchItemData()
-        }
     }
 
     private suspend fun fetchMarketData() {
