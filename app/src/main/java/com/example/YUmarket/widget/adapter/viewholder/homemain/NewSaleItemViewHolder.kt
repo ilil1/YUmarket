@@ -35,7 +35,9 @@ class NewSaleItemViewHolder(
         val disCountPercent: Int = 100 * disCountedPrice / model.originalPrice
 
         with(binding) {
-            itemImageView.load(model.itemImageUrl, 0f)
+            model.itemImageUrl?.let {
+                itemImageView.load(model.itemImageUrl, 0f)
+            }
             itemDistanceTextView.text = "0.1"
             distanceUnitTextView.text =
                 resourcesProvider.getString(R.string.distance_unit_kilometer)

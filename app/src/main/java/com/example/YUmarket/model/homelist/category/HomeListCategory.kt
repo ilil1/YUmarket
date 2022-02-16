@@ -2,6 +2,7 @@ package com.example.YUmarket.model.homelist.category
 
 import androidx.annotation.StringRes
 import com.example.YUmarket.R
+import com.google.gson.annotations.SerializedName
 
 
 /**
@@ -16,11 +17,24 @@ enum class HomeListCategory(
     @StringRes val categoryNameId: Int,
     @StringRes val categoryTypeId: Int
 ) {
+    @SerializedName("TOWN_MARKET")
     TOWN_MARKET(R.string.all, R.string.all_type),
+
+    @SerializedName("FOOD_BEVERAGE")
     FOOD(R.string.food, R.string.food_type),
+
+    @SerializedName("MART")
     MART(R.string.mart, R.string.mart_type),
+
+    @SerializedName("SERVICE")
     SERVICE(R.string.service, R.string.service_type),
+
+    @SerializedName("FASHION")
     FASHION(R.string.fashion, R.string.fashion_type),
+
+    @SerializedName("ACCESSORY")
     ACCESSORY(R.string.accessory, R.string.accessory_type),
+
+    @SerializedName("ETC")
     ETC(R.string.etc, R.string.etc_type)
 }

@@ -1,9 +1,8 @@
 package com.example.YUmarket.screen.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import kotlinx.coroutines.Job
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 

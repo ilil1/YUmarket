@@ -1,5 +1,7 @@
 package com.example.YUmarket.di
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
 import com.example.YUmarket.data.repository.map.DefaultMapRepository
@@ -19,6 +21,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
+@RequiresApi(Build.VERSION_CODES.O)
 val appModule = module {
 
     factory { (homeListCategory: HomeListCategory) ->
@@ -28,13 +31,18 @@ val appModule = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { OrderListViewModel() }
 
-    single<HomeRepository> { DefaultHomeRepository() }
+    single<HomeRepository> { DefaultHomeRepository(get(), get(), get(), get()) }
 
     single { buildOkHttpClient() }
     single { provideGsonConverterFactory() }
 
     single(named("map")) { provideMapRetrofit(get(), get()) }
     single { provideMapApiService(get(qualifier = named("map"))) }
+
+    // YUMarket의 자체 서버에 대한 dependency 추가 by 김도엽
+    single(named("YUMarket")) { provideYuMarketRetrofit(get(), get()) }
+    single { provideTownMarketApiService(get(qualifier = named("YUMarket"))) } // townMarket
+    single { provideHomeItemApiService(get(qualifier = named("YUMarket"))) } // homeItem
 
     single<MapRepository> { DefaultMapRepository(get(), get()) }
 

@@ -37,7 +37,9 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
             adapterListener = when (homeListCategory) {
                 HomeListCategory.TOWN_MARKET -> {
                     object : TownMarketListener {
-                        override fun onClickItem(model: TownMarketModel) = Unit
+                        override fun onClickItem(model: TownMarketModel) {
+                            Toast.makeText(requireContext(), "Market!", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
 
