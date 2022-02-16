@@ -9,7 +9,6 @@ import com.example.YUmarket.data.repository.restaurant.HomeRepository
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
-import com.example.YUmarket.screen.home.HomeViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
 import com.example.YUmarket.util.provider.DefaultResourcesProvider
@@ -22,13 +21,11 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    viewModel { HomeViewModel() }
-
     factory { (homeListCategory: HomeListCategory) ->
         HomeListViewModel(homeListCategory, get())
     }
 
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get()) }
     viewModel { OrderListViewModel() }
 
     single<HomeRepository> { DefaultHomeRepository() }
