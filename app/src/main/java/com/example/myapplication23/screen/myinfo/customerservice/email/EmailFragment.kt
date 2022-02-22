@@ -17,7 +17,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @description
  */
 class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
-    private val requestCode = 101
 
     override val viewModel by viewModel<CSViewModel>()
 
@@ -32,16 +31,14 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
     override fun initViews() = with(binding){
         super.initViews()
         binding.emailSend.setOnClickListener { sendEmail() }
-        binding.back.setOnClickListener {
-            back()
-        }
+        binding.back.setOnClickListener { back() }
     }
 
 
     private fun sendEmail() {
         val emailAddress = "gege2848@naver.com"
         val title = binding.titleEdit.text.toString()
-        val content = binding.contentEdit.text
+        val content = binding.contentEdit.text.toString()
         val intent = Intent(Intent.ACTION_SENDTO)
             .apply {
                 type = "text/plain"
@@ -49,14 +46,14 @@ class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(emailAddress))
                 putExtra(Intent.EXTRA_SUBJECT, title )
                 putExtra(Intent.EXTRA_TEXT, content )
-
             }
 
-        if (title =="" || title == null) {
-            Toast.makeText(context, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+        if (title =="" || title == null || content == "" || content == null) {
+            Toast.makeText(context, "제목 또는 내용을 입력해주세요", Toast.LENGTH_SHORT).show()
         }
         else
         startActivity(Intent.createChooser(intent,"Send Email"))
+        activity?.finish()
 
     }
     private fun back(){

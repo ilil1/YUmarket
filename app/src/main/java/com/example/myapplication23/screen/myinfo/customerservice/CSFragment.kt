@@ -59,7 +59,8 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
         }
 
             binding.intentmyinfo.setOnClickListener {
-                showMyinfo(MainActivity())
+            showMyinfo(MainActivity())
+            activity?.finish()
             }
 
         binding.editBtn.setOnClickListener {
@@ -89,10 +90,8 @@ class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
     }
 
     private fun back(){
-        activity?.let {
             var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
-        }
     }
 
 

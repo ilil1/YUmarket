@@ -47,7 +47,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
         ModelRecyclerAdapter<CSModel, CSListViewModel>(
            listOf(), viewModel,resourcesProvider,
                     object : CSModelListener {
-                    override fun onClickItem(listModel: CSModel) {
+                    override fun onClickItem (listModel: CSModel)  {
                         val intent = Intent(context, CSDetailActivity::class.java).apply {
                             putExtra("CSTitle", listModel.csTitle)
                             putExtra("CSContent", listModel.csContent)
@@ -55,6 +55,7 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
                             putExtra("CSid", listModel.id)
                         }
                         startActivity(intent)
+                        activity?.finish()
                     }
             }
         )

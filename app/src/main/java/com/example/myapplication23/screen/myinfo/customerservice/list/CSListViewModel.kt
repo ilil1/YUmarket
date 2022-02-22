@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
  */
 
 class CSListViewModel (
-    private val csCategory: CSCategory,
     private val csRepository: CSRepository
 ): BaseViewModel() {
     private val _csListData = MutableLiveData<List<CSModel>>()

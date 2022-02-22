@@ -7,6 +7,8 @@ plugins {
 android {
     compileSdk 31
 
+    
+
     defaultConfig {
         applicationId "com.example.myapplication23"
         minSdk 21
@@ -48,8 +50,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+
+
     //String too large
     implementation 'com.stripe:stripe-android:8.1.0'
+
     //dark mode
     implementation 'com.google.android.material:material:1.2.0-alpha04'
     //circle image

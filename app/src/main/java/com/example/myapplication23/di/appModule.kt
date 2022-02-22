@@ -16,7 +16,6 @@ import com.example.myapplication23.screen.myinfo.MyInfoViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailViewModel
 import com.example.myapplication23.screen.orderlist.OrderListViewModel
 import com.example.myapplication23.util.provider.DefaultResourcesProvider
 import com.example.myapplication23.util.provider.ResoucesProvider
@@ -38,11 +37,11 @@ val appModule = module {
     viewModel { CSViewModel() }
 
     factory { (csCategory: CSCategory) ->
-        CSListViewModel(csCategory , get())
+        CSListViewModel(get())
     }
 
     //CSDetailViewModel 선언 매개변수 하나 get()
-    viewModel { CSDetailViewModel(get()) }
+
 
     viewModel { MainViewModel(get()) }
     viewModel { LikeViewModel() }

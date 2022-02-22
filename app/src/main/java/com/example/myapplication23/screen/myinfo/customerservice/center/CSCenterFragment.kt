@@ -39,7 +39,8 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
         binding.questionCenter.setOnClickListener {
-            transfer(CSFragment())
+        transfer(CSFragment())
+        activity?.finish()
         }
 
         binding.centerNumber.setOnClickListener {
@@ -57,6 +58,7 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
 
         binding.back.setOnClickListener {
             back(MainActivity())
+            activity?.finish()
         }
     }
 
@@ -165,8 +167,8 @@ class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
             var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
-
     }
+
     companion object{
             const val TAG = "CSCenterFragment"
 

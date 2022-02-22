@@ -1,15 +1,19 @@
 package com.example.myapplication23.screen.myinfo.customerservice.personal
 
 import android.content.Intent
+import android.content.res.AssetManager
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentPersonalBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.MyInfoFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
+import okio.ByteString.Companion.readByteString
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.InputStream
 
 class PersonalFragment : BaseFragment<CSViewModel, FragmentPersonalBinding>() {
+
 
 
     override val viewModel by viewModel<CSViewModel>()

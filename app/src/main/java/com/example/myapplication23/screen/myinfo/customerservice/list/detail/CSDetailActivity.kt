@@ -3,13 +3,14 @@ package com.example.myapplication23.screen.myinfo.customerservice.list.detail
 import android.content.Intent
 import com.example.myapplication23.databinding.ActivityDetailBinding
 import com.example.myapplication23.screen.base.BaseActivity
+import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class CSDetailActivity :BaseActivity<CSDetailViewModel,ActivityDetailBinding>() {
+class CSDetailActivity :BaseActivity<CSViewModel,ActivityDetailBinding>() {
 
-    override val viewModel by viewModel<CSDetailViewModel>()
+    override val viewModel by viewModel<CSViewModel>()
 
 
     override fun getViewBinding(): ActivityDetailBinding =

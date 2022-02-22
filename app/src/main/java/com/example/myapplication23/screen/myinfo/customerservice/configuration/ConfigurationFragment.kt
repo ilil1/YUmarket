@@ -26,7 +26,10 @@ class ConfigurationFragment : BaseFragment<CSViewModel, FragmentConfigurationBin
 
     override fun initViews() = with(binding){
         binding.versionCode.text = versionNumber
-        binding.configurationLeft.setOnClickListener { back(MainActivity()) }
+        binding.configurationLeft.setOnClickListener{
+        back(MainActivity())
+        activity?.finish()
+        }
     }
 
     private fun back(activity: MainActivity){
