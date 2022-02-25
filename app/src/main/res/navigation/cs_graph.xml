@@ -3,17 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cs_graph"
-    app:startDestination="@id/myInfoFragment2">
+    app:startDestination="@id/myInfoFragment">
     <fragment
-        android:id="@+id/myInfoFragment2"
+        android:id="@+id/myInfoFragment"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
         android:label="MyInfoFragment" >
         <action
-            android:id="@+id/action_myInfoFragment2_to_CSCenterFragment"
-            app:destination="@id/CSCenterFragment" />
+            android:id="@+id/action_myInfoFragment_to_termsFragment2"
+            app:destination="@id/termsFragment2" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_CSCenterFragment2"
+            app:destination="@id/CSCenterFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/CSCenterFragment"
+        android:id="@+id/termsFragment2"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
+        android:label="TermsFragment" />
+    <fragment
+        android:id="@+id/CSCenterFragment2"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
         android:label="CSCenterFragment" />
 </navigation>

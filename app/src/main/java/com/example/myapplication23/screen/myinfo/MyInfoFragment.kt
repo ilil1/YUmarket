@@ -12,13 +12,15 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavHost
+import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
 import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalActivity
-import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment
 import java.lang.Exception
 
 
@@ -110,7 +112,7 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
     private fun openTerms(){
         activity?.let {
-            var intent = Intent(context, TermsActivity::class.java)
+            var intent = Intent(context, TermsFragment::class.java)
             startActivity(intent)
         }
     }
@@ -160,5 +162,9 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
             var intent = Intent(context, CSCenterActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun showFragment(fragment: Fragment, tag: String) {
+        requireActivity().supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
     }
 }

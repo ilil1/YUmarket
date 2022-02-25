@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_info"
-    app:startDestination="@id/myInfoFragment">
+    app:startDestination="@id/myInfoActivity">
 
     <activity
-        android:id="@+id/myInfoFragment"
+        android:id="@+id/myInfoActivity"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoActivity"
-        android:label="MyInfoFragment" />
+        android:label="myInfoActivity" />
 </navigation>

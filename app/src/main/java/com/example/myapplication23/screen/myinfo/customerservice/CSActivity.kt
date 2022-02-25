@@ -29,21 +29,21 @@ class CSActivity : BaseActivity< ActivityCsBinding>() {
              //TODO()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
-    }
-
-
-    override fun initViews() = with(binding) {
-        showCSFragment(CSFragment.newInstance(), CSCenterFragment.TAG)
-
-    }
-
-    private fun showCSFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
-        }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(binding.root)
+//
+//    }
+//
+//
+//    override fun initViews() = with(binding) {
+//        showCSFragment(CSFragment.newInstance(), CSCenterFragment.TAG)
+//
+//    }
+//
+//    private fun showCSFragment(fragment: Fragment, tag: String) {
+//        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
+//        }
 
 
 
