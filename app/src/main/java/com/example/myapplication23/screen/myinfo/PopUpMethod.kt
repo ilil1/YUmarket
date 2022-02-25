@@ -9,7 +9,7 @@ import com.example.myapplication23.screen.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Method(){
+class PopUpMethod(){
 
         fun popUp(context: Context) {
             val nowTime = System.currentTimeMillis()

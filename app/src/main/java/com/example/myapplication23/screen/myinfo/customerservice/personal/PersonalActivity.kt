@@ -1,20 +1,14 @@
 package com.example.myapplication23.screen.myinfo.customerservice.personal
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import com.example.myapplication23.R
 import com.example.myapplication23.databinding.ActivityPersonalBinding
+import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseActivity
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PersonalActivity: BaseActivity<CSViewModel, ActivityPersonalBinding>() {
-
-
-
-    override val viewModel by viewModel<CSViewModel>()
-
+class PersonalActivity: BaseActivity<ActivityPersonalBinding>() {
 
     override fun getViewBinding(): ActivityPersonalBinding =
         ActivityPersonalBinding.inflate(layoutInflater)
@@ -30,11 +24,14 @@ class PersonalActivity: BaseActivity<CSViewModel, ActivityPersonalBinding>() {
 
 
     override fun initViews() {
-        showPersonalFragment(PersonalFragment.newInstance(), PersonalFragment.TAG)
+
+        binding.configurationLeft.setOnClickListener { back()  }
+    }
+
+    private fun back(){
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
 
     }
 
-    private fun showPersonalFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
-    }
 }

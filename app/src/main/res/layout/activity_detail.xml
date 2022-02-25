@@ -29,6 +29,7 @@
     android:layout_height="40dp"
     app:layout_constraintEnd_toEndOf="@id/title"
     app:layout_constraintTop_toTopOf="@id/title"
+    app:tint="@color/color_dark_000000_ffffff"
     android:src="@drawable/left"/>
 
         <LinearLayout

@@ -3,7 +3,9 @@ package com.example.myapplication23.screen.myinfo.customerservice.email
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.myapplication23.databinding.FragmentEmailBinding
+import com.example.myapplication23.model.customerservicelist.EmailData
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
@@ -16,53 +18,60 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @throws
  * @description
  */
-class EmailFragment  : BaseFragment<CSViewModel, FragmentEmailBinding>() {
+class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
 
-    override val viewModel by viewModel<CSViewModel>()
+
 
 
     override fun getViewBinding(): FragmentEmailBinding =
     FragmentEmailBinding.inflate(layoutInflater)
 
+//    private fun emailSend(){
+//        requireContext().let {  EmailMethod().sendEmail(emailFragment = EmailFragment()) }
+//    }
 
     override fun observeData() {
 
     }
     override fun initViews() = with(binding){
         super.initViews()
-        binding.emailSend.setOnClickListener { sendEmail() }
+        binding.emailSend.setOnClickListener { sendEmail()  }
         binding.back.setOnClickListener { back() }
     }
 
 
-    private fun sendEmail() {
-        val emailAddress = "gege2848@naver.com"
-        val title = binding.titleEdit.text.toString()
-        val content = binding.contentEdit.text.toString()
+
+    private fun back(){
+            var intent = Intent(context, CSCenterActivity::class.java)
+            startActivity(intent)
+    }
+
+    fun sendEmail() {
+        val emaildata = EmailData(
+            "gege2848@naver.com",
+           binding.titleEdit.text.toString(),
+            binding.contentEdit.text.toString())
+//        val emailAddress = "gege2848@naver.com"
+//        val title = binding.titleEdit.text.toString()
+//        val content = binding.contentEdit.text.toString()
         val intent = Intent(Intent.ACTION_SENDTO)
             .apply {
                 type = "text/plain"
                 data = Uri.parse("mailto:")
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(emailAddress))
-                putExtra(Intent.EXTRA_SUBJECT, title )
-                putExtra(Intent.EXTRA_TEXT, content )
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(emaildata.emailAddress))
+                putExtra(Intent.EXTRA_SUBJECT, emaildata.title )
+                putExtra(Intent.EXTRA_TEXT,  emaildata.content  )
             }
 
-        if (title =="" || title == null || content == "" || content == null) {
+        if (emaildata.title =="" || emaildata.title == null || emaildata.content == "" ||  emaildata.content  == null) {
             Toast.makeText(context, "제목 또는 내용을 입력해주세요", Toast.LENGTH_SHORT).show()
         }
-        else
-        startActivity(Intent.createChooser(intent,"Send Email"))
-        activity?.finish()
-
-    }
-    private fun back(){
-        activity?.let {
-            var intent = Intent(context, CSCenterActivity::class.java)
-            startActivity(intent)
+        else {
+            startActivity(Intent.createChooser(intent, "Send Email"))
+            activity?.finish()
         }
-    }
 
+    }
 
     companion object{
         const val TAG = "EmailFragment"

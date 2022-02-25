@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.databinding.FragmentCsListBinding
 import com.example.myapplication23.model.customerservicelist.CSModel
+import com.example.myapplication23.model.customerservicelist.ImageData
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailActivity
 import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
@@ -23,9 +24,9 @@ import org.koin.core.parameter.parametersOf
  * @description
  */
 
-class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
+class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
-    override val viewModel by viewModel<CSListViewModel> {
+    private val viewModel by viewModel<CSListViewModel> {
         parametersOf(csCategory)
     }
     private val csCategory by lazy {
@@ -49,10 +50,12 @@ class CSListFragment : BaseFragment<CSListViewModel, FragmentCsListBinding>() {
                     object : CSModelListener {
                     override fun onClickItem (listModel: CSModel)  {
                         val intent = Intent(context, CSDetailActivity::class.java).apply {
-                            putExtra("CSTitle", listModel.csTitle)
-                            putExtra("CSContent", listModel.csContent)
-                            putExtra("CSAuthor", listModel.csAuthor)
-                            putExtra("CSid", listModel.id)
+                            val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor,listModel.id)
+                            putExtra(CS_CATEGORY_KEY,data)
+//                            putExtra("CSTitle", listModel.csTitle)
+//                            putExtra("CSContent", listModel.csContent)
+//                            putExtra("CSAuthor", listModel.csAuthor)
+//                            putExtra("CSid", listModel.id)
                         }
                         startActivity(intent)
                         activity?.finish()

@@ -13,6 +13,7 @@
         android:layout_height="30dp"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/left"
+        app:tint="@color/color_dark_000000_ffffff"
         app:layout_constraintBottom_toBottomOf="@id/CSTextView"
         app:layout_constraintTop_toTopOf="@id/CSTextView"/>
 
@@ -45,6 +46,8 @@
         android:layout_height="43dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
+        android:background="@color/white"
+        app:tint="@color/color_dark_000000_ffffff"
         android:src="@drawable/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

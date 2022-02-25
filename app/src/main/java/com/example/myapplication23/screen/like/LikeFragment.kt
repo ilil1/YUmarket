@@ -5,9 +5,7 @@ import com.example.myapplication23.screen.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LikeFragment
-    : BaseFragment<LikeViewModel, FragmentLikeBinding>() {
-
-    override val viewModel by viewModel<LikeViewModel>()
+    : BaseFragment<FragmentLikeBinding>() {
 
     override fun getViewBinding(): FragmentLikeBinding =
         FragmentLikeBinding.inflate(layoutInflater)

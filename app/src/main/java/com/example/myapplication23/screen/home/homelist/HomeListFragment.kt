@@ -14,7 +14,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.android.ext.android.inject
 
-class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding>() {
+class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
+
     override fun getViewBinding(): FragmentHomeListBinding =
         FragmentHomeListBinding.inflate(layoutInflater)
 
@@ -22,7 +23,7 @@ class HomeListFragment : BaseFragment<HomeListViewModel, FragmentHomeListBinding
         arguments?.getSerializable(HOME_CATEGORY_KEY) as HomeCategory
     }
 
-    override val viewModel by viewModel<HomeListViewModel> {
+    private val viewModel by viewModel<HomeListViewModel> {
         parametersOf(homeCategory)
     }
 

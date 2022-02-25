@@ -109,18 +109,17 @@
 
 
     <Button
-        android:id="@+id/email_send"
-        android:backgroundTint="@color/color_dark_ffffff_000000"
-        android:layout_marginRight="25dp"
-        android:text="전송"
-        android:textColor="@color/color_dark_000000_ffffff"
-        android:layout_width="wrap_content"
-        android:textSize="16sp"
-        android:layout_height="wrap_content"
-       app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-       app:layout_constraintEnd_toEndOf="parent" />
+    android:id="@+id/email_send"
+    android:backgroundTint="@color/color_dark_000000_ffffff"
+    android:layout_marginRight="25dp"
+    android:text="전송"
+    android:textColor="@color/color_dark_ffffff_000000"
+    android:layout_width="wrap_content"
+    android:textSize="16sp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -27,9 +27,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @description
  */
 
-class CSCenterFragment : BaseFragment<CSViewModel,FragmentCsCenterBinding>() {
+class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
-    override val viewModel by viewModel<CSViewModel>()
+
 
     override fun getViewBinding(): FragmentCsCenterBinding =
         FragmentCsCenterBinding.inflate(layoutInflater)

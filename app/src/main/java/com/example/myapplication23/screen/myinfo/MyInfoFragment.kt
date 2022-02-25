@@ -2,19 +2,17 @@ package com.example.myapplication23.screen.myinfo
 
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.viewModels
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
-import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
@@ -22,9 +20,6 @@ import com.example.myapplication23.screen.myinfo.customerservice.personal.Person
 import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.reflect.jvm.internal.impl.metadata.jvm.deserialization.JvmMemberSignature
 
 
 /**
@@ -35,24 +30,26 @@ import kotlin.reflect.jvm.internal.impl.metadata.jvm.deserialization.JvmMemberSi
  * @description
  */
 @RequiresApi(Build.VERSION_CODES.O)
-class MyInfoFragment  : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>()  {
+class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
-    override val viewModel by viewModel<MyInfoViewModel>()
+
+
+    private lateinit var getResultImage : ActivityResultLauncher<Intent>
+
 
 
 
     private fun popUp() {
-        context?.let { it1 -> Method().popUp(it1) }
+        requireContext().let { it1 -> PopUpMethod().popUp(it1) }
     }
 
 
-    val galley = 101;
     private val check = true;
 
     override fun getViewBinding() =
         FragmentMyInfoBinding.inflate(layoutInflater)
 
-    override fun observeData() = with(viewModel) {
+    override fun observeData()  {
 
         /**
          * 추후 로그인 acesss->로 기능작동 하도록 initView()뒤로 이동예정
@@ -68,7 +65,7 @@ class MyInfoFragment  : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>()  
         }
     }
 
-    override fun initViews() = with(viewModel) {
+    override fun initViews()  {
         super.initViews()
         binding.profileImageChange.setOnClickListener { loadImage()}
         binding.darkSwitch.setOnClickListener { darkMode() }
@@ -77,6 +74,21 @@ class MyInfoFragment  : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>()  
         binding.setting.setOnClickListener { openSetting() }
         binding.terms.setOnClickListener { openTerms() }
         binding.personalTextview.setOnClickListener { openPersonal() }
+
+
+        getResultImage = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){
+            result -> if(result.resultCode == RESULT_OK){
+            val dataUri : Uri? = result.data?.data
+            try {
+                val bitmap : Bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,dataUri)
+                binding.profileImage.setImageBitmap(bitmap)
+            }  catch (e: Exception) {
+                Toast.makeText(context,"$e",Toast.LENGTH_SHORT).show()
+            }
+        }
+        }
+
     }
 
     private fun loadImage(){
@@ -85,7 +97,8 @@ class MyInfoFragment  : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>()  
         intent_image.type = "image/*"
         intent_image.action = Intent.ACTION_GET_CONTENT
 
-        startActivityForResult(Intent.createChooser(intent_image,"Load Picture"),galley)
+        getResultImage.launch(intent_image)
+//        startActivityForResult(Intent.createChooser(intent_image,"Load Picture"),galley)
     }
 
     private fun openSetting(){
@@ -109,20 +122,23 @@ class MyInfoFragment  : BaseFragment<MyInfoViewModel, FragmentMyInfoBinding>()  
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(galley == requestCode){
-            if(resultCode == RESULT_OK){
-                val dataUri : Uri? = data?.data
-                try {
-                    val bitmap : Bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,dataUri)
-                    binding.profileImage.setImageBitmap(bitmap)
-                }  catch (e: Exception) {
-                    Toast.makeText(context,"$e",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+
+
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if(galley == requestCode){
+//            if(resultCode == RESULT_OK){
+//                val dataUri : Uri? = data?.data
+//                try {
+//                    val bitmap : Bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,dataUri)
+//                    binding.profileImage.setImageBitmap(bitmap)
+//                }  catch (e: Exception) {
+//                    Toast.makeText(context,"$e",Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
     private fun darkMode(){
         if(check  == binding.darkSwitch.isChecked){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

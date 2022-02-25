@@ -27,8 +27,6 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    viewModel { HomeViewModel() }
-
     factory { (homeCategory: HomeCategory) ->
         HomeListViewModel(homeCategory, get())
     }
@@ -43,17 +41,20 @@ val appModule = module {
     //CSDetailViewModel 선언 매개변수 하나 get()
 
 
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(),get()) }
+    viewModel { OrderListViewModel() }
+
     viewModel { LikeViewModel() }
     viewModel { MapViewModel() }
     viewModel { MyInfoViewModel() }
-    viewModel { OrderListViewModel() }
+
 
     single<HomeRepository> { DefaultHomeRepository() }
 
     // mockList 의존성 주입
     single<CSRepository>{DefaultCSRepository(get())}
     single<ResoucesProvider>{ DefaultResourcesProvider(androidContext())}
+
     single { buildOkHttpClient() }
     single { provideGsonConverterFactory() }
 

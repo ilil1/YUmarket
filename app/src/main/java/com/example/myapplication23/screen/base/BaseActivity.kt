@@ -7,9 +7,8 @@ import androidx.viewbinding.ViewBinding
 import com.example.myapplication23.R
 import kotlinx.coroutines.Job
 
-abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    abstract val viewModel: VM
     abstract fun getViewBinding(): VB
 
     protected val binding by lazy {
@@ -26,7 +25,6 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
 
     open fun initState() {
         initViews()
-        fetchJob = viewModel.fetchData()
         observeData()
     }
 

@@ -15,11 +15,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HomeFragment
-    : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
+    : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var viewPagerAdapter: HomeListFragmentPagerAdapter
 
-    override val viewModel by viewModel<HomeViewModel>()
 
     override fun getViewBinding(): FragmentHomeBinding =
         FragmentHomeBinding.inflate(layoutInflater)

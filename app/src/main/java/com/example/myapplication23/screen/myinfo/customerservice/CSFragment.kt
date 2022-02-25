@@ -23,11 +23,10 @@ import com.example.myapplication23.widget.adapter.HomeListFragmentPagerAdapter
 
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CSFragment : BaseFragment<CSViewModel, FragmentCsBinding>() {
+class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     private lateinit var viewAdapter: HomeListFragmentPagerAdapter
 
-    override val viewModel by viewModel<CSViewModel>()
 
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
