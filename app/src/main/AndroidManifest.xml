@@ -37,6 +37,7 @@
         <activity android:name=".screen.myinfo.customerservice.terms.TermsActivity"/>
         <activity android:name=".screen.myinfo.customerservice.list.detail.CSDetailActivity"/>
         <activity android:name=".screen.myinfo.customerservice.personal.PersonalActivity"/>
+        <activity android:name=".screen.myinfo.MyInfoActivity"/>
     </application>
 
 </manifest>

@@ -4,8 +4,8 @@
     android:id="@+id/my_info"
     app:startDestination="@id/myInfoFragment">
 
-    <fragment
+    <activity
         android:id="@+id/myInfoFragment"
-        android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
+        android:name="com.example.myapplication23.screen.myinfo.MyInfoActivity"
         android:label="MyInfoFragment" />
 </navigation>
