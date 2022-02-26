@@ -14,12 +14,14 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavHost
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
+import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
-import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationActivity
-import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalActivity
+import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
+import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment
 import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment
 import java.lang.Exception
 
@@ -34,11 +36,10 @@ import java.lang.Exception
 @RequiresApi(Build.VERSION_CODES.O)
 class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
+    private val navController = requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainer)!!.findNavController()
 
 
     private lateinit var getResultImage : ActivityResultLauncher<Intent>
-
-
 
 
     private fun popUp() {
@@ -48,7 +49,7 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
     private val check = true;
 
-    override fun getViewBinding() =
+    override fun getViewBinding() :FragmentMyInfoBinding =
         FragmentMyInfoBinding.inflate(layoutInflater)
 
     override fun observeData()  {
@@ -74,8 +75,11 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
         binding.noticeText.setOnClickListener { popUp() }
         binding.centerTextview.setOnClickListener { openCSCenter() }
         binding.setting.setOnClickListener { openSetting() }
-        binding.terms.setOnClickListener { openTerms() }
+        binding.terms.setOnClickListener { navController.findDestination(R.id.action_myInfoFragment_to_termsFragment) }
         binding.personalTextview.setOnClickListener { openPersonal() }
+        binding.back.setOnClickListener { back() }
+
+
 
 
         getResultImage = registerForActivityResult(
@@ -105,21 +109,26 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
     private fun openSetting(){
         activity?.let {
-            var intent = Intent(context, ConfigurationActivity::class.java)
+            var intent = Intent(context, ConfigurationFragment::class.java)
             startActivity(intent)
         }
     }
 
     private fun openTerms(){
-        activity?.let {
-            var intent = Intent(context, TermsFragment::class.java)
-            startActivity(intent)
-        }
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,TermsFragment(),
+            TAG).commit()
     }
 
     private fun openPersonal(){
         activity?.let {
-            var intent = Intent(context, PersonalActivity::class.java)
+            var intent = Intent(context, PersonalFragment::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun back(){
+        activity?.let{
+            var intent = Intent(context,MainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -141,6 +150,7 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 //            }
 //        }
 //    }
+
     private fun darkMode(){
         if(check  == binding.darkSwitch.isChecked){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

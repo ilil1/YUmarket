@@ -7,20 +7,31 @@
     <fragment
         android:id="@+id/myInfoFragment"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
-        android:label="MyInfoFragment" >
+        android:label="MyInfoFragment"
+        tools:layout="@layout/fragment_my_info">
         <action
-            android:id="@+id/action_myInfoFragment_to_termsFragment2"
-            app:destination="@id/termsFragment2" />
+            android:id="@+id/action_myInfoFragment_to_CSCenterFragment"
+            app:destination="@id/CSCenterFragment" />
         <action
-            android:id="@+id/action_myInfoFragment_to_CSCenterFragment2"
-            app:destination="@id/CSCenterFragment2" />
+            android:id="@+id/action_myInfoFragment_to_personalFragment"
+            app:destination="@id/personalFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/termsFragment2"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
-        android:label="TermsFragment" />
-    <fragment
-        android:id="@+id/CSCenterFragment2"
+        android:id="@+id/CSCenterFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
-        android:label="CSCenterFragment" />
+        android:label="CSCenterFragment"
+        tools:layout="@layout/fragment_cs_center"/>
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
+        android:label="PersonalFragment"
+        tools:layout="@layout/fragment_personal"/>
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
+        android:label="TermsFragment"
+        tools:layout="@layout/fragment_terms"/>
 </navigation>
