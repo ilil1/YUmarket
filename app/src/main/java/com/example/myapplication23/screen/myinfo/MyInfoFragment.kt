@@ -87,10 +87,19 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
         binding.noticeText.setOnClickListener { popUp() }
 
-      binding.centerTextview.setOnClickListener { openCSCenter() }
-     //   binding.setting.setOnClickListener { openSetting() }
-      //  binding.personalTextview.setOnClickListener { openPersonal() }
-     //   binding.back.setOnClickListener { back() }
+      binding.centerTextview.setOnClickListener {    view?.findViewById<TextView>(R.id.center_textview)!!.setOnClickListener {
+          view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
+      } }
+
+        binding.setting.setOnClickListener {    view?.findViewById<TextView>(R.id.setting)!!.setOnClickListener {
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_configurationFragment) }
+        } }
+
+        binding.personalTextview.setOnClickListener {    view?.findViewById<TextView>(R.id.personal_textview)!!.setOnClickListener {
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_personalFragment) }
+        } }
+
+        binding.back.setOnClickListener { back() }
 
 
 

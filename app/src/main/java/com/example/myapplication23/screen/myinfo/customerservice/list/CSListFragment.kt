@@ -4,12 +4,13 @@ import android.content.Intent
 
 import com.example.myapplication23.util.provider.ResoucesProvider
 import android.os.Bundle
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.databinding.FragmentCsListBinding
 import com.example.myapplication23.model.customerservicelist.CSModel
 import com.example.myapplication23.model.customerservicelist.ImageData
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailActivity
+import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment
 import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
 import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
 import org.koin.android.ext.android.inject
@@ -33,6 +34,8 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
         arguments?.getSerializable(CS_CATEGORY_KEY) as CSCategory
     }
 
+
+
     override fun getViewBinding(): FragmentCsListBinding =
         FragmentCsListBinding.inflate(layoutInflater)
 
@@ -49,7 +52,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
            listOf(), viewModel,resourcesProvider,
                     object : CSModelListener {
                     override fun onClickItem (listModel: CSModel)  {
-                        val intent = Intent(context, CSDetailActivity::class.java).apply {
+                        val intent = Intent(context, CSDetailFragment::class.java).apply {
                             val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor,listModel.id)
                             putExtra(CS_CATEGORY_KEY,data)
 //                            putExtra("CSTitle", listModel.csTitle)

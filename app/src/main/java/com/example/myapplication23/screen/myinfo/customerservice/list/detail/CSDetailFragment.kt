@@ -1,20 +1,18 @@
 package com.example.myapplication23.screen.myinfo.customerservice.list.detail
 
 import android.content.Intent
-import com.example.myapplication23.databinding.ActivityDetailBinding
+import com.example.myapplication23.databinding.FragmentDetailBinding
 import com.example.myapplication23.model.customerservicelist.ImageData
-import com.example.myapplication23.screen.base.BaseActivity
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
+import com.example.myapplication23.screen.base.BaseFragment
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class CSDetailActivity :BaseActivity<ActivityDetailBinding>() {
+class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
 
 
-    override fun getViewBinding(): ActivityDetailBinding =
-        ActivityDetailBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentDetailBinding =
+        FragmentDetailBinding.inflate(layoutInflater)
 
     override fun observeData() {
 
@@ -23,7 +21,7 @@ class CSDetailActivity :BaseActivity<ActivityDetailBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
 
-    val csData = intent?.getParcelableExtra<ImageData>(CSListFragment.CS_CATEGORY_KEY)
+    val csData = requireActivity().intent?.getParcelableExtra<ImageData>(CSListFragment.CS_CATEGORY_KEY)
 
     title.text = csData?.csTitle
     author.text = csData?.csAuthor
@@ -31,13 +29,13 @@ class CSDetailActivity :BaseActivity<ActivityDetailBinding>() {
 
     uturn.setOnClickListener {
        changeFragment()
-        finish()
+
      }
     }
 
     private fun changeFragment(){
-     val intent = Intent(this, CSCenterActivity::class.java)
-        startActivity(intent)
+    val intent = Intent(context, CSCenterActivity::class.java)
+    startActivity(intent)
     }
 
 

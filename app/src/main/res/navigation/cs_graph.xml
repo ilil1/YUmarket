@@ -12,17 +12,68 @@
         <action
             android:id="@+id/action_myInfoFragment_to_termsFragment"
             app:destination="@id/termsFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_CSCenterFragment"
+            app:destination="@id/CSCenterFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_configurationFragment"
+            app:destination="@id/configurationFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_personalFragment"
+            app:destination="@id/personalFragment" />
     </fragment>
     <fragment
         android:id="@+id/termsFragment"
+
         android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
         android:label="TermsFragment" >
         <action
+            app:popUpTo="@id/myInfoFragment"
             android:id="@+id/action_termsFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/CSCenterFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
-        android:label="CSCenterFragment" />
+        android:label="CSCenterFragment" >
+        <action
+            android:id="@+id/action_CSCenterFragment_to_CSFragment"
+            app:destination="@id/CSFragment" />
+        <action
+            android:id="@+id/action_CSCenterFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment"
+        android:label="ConfigurationFragment" />
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
+        android:label="PersonalFragment" />
+    <fragment
+        android:id="@+id/CSFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
+        android:label="CSFragment" >
+        <action
+            android:id="@+id/action_CSFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+        <action
+            android:id="@+id/action_CSFragment_to_CSCenterFragment"
+            app:destination="@id/CSCenterFragment" />
+        <action
+            android:id="@+id/action_CSFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+        <action
+            android:id="@+id/action_CSFragment_to_CSDetailFragment"
+            app:destination="@id/CSDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment"
+        android:label="EmailFragment" />
+    <fragment
+        android:id="@+id/CSDetailFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
+        android:label="CSDetailFragment" />
 </navigation>

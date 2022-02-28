@@ -5,10 +5,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsCenterBinding
 import com.example.myapplication23.screen.MainActivity
@@ -39,8 +41,12 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
         binding.questionCenter.setOnClickListener {
-        transfer(CSFragment())
-        activity?.finish()
+            view?.findViewById<TextView>(R.id.question_center)!!.setOnClickListener {
+                view?.let { it1 ->
+                    Navigation.findNavController(it1)
+                        .navigate(R.id.action_CSCenterFragment_to_CSFragment)
+                }
+            }
         }
 
         binding.centerNumber.setOnClickListener {
@@ -52,7 +58,12 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         }
 
         binding.emailCenter.setOnClickListener {
-            emailBox(EmailFragment())
+            view?.findViewById<TextView>(R.id.email_center)!!.setOnClickListener {
+                view?.let { it1 ->
+                    Navigation.findNavController(it1)
+                        .navigate(R.id.action_CSCenterFragment_to_emailFragment)
+                }
+            }
 
         }
 

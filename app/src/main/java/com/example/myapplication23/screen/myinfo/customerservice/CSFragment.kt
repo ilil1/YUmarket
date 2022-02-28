@@ -9,7 +9,9 @@ package com.example.myapplication23.screen.myinfo.customerservice
  */
 
 import android.content.Intent
+import android.widget.TextView
 import androidx.core.view.get
+import androidx.navigation.Navigation
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
 import com.example.myapplication23.screen.MainActivity
@@ -57,50 +59,71 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
             viewPagerCs.offscreenPageLimit = 1
         }
 
-            binding.intentmyinfo.setOnClickListener {
-            showMyinfo(MainActivity())
-            activity?.finish()
+        binding.intentmyinfo.setOnClickListener {
+            view?.findViewById<TextView>(R.id.intentmyinfo)!!.setOnClickListener {
+                view?.let { it1 ->
+                    Navigation.findNavController(it1)
+                        .navigate(R.id.action_CSFragment_to_myInfoFragment)
+                }
+
             }
+                binding.editBtn.setOnClickListener {
+                    view?.findViewById<TextView>(R.id.email_center)!!.setOnClickListener {
+                        view?.let { it1 ->
+                            Navigation.findNavController(it1)
+                                .navigate(R.id.action_CSFragment_to_emailFragment)
+                        }
+                    }
+                }
 
-        binding.editBtn.setOnClickListener {
-            editEmail(EmailFragment())
+                binding.back.setOnClickListener {
+                    back()
+                }
+
+
+
         }
+    }
 
-        binding.back.setOnClickListener {
-            back()
-        }
-
-
-        }
-
-    private fun editEmail(fragment: EmailFragment){
+    private fun editEmail(fragment: EmailFragment) {
         requireActivity().supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,EmailFragment.newInstance(),EmailFragment.TAG)
+            .replace(
+                R.id.fragmentContainer,
+                EmailFragment.newInstance(),
+                EmailFragment.TAG
+            )
             .commit()
     }
 
 
-    private fun showMyinfo(activity: MainActivity){
+    private fun showMyinfo(activity: MainActivity) {
         activity?.let {
             var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun back(){
-            var intent = Intent(context, CSCenterActivity::class.java)
-            startActivity(intent)
+    private fun back() {
+        view?.findViewById<TextView>(R.id.back)!!.setOnClickListener {
+            view?.let { it1 ->
+                Navigation.findNavController(it1)
+                    .navigate(R.id.action_CSFragment_to_CSCenterFragment)
+            }
+        }
     }
 
 
-        companion object {
+    companion object {
         const val TAG = "CSFragment"
 
-        fun newInstance() : CSFragment {
+        fun newInstance(): CSFragment {
             return CSFragment().apply {
 
             }
         }
     }
-    }
+}
+
+
+
