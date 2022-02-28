@@ -17,9 +17,8 @@ class MyInfoActivity : BaseActivity<ActivityMyinfoBinding>() {
 
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun initViews() {
+    override fun initViews() = with(binding) {
         super.initViews()
 
 
@@ -29,7 +28,7 @@ class MyInfoActivity : BaseActivity<ActivityMyinfoBinding>() {
     }
 
     private fun showMyInfoFragment(fragment: MyInfoFragment, tag: String) {
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
+        supportFragmentManager.beginTransaction().add(R.id.cs_fragmentContainer, fragment, tag).commit()
     }
 
 

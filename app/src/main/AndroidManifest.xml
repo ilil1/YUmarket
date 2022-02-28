@@ -33,9 +33,7 @@
         </activity>
         <activity android:name=".screen.myinfo.customerservice.CSActivity"/>
         <activity android:name=".screen.myinfo.customerservice.center.CSCenterActivity"/>
-        <activity android:name=".screen.myinfo.customerservice.configuration.ConfigurationFragment" />
         <activity android:name=".screen.myinfo.customerservice.list.detail.CSDetailActivity"/>
-        <activity android:name=".screen.myinfo.customerservice.personal.PersonalFragment"/>
         <activity android:name=".screen.myinfo.MyInfoActivity"/>
     </application>
 

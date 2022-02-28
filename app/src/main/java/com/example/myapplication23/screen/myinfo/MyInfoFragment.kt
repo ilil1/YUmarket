@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication23.R
@@ -36,7 +37,7 @@ import java.lang.Exception
 @RequiresApi(Build.VERSION_CODES.O)
 class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
-    private val navController = requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainer)!!.findNavController()
+    lateinit var navController: NavController
 
 
     private lateinit var getResultImage : ActivityResultLauncher<Intent>
@@ -75,12 +76,12 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
         binding.noticeText.setOnClickListener { popUp() }
         binding.centerTextview.setOnClickListener { openCSCenter() }
         binding.setting.setOnClickListener { openSetting() }
-        binding.terms.setOnClickListener { navController.findDestination(R.id.action_myInfoFragment_to_termsFragment) }
+        binding.terms.setOnClickListener {  }
         binding.personalTextview.setOnClickListener { openPersonal() }
         binding.back.setOnClickListener { back() }
 
 
-
+        navController = findNavController()
 
         getResultImage = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
@@ -115,7 +116,7 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     }
 
     private fun openTerms(){
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,TermsFragment(),
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.cs_fragmentContainer,TermsFragment(),
             TAG).commit()
     }
 
@@ -175,6 +176,6 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     }
 
     private fun showFragment(fragment: Fragment, tag: String) {
-        requireActivity().supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, fragment, tag).commit()
+        requireActivity().supportFragmentManager.beginTransaction().add(R.id.cs_fragmentContainer, fragment, tag).commit()
     }
 }

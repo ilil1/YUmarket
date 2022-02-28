@@ -37,6 +37,6 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment() {
 
     abstract fun observeData()
 
-//    abstract fun AppCompatDelegateImpl(activity: MyInfoFragment, callback: Any)
+
 
 }

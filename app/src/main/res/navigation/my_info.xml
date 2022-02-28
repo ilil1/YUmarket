@@ -7,5 +7,6 @@
     <activity
         android:id="@+id/myInfoActivity"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoActivity"
-        android:label="myInfoActivity" />
+        android:label="MyInfoActivity" ></activity>
+
 </navigation>
