@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_info"
-    app:startDestination="@id/myInfoActivity">
+    app:startDestination="@id/subFragment">
 
-    <activity
-        android:id="@+id/myInfoActivity"
-        android:name="com.example.myapplication23.screen.myinfo.MyInfoActivity"
-        android:label="MyInfoActivity" ></activity>
+    <fragment
+        android:id="@+id/subFragment"
+        android:name="com.example.myapplication23.screen.myinfo.subFragment"
+        android:label="subFragment" />
 
 </navigation>

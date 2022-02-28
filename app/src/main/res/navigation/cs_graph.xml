@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cs_graph" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cs_graph"
+    app:startDestination="@id/myInfoFragment">
+
+    <fragment
+        android:id="@+id/myInfoFragment"
+        android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
+        android:label="MyInfoFragment" >
+        <action
+            android:id="@+id/action_myInfoFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
+        android:label="TermsFragment" >
+        <action
+            android:id="@+id/action_termsFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CSCenterFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
+        android:label="CSCenterFragment" />
+</navigation>

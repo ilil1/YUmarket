@@ -31,7 +31,7 @@ class CSCenterActivity : BaseActivity<ActivityCsCenterBinding>() {
 
 
     override fun initViews() = with(binding) {
-        CSCenterFragment(CSCenterFragment.newInstance(), CSFragment.TAG)
+       // CSCenterFragment(CSCenterFragment.newInstance(), CSFragment.TAG)
 
     }
 

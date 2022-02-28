@@ -6,7 +6,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,6 +20,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
@@ -36,8 +42,6 @@ import java.lang.Exception
  */
 @RequiresApi(Build.VERSION_CODES.O)
 class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
-
-    lateinit var navController: NavController
 
 
     private lateinit var getResultImage : ActivityResultLauncher<Intent>
@@ -69,19 +73,27 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
         }
     }
 
-    override fun initViews()  {
+    override fun initViews() = with(view)  {
         super.initViews()
+
+        binding.terms.setOnClickListener {  view?.findViewById<TextView>(R.id.terms)!!.setOnClickListener {
+            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_termsFragment) }
+        } }
+
         binding.profileImageChange.setOnClickListener { loadImage()}
+
         binding.darkSwitch.setOnClickListener { darkMode() }
+
+
         binding.noticeText.setOnClickListener { popUp() }
-        binding.centerTextview.setOnClickListener { openCSCenter() }
-        binding.setting.setOnClickListener { openSetting() }
-        binding.terms.setOnClickListener {  }
-        binding.personalTextview.setOnClickListener { openPersonal() }
-        binding.back.setOnClickListener { back() }
+
+      binding.centerTextview.setOnClickListener { openCSCenter() }
+     //   binding.setting.setOnClickListener { openSetting() }
+      //  binding.personalTextview.setOnClickListener { openPersonal() }
+     //   binding.back.setOnClickListener { back() }
 
 
-        navController = findNavController()
+
 
         getResultImage = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
@@ -115,10 +127,10 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
         }
     }
 
-    private fun openTerms(){
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.cs_fragmentContainer,TermsFragment(),
-            TAG).commit()
-    }
+//    private fun openTerms(){
+//        requireActivity().supportFragmentManager.beginTransaction().replace(TermsFragment(),
+//            TAG).commit()
+//    }
 
     private fun openPersonal(){
         activity?.let {
@@ -176,6 +188,6 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     }
 
     private fun showFragment(fragment: Fragment, tag: String) {
-        requireActivity().supportFragmentManager.beginTransaction().add(R.id.cs_fragmentContainer, fragment, tag).commit()
+        requireActivity().supportFragmentManager.beginTransaction().add(fragment, tag).commit()
     }
 }
