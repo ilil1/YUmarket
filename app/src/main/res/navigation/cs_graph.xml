@@ -24,7 +24,6 @@
     </fragment>
     <fragment
         android:id="@+id/termsFragment"
-
         android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
         android:label="TermsFragment" >
         <action
@@ -55,6 +54,7 @@
         android:id="@+id/CSFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
         android:label="CSFragment" >
+
         <action
             android:id="@+id/action_CSFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_CSFragment_to_CSDetailFragment"
             app:destination="@id/CSDetailFragment" />
+        <action
+            android:id="@+id/action_CSFragment_to_CSDetailFragment2"
+            app:destination="@id/CSDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
@@ -76,4 +79,13 @@
         android:id="@+id/CSDetailFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
         android:label="CSDetailFragment" />
+
+    <fragment
+        android:id="@+id/CSListFragment"
+        android:name="com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment"
+        android:label="CSListFragment" >
+        <action
+            android:id="@+id/action_CSListFragment_to_CSFragment"
+            app:destination="@id/CSFragment" />
+    </fragment>
 </navigation>

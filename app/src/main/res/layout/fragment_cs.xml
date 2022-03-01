@@ -79,6 +79,7 @@
         app:layout_constraintTop_toBottomOf="@id/filterScrollView_cs" />
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editBtnContainer"
         android:layout_width="match_parent"
@@ -86,18 +87,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterScrollView_cs">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/csRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/textView_cs"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center" />
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editBtn"

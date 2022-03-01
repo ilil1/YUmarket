@@ -46,6 +46,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
                     Navigation.findNavController(it1)
                         .navigate(R.id.action_CSCenterFragment_to_CSFragment)
                 }
+
             }
         }
 

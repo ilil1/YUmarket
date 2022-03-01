@@ -1,7 +1,5 @@
 package com.example.myapplication23.model.customerservicelist
 
-import android.annotation.SuppressLint
-import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication23.data.repository.myinfo.CSRepository
 import com.example.myapplication23.model.CellType
 import com.example.myapplication23.model.Model

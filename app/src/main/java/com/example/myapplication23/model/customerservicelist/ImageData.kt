@@ -8,5 +8,4 @@ data class ImageData(
     val csTitle : String,
     val csContent : String,
     val csAuthor: String,
-    val csId: Long
 ) : Parcelable

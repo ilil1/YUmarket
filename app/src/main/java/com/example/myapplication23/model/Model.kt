@@ -1,8 +1,6 @@
 package com.example.myapplication23.model
 
-import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 
 abstract class Model(
     open val id : Long,
