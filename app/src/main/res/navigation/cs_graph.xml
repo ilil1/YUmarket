@@ -54,7 +54,6 @@
         android:id="@+id/CSFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
         android:label="CSFragment" >
-
         <action
             android:id="@+id/action_CSFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
@@ -67,9 +66,6 @@
         <action
             android:id="@+id/action_CSFragment_to_CSDetailFragment"
             app:destination="@id/CSDetailFragment" />
-        <action
-            android:id="@+id/action_CSFragment_to_CSDetailFragment2"
-            app:destination="@id/CSDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
@@ -79,6 +75,8 @@
         android:id="@+id/CSDetailFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
         android:label="CSDetailFragment" />
+    <argument android:name="list"
+        app:argType="com.example.myapplication23.model.customerservicelist.ImageData"/>
 
     <fragment
         android:id="@+id/CSListFragment"
@@ -87,5 +85,8 @@
         <action
             android:id="@+id/action_CSListFragment_to_CSFragment"
             app:destination="@id/CSFragment" />
+        <action
+            android:id="@+id/action_CSListFragment_to_CSDetailFragment"
+            app:destination="@id/CSDetailFragment" />
     </fragment>
 </navigation>

@@ -15,11 +15,8 @@ import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsCenterBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSActivity
 import com.example.myapplication23.screen.myinfo.customerservice.CSFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
-import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * @author HeeTae Heo(main),
@@ -168,10 +165,10 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
 
     private fun transfer(fragment: CSFragment) {
-        activity?.let {
-            var intent = Intent(context, CSActivity::class.java)
-            startActivity(intent)
-        }
+//        activity?.let {
+//            var intent = Intent(context, CSActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun back(activity: MainActivity) {

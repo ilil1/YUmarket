@@ -6,6 +6,7 @@ import android.media.Image
 import com.example.myapplication23.util.provider.ResoucesProvider
 import android.os.Bundle
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -50,9 +51,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
     override fun observeData() = with(viewModel) {
         csListData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-
         }
-
     }
 
     private val resourcesProvider by inject<ResoucesProvider>()
@@ -67,21 +66,24 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
                     object : CSModelListener {
                     override fun onClickItem (listModel: CSModel){
                         view?.findViewById<TextView>(R.id.question_text)!!.setOnClickListener {
-                          CSFragmentDirections.actionCSFragmentToCSDetailFragment()
+                            val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
+                            val bundle = Bundle()
+                            bundle.putParcelable("data",data)
+                            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_CSFragment_to_CSDetailFragment,bundle) }
+
+
+
+
                         }
-                        val intent = Intent(context, CSDetailFragment::class.java).apply {
-                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
-                            putExtra(CS_CATEGORY_KEY,data)
-                            putExtra("CSTitle", listModel.csTitle)
-                            putExtra("CSContent", listModel.csContent)
-                            putExtra("CSAuthor", listModel.csAuthor)
-                            putExtra("CSid", listModel.id)
-                        }
-                        startActivity(intent)
-
-
-
-
+//                        val intent = Intent(context, CSDetailFragment::class.java).apply {
+//                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
+//                            putExtra(CS_CATEGORY_KEY,data)
+//                            putExtra("CSTitle", listModel.csTitle)
+//                            putExtra("CSContent", listModel.csContent)
+//                            putExtra("CSAuthor", listModel.csAuthor)
+//                            putExtra("CSid", listModel.id)
+                    //                       }
+//                        startActivity(intent)
                     }
             }
         )

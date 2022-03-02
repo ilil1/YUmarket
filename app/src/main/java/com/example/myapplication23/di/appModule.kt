@@ -12,7 +12,6 @@ import com.example.myapplication23.screen.home.homelist.HomeListViewModel
 import com.example.myapplication23.screen.like.LikeViewModel
 import com.example.myapplication23.screen.map.MapViewModel
 import com.example.myapplication23.screen.myinfo.MyInfoViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.myapplication23.screen.orderlist.OrderListViewModel
@@ -31,7 +30,7 @@ val appModule = module {
     }
     /*  CSViewModel 추가  의존성 주입   factory추가
     *   csCategory factory                     */
-    viewModel { CSViewModel() }
+
 
     factory { (csCategory: CSCategory) ->
         CSListViewModel(get())

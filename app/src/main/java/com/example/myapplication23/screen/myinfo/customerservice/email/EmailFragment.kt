@@ -3,13 +3,10 @@ package com.example.myapplication23.screen.myinfo.customerservice.email
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.myapplication23.databinding.FragmentEmailBinding
 import com.example.myapplication23.model.customerservicelist.EmailData
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
-import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * @author HeeTae Heo(main),
