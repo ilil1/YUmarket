@@ -65,7 +65,6 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
            listOf(), viewModel,resourcesProvider,
                     object : CSModelListener {
                     override fun onClickItem (listModel: CSModel){
-                        view?.findViewById<TextView>(R.id.question_text)!!.setOnClickListener {
                             val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
                             val bundle = Bundle()
                             bundle.putParcelable("data",data)
@@ -74,7 +73,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
 
 
-                        }
+
 //                        val intent = Intent(context, CSDetailFragment::class.java).apply {
 //                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
 //                            putExtra(CS_CATEGORY_KEY,data)

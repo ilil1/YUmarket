@@ -2,14 +2,12 @@ package com.example.myapplication23.screen.myinfo.customerservice.list.detail
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.navigation.Navigation
+import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentDetailBinding
 import com.example.myapplication23.model.customerservicelist.ImageData
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.CSFragment
-import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
-import org.koin.ext.getOrCreateScope
 
 
 class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
@@ -43,22 +41,13 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
 
 
     private fun changeFragment(){
-    val intent = Intent(context, CSCenterActivity::class.java)
-    startActivity(intent)
-    }
-
-    companion object {
-        const val CS_CATEGORY_KEY = "CSCategoryKey"
-        fun newInstance(csCategory: CSCategory): CSDetailFragment {
-            val bundle = Bundle().apply {
-                putSerializable(CS_CATEGORY_KEY, csCategory)
-            }
-
-            return CSDetailFragment().apply {
-                arguments = bundle
-            }
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_CSDetailFragment_to_CSFragment)
         }
     }
+
+
 }
 
 

@@ -11,7 +11,6 @@ import com.example.myapplication23.screen.home.homelist.HomeCategory
 import com.example.myapplication23.screen.home.homelist.HomeListViewModel
 import com.example.myapplication23.screen.like.LikeViewModel
 import com.example.myapplication23.screen.map.MapViewModel
-import com.example.myapplication23.screen.myinfo.MyInfoViewModel
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.myapplication23.screen.orderlist.OrderListViewModel
@@ -44,7 +43,6 @@ val appModule = module {
 
     viewModel { LikeViewModel() }
     viewModel { MapViewModel() }
-    viewModel { MyInfoViewModel() }
 
 
     single<HomeRepository> { DefaultHomeRepository() }

@@ -41,15 +41,26 @@
         <action
             android:id="@+id/action_CSCenterFragment_to_emailFragment"
             app:destination="@id/emailFragment" />
+        <action
+            android:id="@+id/action_CSCenterFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment"
-        android:label="ConfigurationFragment" />
+        android:label="ConfigurationFragment" >
+        <action
+            android:id="@+id/action_configurationFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/personalFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
-        android:label="PersonalFragment" />
+        android:label="PersonalFragment" >
+        <action
+            android:id="@+id/action_personalFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/CSFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
@@ -70,11 +81,19 @@
     <fragment
         android:id="@+id/emailFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment"
-        android:label="EmailFragment" />
+        android:label="EmailFragment" >
+        <action
+            android:id="@+id/action_emailFragment_to_CSCenterFragment"
+            app:destination="@id/CSCenterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/CSDetailFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
-        android:label="CSDetailFragment" />
+        android:label="CSDetailFragment" >
+        <action
+            android:id="@+id/action_CSDetailFragment_to_CSFragment"
+            app:destination="@id/CSFragment" />
+    </fragment>
     <argument android:name="list"
         app:argType="com.example.myapplication23.model.customerservicelist.ImageData"/>
 
@@ -88,5 +107,11 @@
         <action
             android:id="@+id/action_CSListFragment_to_CSDetailFragment"
             app:destination="@id/CSDetailFragment" />
+        <action
+            android:id="@+id/action_CSListFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+        <action
+            android:id="@+id/action_CSListFragment_to_CSCenterFragment"
+            app:destination="@id/CSCenterFragment" />
     </fragment>
 </navigation>

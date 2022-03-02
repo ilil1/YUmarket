@@ -6,11 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -18,18 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentMyInfoBinding
 import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 import com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment
 import com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment
-import com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment
 import java.lang.Exception
 
 
@@ -76,9 +67,9 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     override fun initViews() = with(view)  {
         super.initViews()
 
-        binding.terms.setOnClickListener {  view?.findViewById<TextView>(R.id.terms)!!.setOnClickListener {
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_termsFragment) }
-        } }
+        binding.terms.setOnClickListener {
+            openTerms()
+        }
 
         binding.profileImageChange.setOnClickListener { loadImage()}
 
@@ -87,17 +78,11 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
         binding.noticeText.setOnClickListener { popUp() }
 
-      binding.centerTextview.setOnClickListener {    view?.findViewById<TextView>(R.id.center_textview)!!.setOnClickListener {
-          view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
-      } }
+      binding.centerTextview.setOnClickListener { openCSCenter()}
 
-        binding.setting.setOnClickListener {    view?.findViewById<TextView>(R.id.setting)!!.setOnClickListener {
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_configurationFragment) }
-        } }
+        binding.setting.setOnClickListener { openSetting() }
 
-        binding.personalTextview.setOnClickListener {    view?.findViewById<TextView>(R.id.personal_textview)!!.setOnClickListener {
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_personalFragment) }
-        } }
+        binding.personalTextview.setOnClickListener { openPersonal() }
 
         binding.back.setOnClickListener { back() }
 
@@ -130,22 +115,15 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     }
 
     private fun openSetting(){
-        activity?.let {
-            var intent = Intent(context, ConfigurationFragment::class.java)
-            startActivity(intent)
-        }
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_configurationFragment) }
     }
 
-//    private fun openTerms(){
-//        requireActivity().supportFragmentManager.beginTransaction().replace(TermsFragment(),
-//            TAG).commit()
-//    }
+    private fun openTerms(){
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_termsFragment) }
+    }
 
     private fun openPersonal(){
-        activity?.let {
-            var intent = Intent(context, PersonalFragment::class.java)
-            startActivity(intent)
-        }
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_personalFragment) }
     }
 
     private fun back(){
@@ -181,22 +159,10 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
-    private fun darkPopUp(){
-        val alertDialog = AlertDialog.Builder(context)
-            .setTitle("주의")
-            // 다크모드 사용시 어플의 재시작으로 저장되어있던 데이터가 사라질 수 있다는 경고 식의 dialog 생성후
-            // 사용자가 선택하여 사용할 수 있도록 도와줌
-    }
 
 
     private fun openCSCenter(){
-        activity?.let {
-            var intent = Intent(context, CSCenterActivity::class.java)
-            startActivity(intent)
-        }
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
     }
 
-    private fun showFragment(fragment: Fragment, tag: String) {
-        requireActivity().supportFragmentManager.beginTransaction().add(fragment, tag).commit()
-    }
 }

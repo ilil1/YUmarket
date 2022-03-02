@@ -3,10 +3,11 @@ package com.example.myapplication23.screen.myinfo.customerservice.email
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.navigation.Navigation
+import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentEmailBinding
 import com.example.myapplication23.model.customerservicelist.EmailData
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterActivity
 
 /**
  * @author HeeTae Heo(main),
@@ -39,8 +40,7 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
 
 
     private fun back(){
-            var intent = Intent(context, CSCenterActivity::class.java)
-            startActivity(intent)
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_emailFragment_to_CSCenterFragment) }
     }
 
     fun sendEmail() {

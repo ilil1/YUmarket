@@ -37,13 +37,11 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
+
         binding.questionCenter.setOnClickListener {
-            view?.findViewById<TextView>(R.id.question_center)!!.setOnClickListener {
                 view?.let { it1 ->
                     Navigation.findNavController(it1)
                         .navigate(R.id.action_CSCenterFragment_to_CSFragment)
-                }
-
             }
         }
 
@@ -56,18 +54,15 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         }
 
         binding.emailCenter.setOnClickListener {
-            view?.findViewById<TextView>(R.id.email_center)!!.setOnClickListener {
                 view?.let { it1 ->
                     Navigation.findNavController(it1)
                         .navigate(R.id.action_CSCenterFragment_to_emailFragment)
-                }
             }
-
         }
 
         binding.back.setOnClickListener {
-            back(MainActivity())
-            activity?.finish()
+            back()
+
         }
     }
 
@@ -120,14 +115,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
     }
 
-    private fun emailBox(fragment: Fragment) {
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, EmailFragment.newInstance(),"myinfo")
-                .commit()
 
-
-    }
 
   private fun permissionCheck_CallYU()
     {   val callCheck =
@@ -164,17 +152,12 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
     }
 
 
-    private fun transfer(fragment: CSFragment) {
-//        activity?.let {
-//            var intent = Intent(context, CSActivity::class.java)
-//            startActivity(intent)
-//        }
-    }
 
-    private fun back(activity: MainActivity) {
-        activity?.let {
-            var intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
+
+    private fun back() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_CSCenterFragment_to_myInfoFragment)
         }
     }
 

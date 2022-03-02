@@ -14,7 +14,7 @@ import com.example.myapplication23.screen.base.BaseFragment
 class TermsFragment : BaseFragment<FragmentTermsBinding>() {
 
     private fun back(){
-
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_termsFragment_to_myInfoFragment)}
     }
 
     override fun getViewBinding(): FragmentTermsBinding =
@@ -26,9 +26,9 @@ class TermsFragment : BaseFragment<FragmentTermsBinding>() {
 
     override fun initViews() {
 
-        binding.configurationLeft.setOnClickListener {    view?.findViewById<ImageView>(R.id.back)!!.setOnClickListener {
-            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_termsFragment_to_myInfoFragment) }
-        }  }
+        binding.configurationLeft.setOnClickListener {
+             back()
+          }
 
     }
 
