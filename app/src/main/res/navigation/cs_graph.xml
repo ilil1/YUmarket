@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cs_graph"
     app:startDestination="@id/myInfoFragment">
 
     <fragment
         android:id="@+id/myInfoFragment"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
-        android:label="MyInfoFragment" >
+        android:label="MyInfoFragment"
+        >
         <action
             android:id="@+id/action_myInfoFragment_to_termsFragment"
             app:destination="@id/termsFragment" />
@@ -27,7 +27,8 @@
         android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
         android:label="TermsFragment" >
         <action
-            app:popUpTo="@id/myInfoFragment"
+            app:popUpTo="@id/termsFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_termsFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
     </fragment>
@@ -42,6 +43,8 @@
             android:id="@+id/action_CSCenterFragment_to_emailFragment"
             app:destination="@id/emailFragment" />
         <action
+            app:popUpTo="@id/CSCenterFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_CSCenterFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
     </fragment>
@@ -50,14 +53,19 @@
         android:name="com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment"
         android:label="ConfigurationFragment" >
         <action
+            app:popUpTo="@id/configurationFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_configurationFragment_to_myInfoFragment"
-            app:destination="@id/myInfoFragment" />
+            app:destination="@id/myInfoFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/personalFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
         android:label="PersonalFragment" >
         <action
+            app:popUpTo="@id/personalFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_personalFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
     </fragment>
@@ -66,12 +74,18 @@
         android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
         android:label="CSFragment" >
         <action
+            app:popUpTo="@id/CSFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_CSFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
         <action
+            app:popUpTo="@id/CSFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_CSFragment_to_CSCenterFragment"
             app:destination="@id/CSCenterFragment" />
         <action
+            app:popUpTo="@id/CSFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_CSFragment_to_emailFragment"
             app:destination="@id/emailFragment" />
         <action
@@ -83,14 +97,19 @@
         android:name="com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment"
         android:label="EmailFragment" >
         <action
+            app:popUpTo="@id/emailFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_emailFragment_to_CSCenterFragment"
             app:destination="@id/CSCenterFragment" />
     </fragment>
     <fragment
         android:id="@+id/CSDetailFragment"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
-        android:label="CSDetailFragment" >
+        android:label="CSDetailFragment"
+        >
         <action
+            app:popUpTo="@id/CSDetailFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_CSDetailFragment_to_CSFragment"
             app:destination="@id/CSFragment" />
     </fragment>
@@ -104,14 +123,5 @@
         <action
             android:id="@+id/action_CSListFragment_to_CSFragment"
             app:destination="@id/CSFragment" />
-        <action
-            android:id="@+id/action_CSListFragment_to_CSDetailFragment"
-            app:destination="@id/CSDetailFragment" />
-        <action
-            android:id="@+id/action_CSListFragment_to_emailFragment"
-            app:destination="@id/emailFragment" />
-        <action
-            android:id="@+id/action_CSListFragment_to_CSCenterFragment"
-            app:destination="@id/CSCenterFragment" />
     </fragment>
 </navigation>

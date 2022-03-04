@@ -159,6 +159,10 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
             Navigation.findNavController(it1)
                 .navigate(R.id.action_CSCenterFragment_to_myInfoFragment)
         }
+
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
     companion object{

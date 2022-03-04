@@ -28,6 +28,9 @@ class TermsFragment : BaseFragment<FragmentTermsBinding>() {
 
         binding.configurationLeft.setOnClickListener {
              back()
+            view?.let{it1 ->
+                Navigation.findNavController(it1).popBackStack()
+            }
           }
 
     }

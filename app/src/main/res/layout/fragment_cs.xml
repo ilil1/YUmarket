@@ -6,16 +6,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <ImageView
-        android:layout_marginLeft="10dp"
-        android:id="@+id/back"
+        android:id="@+id/csback"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="4dp"
         android:src="@drawable/left"
-        app:tint="@color/color_dark_000000_ffffff"
-        app:layout_constraintBottom_toBottomOf="@id/CSTextView"
-        app:layout_constraintTop_toTopOf="@id/CSTextView"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/CSTextView"/>
 
     <TextView
         android:id="@+id/CSTextView"
@@ -26,7 +25,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginLeft="40dp"
-        app:layout_constraintStart_toEndOf="@id/back"
+        app:layout_constraintStart_toEndOf="@id/csback"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="고객센터" />
 
@@ -87,17 +86,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/editBtn"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_margin="24dp"
-            android:background="@color/teal_200"
-            android:elevation="16dp"
-            android:src="@drawable/pencil"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/color_dark_ffffff_000000" />
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/editBtn"
+           android:layout_width="72dp"
+           android:layout_height="72dp"
+           android:layout_margin="24dp"
+           android:background="@color/teal_200"
+           android:elevation="16dp"
+           android:src="@drawable/pencil"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:tint="@color/color_dark_ffffff_000000" />
 
         <TextView
             android:id="@+id/email"

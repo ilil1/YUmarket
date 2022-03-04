@@ -31,7 +31,6 @@ import java.lang.Exception
  * @throws
  * @description
  */
-@RequiresApi(Build.VERSION_CODES.O)
 class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
 
@@ -67,9 +66,7 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
     override fun initViews() = with(view)  {
         super.initViews()
 
-        binding.terms.setOnClickListener {
-            openTerms()
-        }
+        binding.terms.setOnClickListener { openTerms() }
 
         binding.profileImageChange.setOnClickListener { loadImage()}
 
@@ -131,10 +128,22 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
             var intent = Intent(context,MainActivity::class.java)
             startActivity(intent)
         }
+
+    }
+
+    private fun darkMode(){
+        if(check  == binding.darkSwitch.isChecked){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
 
-
+    private fun openCSCenter(){
+        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
+    }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
@@ -151,18 +160,6 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 //        }
 //    }
 
-    private fun darkMode(){
-        if(check  == binding.darkSwitch.isChecked){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-    }
 
-
-    private fun openCSCenter(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
-    }
 
 }

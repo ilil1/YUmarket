@@ -11,7 +11,7 @@ import java.util.*
 
 class PopUpMethod(){
 
-        fun popUp(context: Context) {
+    fun popUp(context: Context) {
             val nowTime = System.currentTimeMillis()
             val date = Date(nowTime)
             val dateAndTime =
@@ -48,6 +48,4 @@ class PopUpMethod(){
                 }
                 .show()
         }
-
-
 }

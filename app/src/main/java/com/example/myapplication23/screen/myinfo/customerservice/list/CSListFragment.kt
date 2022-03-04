@@ -59,7 +59,6 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
 
 
-
     private val adapter by lazy {
         ModelRecyclerAdapter<CSModel, CSListViewModel>(
            listOf(), viewModel,resourcesProvider,
@@ -69,9 +68,6 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
                             val bundle = Bundle()
                             bundle.putParcelable("data",data)
                             view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_CSFragment_to_CSDetailFragment,bundle) }
-
-
-
 
 
 //                        val intent = Intent(context, CSDetailFragment::class.java).apply {

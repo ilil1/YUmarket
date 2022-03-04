@@ -8,34 +8,14 @@ package com.example.myapplication23.screen.myinfo.customerservice
  * @description
  */
 
-import android.content.Intent
-import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
+
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentCsBinding
-import com.example.myapplication23.model.customerservicelist.CSModel
-import com.example.myapplication23.model.customerservicelist.ImageData
-import com.example.myapplication23.screen.MainActivity
 import com.example.myapplication23.screen.base.BaseFragment
-import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSCategory
 import com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment
-import com.example.myapplication23.screen.myinfo.customerservice.list.CSListViewModel
-import com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment
-import com.example.myapplication23.util.provider.ResoucesProvider
 import com.example.myapplication23.widget.adapter.HomeListFragmentPagerAdapter
-import com.example.myapplication23.widget.adapter.ModelRecyclerAdapter
-import com.example.myapplication23.widget.adapter.listener.customerservice.CSModelListener
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
 class CSFragment : BaseFragment<FragmentCsBinding>() {
 
@@ -47,9 +27,6 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     override fun observeData(){
     }
-
-
-
 
     override fun initViews() = with(binding) {
         super.initViews()
@@ -66,38 +43,50 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
                 this@CSFragment,
                 CSListfragmnet
             )
-
         }
 
-
-
         binding.intentmyinfo.setOnClickListener {
-                view?.let { it1 ->
-                    Navigation.findNavController(it1)
-                        .navigate(R.id.action_CSFragment_to_myInfoFragment)
+            intentMyinfo()
+            doubleBackStack()
+        }
 
+        binding.editBtn.setOnClickListener {
+            view?.let { it1 ->
+                Navigation.findNavController(it1)
+                    .navigate(R.id.action_CSFragment_to_emailFragment)
             }
-            view?.findViewById<FloatingActionButton>(R.id.editBtn)!!.setOnClickListener {
-                view?.let { it1 ->
-                    Navigation.findNavController(it1)
-                        .navigate(R.id.action_CSFragment_to_emailFragment) }
-            }
 
 
-                binding.back.setOnClickListener {
+        }
+                binding.csback.setOnClickListener {
                     back()
                 }
+    }
 
+    private fun intentMyinfo(){
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_CSFragment_to_myInfoFragment)
 
         }
     }
 
-
+    private fun doubleBackStack(){
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
+    }
 
     private fun back() {
             view?.let { it1 ->
                 Navigation.findNavController(it1)
                     .navigate(R.id.action_CSFragment_to_CSCenterFragment)
+        }
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
         }
     }
 

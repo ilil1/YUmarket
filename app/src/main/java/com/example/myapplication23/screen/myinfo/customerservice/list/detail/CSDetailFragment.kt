@@ -32,12 +32,13 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
     uturn.setOnClickListener {
        changeFragment()
 
+
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
      }
+
     }
-
-
-
-
 
 
     private fun changeFragment(){
@@ -45,6 +46,7 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
             Navigation.findNavController(it1)
                 .navigate(R.id.action_CSDetailFragment_to_CSFragment)
         }
+
     }
 
 

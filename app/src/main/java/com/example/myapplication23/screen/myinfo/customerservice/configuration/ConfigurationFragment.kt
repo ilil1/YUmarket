@@ -36,6 +36,10 @@ class ConfigurationFragment : BaseFragment<FragmentConfigurationBinding>() {
             Navigation.findNavController(it1)
                 .navigate(R.id.action_configurationFragment_to_myInfoFragment)
         }
+
+        view?.let{it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 
