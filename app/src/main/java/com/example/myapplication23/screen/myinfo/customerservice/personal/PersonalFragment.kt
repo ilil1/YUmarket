@@ -5,7 +5,7 @@ import com.example.myapplication23.R
 import com.example.myapplication23.databinding.FragmentPersonalBinding
 import com.example.myapplication23.screen.base.BaseFragment
 
-class PersonalFragment: BaseFragment<FragmentPersonalBinding>() {
+class PersonalFragment : BaseFragment<FragmentPersonalBinding>() {
 
     override fun getViewBinding(): FragmentPersonalBinding =
         FragmentPersonalBinding.inflate(layoutInflater)
@@ -22,10 +22,13 @@ class PersonalFragment: BaseFragment<FragmentPersonalBinding>() {
         }
     }
 
-    private fun back(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_personalFragment_to_myInfoFragment)}
+    private fun back() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_personalFragment_to_myInfoFragment)
+        }
 
-        view?.let{it1 ->
+        view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
     }

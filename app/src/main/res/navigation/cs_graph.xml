@@ -2,12 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cs_graph"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/myInfoFragment">
 
     <fragment
         android:id="@+id/myInfoFragment"
         android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
         android:label="MyInfoFragment"
+        tools:layout="@layout/fragment_my_info"
         >
         <action
             android:id="@+id/action_myInfoFragment_to_termsFragment"
@@ -24,6 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/termsFragment"
+        tools:layout="@layout/fragment_terms"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
         android:label="TermsFragment" >
         <action
@@ -34,6 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/CSCenterFragment"
+        tools:layout="@layout/fragment_cs_center"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
         android:label="CSCenterFragment" >
         <action
@@ -50,6 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
+        tools:layout="@layout/fragment_configuration"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment"
         android:label="ConfigurationFragment" >
         <action
@@ -61,6 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/personalFragment"
+        tools:layout="@layout/fragment_personal"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
         android:label="PersonalFragment" >
         <action
@@ -71,6 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/CSFragment"
+        tools:layout="@layout/fragment_cs"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
         android:label="CSFragment" >
         <action
@@ -94,6 +101,7 @@
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
+        tools:layout="@layout/fragment_email"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment"
         android:label="EmailFragment" >
         <action
@@ -104,6 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/CSDetailFragment"
+        tools:layout="@layout/fragment_detail"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
         android:label="CSDetailFragment"
         >
@@ -118,6 +127,7 @@
 
     <fragment
         android:id="@+id/CSListFragment"
+        tools:layout="@layout/fragment_cs_list"
         android:name="com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment"
         android:label="CSListFragment" >
         <action

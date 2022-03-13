@@ -35,7 +35,7 @@
                     android:id="@+id/first_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color_dark_ffffff_000000">
+                    android:backgroundTint="@color/color_dark_ffffff_000000">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"

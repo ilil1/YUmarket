@@ -31,10 +31,10 @@ import java.lang.Exception
  * @throws
  * @description
  */
-class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
+class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
 
-    private lateinit var getResultImage : ActivityResultLauncher<Intent>
+    private lateinit var getResultImage: ActivityResultLauncher<Intent>
 
 
     private fun popUp() {
@@ -44,38 +44,39 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
     private val check = true;
 
-    override fun getViewBinding() :FragmentMyInfoBinding =
+    override fun getViewBinding(): FragmentMyInfoBinding =
         FragmentMyInfoBinding.inflate(layoutInflater)
 
-    override fun observeData()  {
+    override fun observeData() {
 
         /**
          * 추후 로그인 acesss->로 기능작동 하도록 initView()뒤로 이동예정
          */
     }
+
     companion object {
         const val TAG = "MyInfoFragment"
 
-        fun newInstance() : MyInfoFragment {
-            return MyInfoFragment().apply{
+        fun newInstance(): MyInfoFragment {
+            return MyInfoFragment().apply {
 
             }
         }
     }
 
-    override fun initViews() = with(view)  {
+    override fun initViews(){
         super.initViews()
 
         binding.terms.setOnClickListener { openTerms() }
 
-        binding.profileImageChange.setOnClickListener { loadImage()}
+        binding.profileImageChange.setOnClickListener { loadImage() }
 
         binding.darkSwitch.setOnClickListener { darkMode() }
 
 
         binding.noticeText.setOnClickListener { popUp() }
 
-      binding.centerTextview.setOnClickListener { openCSCenter()}
+        binding.centerTextview.setOnClickListener { openCSCenter() }
 
         binding.setting.setOnClickListener { openSetting() }
 
@@ -87,21 +88,23 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 
 
         getResultImage = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()){
-            result -> if(result.resultCode == RESULT_OK){
-            val dataUri : Uri? = result.data?.data
-            try {
-                val bitmap : Bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver,dataUri)
-                binding.profileImage.setImageBitmap(bitmap)
-            }  catch (e: Exception) {
-                Toast.makeText(context,"$e",Toast.LENGTH_SHORT).show()
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val dataUri: Uri? = result.data?.data
+                try {
+                    val bitmap: Bitmap =
+                        MediaStore.Images.Media.getBitmap(context?.contentResolver, dataUri)
+                    binding.profileImage.setImageBitmap(bitmap)
+                } catch (e: Exception) {
+                    Toast.makeText(context, "$e", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
         }
 
     }
 
-    private fun loadImage(){
+    private fun loadImage() {
 
         var intent_image = Intent()
         intent_image.type = "image/*"
@@ -111,38 +114,48 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 //        startActivityForResult(Intent.createChooser(intent_image,"Load Picture"),galley)
     }
 
-    private fun openSetting(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_configurationFragment) }
+    private fun openSetting() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_myInfoFragment_to_configurationFragment)
+        }
     }
 
-    private fun openTerms(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_termsFragment) }
+    private fun openTerms() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_termsFragment)
+        }
     }
 
-    private fun openPersonal(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_personalFragment) }
+    private fun openPersonal() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_myInfoFragment_to_personalFragment)
+        }
     }
 
-    private fun back(){
-        activity?.let{
-            var intent = Intent(context,MainActivity::class.java)
+    private fun back() {
+        activity?.let {
+            var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-    private fun darkMode(){
-        if(check  == binding.darkSwitch.isChecked){
+    private fun darkMode() {
+        if (check == binding.darkSwitch.isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        else{
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
 
-    private fun openCSCenter(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_myInfoFragment_to_CSCenterFragment) }
+    private fun openCSCenter() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_myInfoFragment_to_CSCenterFragment)
+        }
     }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -159,7 +172,6 @@ class MyInfoFragment  : BaseFragment< FragmentMyInfoBinding>()  {
 //            }
 //        }
 //    }
-
 
 
 }

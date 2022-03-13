@@ -29,7 +29,6 @@ import com.example.myapplication23.screen.myinfo.customerservice.email.EmailFrag
 class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
 
-
     override fun getViewBinding(): FragmentCsCenterBinding =
         FragmentCsCenterBinding.inflate(layoutInflater)
 
@@ -39,9 +38,9 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         super.initViews()
 
         binding.questionCenter.setOnClickListener {
-                view?.let { it1 ->
-                    Navigation.findNavController(it1)
-                        .navigate(R.id.action_CSCenterFragment_to_CSFragment)
+            view?.let { it1 ->
+                Navigation.findNavController(it1)
+                    .navigate(R.id.action_CSCenterFragment_to_CSFragment)
             }
         }
 
@@ -54,9 +53,9 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         }
 
         binding.emailCenter.setOnClickListener {
-                view?.let { it1 ->
-                    Navigation.findNavController(it1)
-                        .navigate(R.id.action_CSCenterFragment_to_emailFragment)
+            view?.let { it1 ->
+                Navigation.findNavController(it1)
+                    .navigate(R.id.action_CSCenterFragment_to_emailFragment)
             }
         }
 
@@ -67,16 +66,15 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
     }
 
 
-
-    private fun YUcall(){
-        val myuri =Uri.parse("tel:00011112222")
-        var intent = Intent(Intent.ACTION_CALL,myuri)
+    private fun YUcall() {
+        val myuri = Uri.parse("tel:00011112222")
+        var intent = Intent(Intent.ACTION_CALL, myuri)
         startActivity(intent)
     }
 
-    private fun foodcall(){
-        val myuri =Uri.parse("tel:1399")
-        var intent = Intent(Intent.ACTION_CALL,myuri)
+    private fun foodcall() {
+        val myuri = Uri.parse("tel:1399")
+        var intent = Intent(Intent.ACTION_CALL, myuri)
         startActivity(intent)
     }
 
@@ -86,72 +84,76 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
             .setTitle("YU Market")
             .setMessage(items)
             .setPositiveButton("통화 걸기",
-            DialogInterface.OnClickListener{
-                dialog, id->
-                YUcall()
-            })
+                DialogInterface.OnClickListener { dialog, id ->
+                    YUcall()
+                })
             .setNegativeButton("통화 취소",
-                DialogInterface.OnClickListener { dialog, id->
-                Toast.makeText(context,"통화를 취소했습니다.",Toast.LENGTH_SHORT).show()
+                DialogInterface.OnClickListener { dialog, id ->
+                    Toast.makeText(context, "통화를 취소했습니다.", Toast.LENGTH_SHORT).show()
                 })
             .show()
 
     }
+
     private fun foodSafecall() {
         val items = "1399"
         val alertDialog = AlertDialog.Builder(context)
             .setTitle("불량식품 신고")
             .setMessage(items)
             .setPositiveButton("통화 걸기",
-                DialogInterface.OnClickListener{
-                        dialog, id->
+                DialogInterface.OnClickListener { dialog, id ->
                     foodcall()
                 })
             .setNegativeButton("통화 취소",
-                DialogInterface.OnClickListener { dialog, id->
-                    Toast.makeText(context,"통화를 취소했습니다.",Toast.LENGTH_SHORT).show()
+                DialogInterface.OnClickListener { dialog, id ->
+                    Toast.makeText(context, "통화를 취소했습니다.", Toast.LENGTH_SHORT).show()
                 })
             .show()
 
     }
 
 
-
-  private fun permissionCheck_CallYU()
-    {   val callCheck =
-        android.Manifest.permission.CALL_PHONE
+    private fun permissionCheck_CallYU() {
+        val callCheck =
+            android.Manifest.permission.CALL_PHONE
         val permission =
             ContextCompat
-        .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
-        if(permission == PackageManager.PERMISSION_GRANTED){
+                .checkSelfPermission(
+                    binding.centerNumber.context,
+                    android.Manifest.permission.CALL_PHONE
+                )
+        if (permission == PackageManager.PERMISSION_GRANTED) {
             callYU()
-        }
-        else {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.CALL_PHONE),0)
-            Toast.makeText(context,"권한에 동의되었습니다. 다시 버튼을 눌러주새요",Toast.LENGTH_SHORT).show()
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.CALL_PHONE), 0
+            )
+            Toast.makeText(context, "권한에 동의되었습니다. 다시 버튼을 눌러주새요", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    private fun permissionCheck_food()
-    {   val callCheck =
-        android.Manifest.permission.CALL_PHONE
+    private fun permissionCheck_food() {
+        val callCheck =
+            android.Manifest.permission.CALL_PHONE
         val permission =
             ContextCompat
-                .checkSelfPermission(binding.centerNumber.context,android.Manifest.permission.CALL_PHONE)
-        if(permission == PackageManager.PERMISSION_GRANTED){
+                .checkSelfPermission(
+                    binding.centerNumber.context,
+                    android.Manifest.permission.CALL_PHONE
+                )
+        if (permission == PackageManager.PERMISSION_GRANTED) {
             foodSafecall()
-        }
-        else {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.CALL_PHONE),0)
-            Toast.makeText(context,"권한에 동의되었습니다. 다시 버튼을 눌러주새요",Toast.LENGTH_SHORT).show()
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.CALL_PHONE), 0
+            )
+            Toast.makeText(context, "권한에 동의되었습니다. 다시 버튼을 눌러주새요", Toast.LENGTH_SHORT).show()
         }
 
     }
-
-
 
 
     private fun back() {
@@ -160,22 +162,20 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
                 .navigate(R.id.action_CSCenterFragment_to_myInfoFragment)
         }
 
-        view?.let{it1 ->
+        view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
     }
 
-    companion object{
-            const val TAG = "CSCenterFragment"
+    companion object {
+        const val TAG = "CSCenterFragment"
 
-            fun newInstance() : CSCenterFragment {
-                return CSCenterFragment().apply {
+        fun newInstance(): CSCenterFragment {
+            return CSCenterFragment().apply {
 
-                }
             }
+        }
     }
-
-
 
 
 }

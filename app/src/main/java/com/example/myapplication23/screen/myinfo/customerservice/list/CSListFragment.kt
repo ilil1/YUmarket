@@ -57,17 +57,18 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
     private val resourcesProvider by inject<ResoucesProvider>()
 
 
-
-
     private val adapter by lazy {
         ModelRecyclerAdapter<CSModel, CSListViewModel>(
-           listOf(), viewModel,resourcesProvider,
-                    object : CSModelListener {
-                    override fun onClickItem (listModel: CSModel){
-                            val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
-                            val bundle = Bundle()
-                            bundle.putParcelable("data",data)
-                            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_CSFragment_to_CSDetailFragment,bundle) }
+            listOf(), viewModel, resourcesProvider,
+            object : CSModelListener {
+                override fun onClickItem(listModel: CSModel) {
+                    val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
+                    val bundle = Bundle()
+                    bundle.putParcelable("data", data)
+                    view?.let { it1 ->
+                        Navigation.findNavController(it1)
+                            .navigate(R.id.action_CSFragment_to_CSDetailFragment, bundle)
+                    }
 
 
 //                        val intent = Intent(context, CSDetailFragment::class.java).apply {
@@ -79,22 +80,21 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 //                            putExtra("CSid", listModel.id)
                     //                       }
 //                        startActivity(intent)
-                    }
+                }
             }
         )
 
     }
 
-    override fun initViews() = with(viewModel){
+    override fun initViews() = with(viewModel) {
         super.initViews()
         fetchData()
         binding.csRecyclerView.adapter = adapter
         binding.csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
 
 
-
-
     }
+
     companion object {
         const val CS_CATEGORY_KEY = "CSCategoryKey"
         fun newInstance(csCategory: CSCategory): CSListFragment {

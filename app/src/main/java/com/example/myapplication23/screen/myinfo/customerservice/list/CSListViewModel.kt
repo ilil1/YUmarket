@@ -18,11 +18,11 @@ import kotlinx.coroutines.launch
  * @description
  */
 
-class CSListViewModel (
+class CSListViewModel(
     private val csRepository: CSRepository
-): BaseViewModel() {
+) : BaseViewModel() {
     private val _csListData = MutableLiveData<List<CSModel>>()
-    val csListData :  LiveData<List<CSModel>>
+    val csListData: LiveData<List<CSModel>>
         get() = _csListData
 
 

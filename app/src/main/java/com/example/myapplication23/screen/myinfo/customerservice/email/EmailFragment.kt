@@ -28,8 +28,8 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
     }
     override fun initViews() = with(binding){
         super.initViews()
-        binding.emailSend.setOnClickListener { sendEmail()  }
-        binding.emailback.setOnClickListener {
+        emailSend.setOnClickListener { sendEmail()  }
+        emailback.setOnClickListener {
         back()
         backStack()
         }

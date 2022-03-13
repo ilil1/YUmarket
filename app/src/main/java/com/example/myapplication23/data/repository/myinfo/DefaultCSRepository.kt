@@ -14,11 +14,10 @@ import kotlinx.coroutines.CoroutineDispatcher
  */
 
 
-
 class DefaultCSRepository(
 
-    private val ioDispatcher:CoroutineDispatcher //나중에 api용
-): CSRepository {
+    private val ioDispatcher: CoroutineDispatcher //나중에 api용
+) : CSRepository {
 
 
     override fun findCsByCategory(csCategory: CSCategory): List<CSModel> {
@@ -47,7 +46,7 @@ class DefaultCSRepository(
                 2,
                 CellType.CUSTOMER_SERVICE_CELL,
                 2,
-                csTitle ="   리뷰 오류시 이용방법                                           ",
+                csTitle = "   리뷰 오류시 이용방법                                           ",
                 csCategory = CSCategory.TOTAL,
                 csAuthor = "관리자",
                 csContent = "이 글은 리뷰 오류시 입니다"
@@ -58,7 +57,7 @@ class DefaultCSRepository(
                 3,
                 CellType.CUSTOMER_SERVICE_CELL,
                 3,
-                csTitle ="   로그인 오류시 이용방법                                                ",
+                csTitle = "   로그인 오류시 이용방법                                                ",
                 csCategory = CSCategory.TOTAL,
                 csAuthor = "관리자",
                 csContent = "이 글은 로그인 오류시 이용방법 입니다"
@@ -68,7 +67,7 @@ class DefaultCSRepository(
                 4,
                 CellType.CUSTOMER_SERVICE_CELL,
                 4,
-                csTitle ="   이용 오류시 이용방법                                           ",
+                csTitle = "   이용 오류시 이용방법                                           ",
                 csCategory = CSCategory.TOTAL,
                 csAuthor = "관리자",
                 csContent = "이 글은 이용 오류시 이용방법 입니다"
@@ -78,7 +77,7 @@ class DefaultCSRepository(
                 5,
                 CellType.CUSTOMER_SERVICE_CELL,
                 5,
-                csTitle ="   기타 오류시 이용방법                                           ",
+                csTitle = "   기타 오류시 이용방법                                           ",
                 csCategory = CSCategory.TOTAL,
                 csAuthor = "관리자",
                 csContent = "이 글은 기타 오류시 입니다"

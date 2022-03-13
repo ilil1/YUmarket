@@ -13,25 +13,25 @@ import com.example.myapplication23.screen.base.BaseFragment
 
 class TermsFragment : BaseFragment<FragmentTermsBinding>() {
 
-    private fun back(){
-        view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_termsFragment_to_myInfoFragment)}
+    private fun back() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).navigate(R.id.action_termsFragment_to_myInfoFragment)
+        }
     }
 
     override fun getViewBinding(): FragmentTermsBinding =
         FragmentTermsBinding.inflate(layoutInflater)
 
-    override fun observeData() = with(binding) {
-
-    }
+    override fun observeData()  {}
 
     override fun initViews() {
 
         binding.configurationLeft.setOnClickListener {
-             back()
-            view?.let{it1 ->
+            back()
+            view?.let { it1 ->
                 Navigation.findNavController(it1).popBackStack()
             }
-          }
+        }
 
     }
 
