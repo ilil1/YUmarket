@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.myapplication23.screen.map.MapFragment"
+        android:name="com.example.YUmarket.screen.map.MapFragment"
         android:label="MapFragment" />
 </navigation>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/myInfoFragment"
-        android:name="com.example.myapplication23.screen.myinfo.MyInfoFragment"
+        android:name="com.example.YUmarket.screen.myinfo.MyInfoFragment"
         android:label="MyInfoFragment"
         tools:layout="@layout/fragment_my_info"
         >
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/termsFragment"
         tools:layout="@layout/fragment_terms"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.terms.TermsFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.terms.TermsFragment"
         android:label="TermsFragment" >
         <action
             app:popUpTo="@id/termsFragment"
@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/CSCenterFragment"
         tools:layout="@layout/fragment_cs_center"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.center.CSCenterFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.center.CSCenterFragment"
         android:label="CSCenterFragment" >
         <action
             android:id="@+id/action_CSCenterFragment_to_CSFragment"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/configurationFragment"
         tools:layout="@layout/fragment_configuration"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.configuration.ConfigurationFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.configuration.ConfigurationFragment"
         android:label="ConfigurationFragment" >
         <action
             app:popUpTo="@id/configurationFragment"
@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/personalFragment"
         tools:layout="@layout/fragment_personal"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.personal.PersonalFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.personal.PersonalFragment"
         android:label="PersonalFragment" >
         <action
             app:popUpTo="@id/personalFragment"
@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/CSFragment"
         tools:layout="@layout/fragment_cs"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.CSFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.CSFragment"
         android:label="CSFragment" >
         <action
             app:popUpTo="@id/CSFragment"
@@ -102,7 +102,7 @@
     <fragment
         android:id="@+id/emailFragment"
         tools:layout="@layout/fragment_email"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.email.EmailFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.email.EmailFragment"
         android:label="EmailFragment" >
         <action
             app:popUpTo="@id/emailFragment"
@@ -113,7 +113,7 @@
     <fragment
         android:id="@+id/CSDetailFragment"
         tools:layout="@layout/fragment_detail"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.list.detail.CSDetailFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.list.detail.CSDetailFragment"
         android:label="CSDetailFragment"
         >
         <action
@@ -123,12 +123,12 @@
             app:destination="@id/CSFragment" />
     </fragment>
     <argument android:name="list"
-        app:argType="com.example.myapplication23.model.customerservicelist.ImageData"/>
+        app:argType="com.example.YUmarket.model.customerservicelist.ImageData"/>
 
     <fragment
         android:id="@+id/CSListFragment"
         tools:layout="@layout/fragment_cs_list"
-        android:name="com.example.myapplication23.screen.myinfo.customerservice.list.CSListFragment"
+        android:name="com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment"
         android:label="CSListFragment" >
         <action
             android:id="@+id/action_CSListFragment_to_CSFragment"

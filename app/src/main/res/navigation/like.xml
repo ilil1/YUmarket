@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/likeFragment"
-        android:name="com.example.myapplication23.screen.like.LikeFragment"
+        android:name="com.example.YUmarket.screen.like.LikeFragment"
         android:label="LikeFragment" />
 </navigation>

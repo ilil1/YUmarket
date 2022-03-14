@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeMainFragment"
-        android:name="com.example.myapplication23.screen.home.HomeFragment"
+        android:name="com.example.YUmarket.screen.home.HomeFragment"
         android:label="HomeMainFragment" >
         <action
             android:id="@+id/action_homeMainFragment_to_homeFragment"

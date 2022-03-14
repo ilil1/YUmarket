@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication23">
+    package="com.example.YUmarket">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,7 +12,7 @@
 
 
     <application
-        android:name=".MyApplication"
+        android:name="com.example.YUmarket.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication23">
         <activity
-            android:name=".screen.MainActivity"
+            android:name="com.example.YUmarket.screen.MainActivity"
             android:exported="true"
 
             >
@@ -31,10 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screen.myinfo.customerservice.CSActivity"/>
-        <activity android:name=".screen.myinfo.customerservice.center.CSCenterActivity"/>
-        <activity android:name=".screen.myinfo.customerservice.list.detail.CSDetailFragment"/>
-        <activity android:name=".screen.myinfo.MyInfoActivity"/>
+        <activity android:name="com.example.YUmarket.screen.myinfo.MyInfoActivity"/>
     </application>
 
 </manifest>

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/orderListFragment"
-        android:name="com.example.myapplication23.screen.orderlist.OrderListFragment"
+        android:name="com.example.YUmarket.screen.orderlist.OrderListFragment"
         android:label="OrderListFragment" />
 </navigation>

@@ -6,7 +6,7 @@
 
     <activity
         android:id="@+id/subFragment"
-        android:name="com.example.myapplication23.screen.myinfo.MyInfoActivity"
+        android:name="com.example.YUmarket.screen.myinfo.MyInfoActivity"
         android:label="subFragment" />
 
 </navigation>
