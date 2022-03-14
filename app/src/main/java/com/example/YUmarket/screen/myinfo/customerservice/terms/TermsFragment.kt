@@ -8,10 +8,11 @@ import com.example.YUmarket.screen.base.BaseFragment
 
 class TermsFragment : BaseFragment<FragmentTermsBinding>() {
 
-    private fun back() {
+    private fun backMove() {
         view?.let { it1 ->
             Navigation.findNavController(it1).navigate(R.id.action_termsFragment_to_myInfoFragment)
         }
+        backStack()
     }
 
     override fun getViewBinding(): FragmentTermsBinding =
@@ -22,15 +23,15 @@ class TermsFragment : BaseFragment<FragmentTermsBinding>() {
     override fun initViews() {
 
         binding.configurationLeft.setOnClickListener {
-            back()
-            view?.let { it1 ->
-                Navigation.findNavController(it1).popBackStack()
-            }
+            backMove()
         }
 
     }
 
     override fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 

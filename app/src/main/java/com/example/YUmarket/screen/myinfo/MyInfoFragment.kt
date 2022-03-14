@@ -31,7 +31,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
 
     private fun popUp() {
-        requireContext().let { it1 -> PopUpMethod().popUp(it1) }
+        requireContext().let { it1 -> Method().popUp(it1) }
     }
 
 
@@ -132,7 +132,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
             var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
-
+        backStack()
     }
 
     private fun darkMode() {
@@ -152,6 +152,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
     }
 
     override fun backStack() {
+        activity?.finish()
     }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

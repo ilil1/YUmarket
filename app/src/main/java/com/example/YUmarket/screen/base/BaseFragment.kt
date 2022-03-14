@@ -29,7 +29,6 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment() {
     open fun initState() {
         initViews()
         observeData()
-        backStack()
     }
 
     open fun initViews() = Unit

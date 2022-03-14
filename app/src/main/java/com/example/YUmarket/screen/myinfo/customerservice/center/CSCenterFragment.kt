@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentCsCenterBinding
 import com.example.YUmarket.screen.base.BaseFragment
+import com.example.YUmarket.screen.myinfo.Method
 
 /**
  * @author HeeTae Heo(main),
@@ -55,7 +56,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         }
 
         binding.back.setOnClickListener {
-            back()
+            backMove()
 
         }
     }
@@ -151,15 +152,13 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
     }
 
 
-    private fun back() {
+    private fun backMove() {
         view?.let { it1 ->
             Navigation.findNavController(it1)
                 .navigate(R.id.action_CSCenterFragment_to_myInfoFragment)
         }
+        backStack()
 
-        view?.let { it1 ->
-            Navigation.findNavController(it1).popBackStack()
-        }
     }
 
     companion object {
@@ -172,7 +171,11 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         }
     }
 
-    override fun backStack() { }
+    override fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
+    }
 
 
 }

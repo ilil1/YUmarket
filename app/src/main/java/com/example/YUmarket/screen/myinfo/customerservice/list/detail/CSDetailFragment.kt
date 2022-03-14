@@ -3,7 +3,7 @@ package com.example.YUmarket.screen.myinfo.customerservice.list.detail
 import androidx.navigation.Navigation
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentDetailBinding
-import com.example.YUmarket.model.customerservicelist.ImageData
+import com.example.YUmarket.model.customerservicelist.CSDetailInfoData
 import com.example.YUmarket.screen.base.BaseFragment
 
 
@@ -20,25 +20,23 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
 
-    val csData = arguments?.getParcelable<ImageData>("data")
+        val csData = arguments?.getParcelable<CSDetailInfoData>("data")
 
-    title.text = csData?.csTitle.toString()
-    author.text = csData?.csAuthor.toString()
-    content.text = csData?.csContent.toString()
+        title.text = csData?.csTitle.toString()
+        author.text = csData?.csAuthor.toString()
+        content.text = csData?.csContent.toString()
 
-    uturn.setOnClickListener {
-       changeFragment()
+        uturn.setOnClickListener {
+            changeFragment()
+            backStack()
 
 
-        view?.let{it1 ->
-            Navigation.findNavController(it1).popBackStack()
         }
-     }
 
     }
 
 
-    private fun changeFragment(){
+    private fun changeFragment() {
         view?.let { it1 ->
             Navigation.findNavController(it1)
                 .navigate(R.id.action_CSDetailFragment_to_CSFragment)
@@ -47,7 +45,9 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     override fun backStack() {
-
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 

@@ -28,24 +28,26 @@ class ConfigurationFragment : BaseFragment<FragmentConfigurationBinding>() {
         initViews()
     }
 
-    private fun back() {
+    private fun backMove() {
         view?.let { it1 ->
             Navigation.findNavController(it1)
                 .navigate(R.id.action_configurationFragment_to_myInfoFragment)
         }
+        backStack()
 
-        view?.let { it1 ->
-            Navigation.findNavController(it1).popBackStack()
-        }
+
     }
 
 
     override fun initViews() = with(binding) {
         binding.versionCode.text = versionNumber
-        binding.configurationLeft.setOnClickListener { back() }
+        binding.configurationLeft.setOnClickListener { backMove() }
     }
 
     override fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 }

@@ -59,7 +59,7 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
         }
         csback.setOnClickListener {
-            back()
+            backMove()
         }
     }
 
@@ -80,21 +80,22 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
         }
     }
 
-    private fun back() {
+    private fun backMove() {
         view?.let { it1 ->
             Navigation.findNavController(it1)
                 .navigate(R.id.action_CSFragment_to_CSCenterFragment)
         }
+    }
+
+    override fun backStack() {
         view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
     }
-
-    override fun backStack() {
-    }
-
-
 }
+
+
+
 
 
 

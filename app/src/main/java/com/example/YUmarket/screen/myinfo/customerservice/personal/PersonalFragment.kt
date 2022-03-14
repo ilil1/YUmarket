@@ -17,23 +17,24 @@ class PersonalFragment : BaseFragment<FragmentPersonalBinding>() {
     override fun initViews() {
 
         binding.configurationLeft.setOnClickListener {
-            back()
+            backMove()
 
         }
     }
 
-    private fun back() {
+    private fun backMove() {
         view?.let { it1 ->
             Navigation.findNavController(it1)
                 .navigate(R.id.action_personalFragment_to_myInfoFragment)
         }
+        backStack()
 
-        view?.let { it1 ->
-            Navigation.findNavController(it1).popBackStack()
-        }
     }
 
     override fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 }

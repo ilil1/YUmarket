@@ -30,7 +30,7 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
         super.initViews()
         emailSend.setOnClickListener { sendEmail()  }
         emailback.setOnClickListener {
-        back()
+        backMove()
         }
     }
 
@@ -68,8 +68,9 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
         }
     }
 
-    private fun back(){
+    private fun backMove(){
         view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.action_emailFragment_to_CSCenterFragment) }
+        backStack()
     }
 
     override fun backStack(){
