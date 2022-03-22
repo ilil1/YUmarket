@@ -1,9 +1,7 @@
 package com.example.YUmarket.screen
 
+import androidx.lifecycle.*
 import com.example.YUmarket.util.provider.ResoucesProvider
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
@@ -24,6 +22,7 @@ class MainViewModel(
 
     fun getMapSearchInfo() {
     }
+
 
     fun getReverseGeoInformation(
         locationLatLngEntity: LocationLatLngEntity

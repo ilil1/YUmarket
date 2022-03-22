@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentCsListBinding
 import com.example.YUmarket.model.customerservicelist.CSModel
-import com.example.YUmarket.model.customerservicelist.CSDetailInfoData
+import com.example.YUmarket.model.customerservicelist.ImageData
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.customerservice.CSModelListener
@@ -50,7 +50,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
             listOf(), viewModel, resourcesProvider,
             object : CSModelListener {
                 override fun onClickItem(listModel: CSModel) {
-                    val data = CSDetailInfoData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
+                    val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
                     val bundle = Bundle()
                     bundle.putParcelable("data", data)
                     view?.let { it1 ->

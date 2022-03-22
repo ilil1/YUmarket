@@ -3,7 +3,7 @@ package com.example.YUmarket.screen.myinfo.customerservice.list.detail
 import androidx.navigation.Navigation
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentDetailBinding
-import com.example.YUmarket.model.customerservicelist.CSDetailInfoData
+import com.example.YUmarket.model.customerservicelist.ImageData
 import com.example.YUmarket.screen.base.BaseFragment
 
 
@@ -20,7 +20,7 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
 
-        val csData = arguments?.getParcelable<CSDetailInfoData>("data")
+        val csData = arguments?.getParcelable<ImageData>("data")
 
         title.text = csData?.csTitle.toString()
         author.text = csData?.csAuthor.toString()

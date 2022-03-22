@@ -23,9 +23,7 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
 
 
 
-    override fun observeData() {
-
-    }
+    override fun observeData() {}
     override fun initViews() = with(binding){
         super.initViews()
         emailSend.setOnClickListener { sendEmail()  }
@@ -33,7 +31,6 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
         backMove()
         }
     }
-
 
     private fun sendEmail() {
         val emaildata = EmailData(
@@ -53,11 +50,9 @@ class EmailFragment  : BaseFragment<FragmentEmailBinding>() {
         }
         else {
             startActivity(Intent.createChooser(intent, "Send Email"))
-            activity?.finish()
+            backStack()
         }
-
     }
-
     companion object{
         const val TAG = "EmailFragment"
 

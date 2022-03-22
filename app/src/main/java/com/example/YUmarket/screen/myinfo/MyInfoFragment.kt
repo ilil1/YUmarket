@@ -2,9 +2,11 @@ package com.example.YUmarket.screen.myinfo
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
+import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -57,7 +59,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
         }
     }
 
-    override fun initViews(){
+    override fun initViews() {
         super.initViews()
 
         binding.terms.setOnClickListener { openTerms() }
@@ -153,6 +155,16 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
     override fun backStack() {
         activity?.finish()
+    }
+
+    private fun darkModeCheck() {
+        val currentNightMode = Configuration.UI_MODE_NIGHT_MASK
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
+
+        } else {
+
+        }
+
     }
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

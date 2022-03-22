@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CSDetailInfoData(
+data class ImageData(
     val csTitle : String,
     val csContent : String,
     val csAuthor: String,
