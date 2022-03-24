@@ -9,14 +9,14 @@ import com.example.YUmarket.screen.MainState
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.screen.home.homelist.HomeListFragment
-import com.example.YUmarket.widget.adapter.HomeListFragmentPagerAdapter
+import com.example.YUmarket.widget.adapter.ListFragmentPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment
     : BaseFragment<FragmentHomeBinding>() {
 
-    private lateinit var viewPagerAdapter: HomeListFragmentPagerAdapter
+    private lateinit var viewPagerAdapter: ListFragmentPagerAdapter
 
     private val activityViewModel by sharedViewModel<MainViewModel>()
 
@@ -54,7 +54,7 @@ class HomeFragment
 //                RestaurantListFragment.newInstance(it, locationLatLng)
                 HomeListFragment.newInstance(it)
             }
-            viewPagerAdapter = HomeListFragmentPagerAdapter(
+            viewPagerAdapter = ListFragmentPagerAdapter(
                 this@HomeFragment,
                 homeListFragmentList,
 //                locationLatLng
