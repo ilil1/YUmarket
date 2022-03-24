@@ -50,7 +50,7 @@ class NearbyMarketViewHolder(
                 nearByMarketState.setChipBackgroundColorResource(R.color.yellow)
             }
 
-            nearbyMarketDistance.text = String.format("%.1fkm", model.distance)
+            nearbyMarketDistance.text = resourcesProvider.getString(R.string.distance_format, model.distance)
             nearbyMarketWorkDay.text = "연중무휴연중무휴연중무휴" // TODO remove hard coded
             
             // Extension을 사용하여 Glide로 ImageView에 이미지 로드
