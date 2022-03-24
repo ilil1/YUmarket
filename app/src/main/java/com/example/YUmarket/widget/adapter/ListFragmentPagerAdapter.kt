@@ -1,12 +1,13 @@
 package com.example.YUmarket.widget.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.YUmarket.screen.home.homelist.HomeListFragment
+import com.example.YUmarket.screen.base.BaseFragment
 
-class HomeListFragmentPagerAdapter(
+class ListFragmentPagerAdapter(
     fragment: Fragment,
-    private val fragmentList: List<HomeListFragment>,
+    private val fragmentList: List<BaseFragment<*>>,
     // TODO latlngEntity
 ) : FragmentStateAdapter(fragment) {
     override fun getItemCount() = fragmentList.size
