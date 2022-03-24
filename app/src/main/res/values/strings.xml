@@ -29,4 +29,11 @@
     <string name="show_more">더보기 ></string>
     <string name="no_address_info_found">주소 정보 없음</string>
 
+    <string name="like_market">찜한 마켓</string>
+    <string name="like_item">찜한 상품</string>
+
+    <string name="distance_format">%1$.1fkm</string>
+    <string name="like_item_market_and_distance_format">%1$s | %2$.1fkm</string>
+    <string name="discount_percent_format">%1$d%%</string>
+    <string name="price_format">%1$,d원</string>
 </resources>
