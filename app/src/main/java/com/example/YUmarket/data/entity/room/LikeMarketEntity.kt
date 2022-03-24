@@ -9,5 +9,6 @@ data class LikeMarketEntity(
     val id: Long,
     val marketName: String,
     val distance: Float,
-    val isOpen: Boolean
+    val isOpen: Boolean,
+    val imageUrl: String
 )
