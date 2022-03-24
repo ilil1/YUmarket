@@ -11,7 +11,9 @@ package com.example.YUmarket.screen.myinfo.customerservice
 
 import android.os.Bundle
 import androidx.core.view.get
+import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.YUmarket.R
@@ -33,13 +35,14 @@ import org.koin.core.parameter.parametersOf
 
 class CSFragment : BaseFragment<FragmentCsBinding>() {
 
-    private lateinit var viewAdapter : HomeListFragmentPagerAdapter
+    //private lateinit var viewAdapter : HomeListFragmentPagerAdapter
 
 
 
-//    private val viewModel by viewModel<CSListViewModel> {
-//        parametersOf(csCategory)
-//    }
+    private val viewModel by viewModel<CSListViewModel> {
+        parametersOf(args.csCategory)
+    }
+
 //    private val csCategory by lazy {
 //        arguments?.getSerializable(CS_CATEGORY_KEY) as CSCategory
 //    }
@@ -47,63 +50,66 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
 
-    override fun observeData() {
+    override fun observeData() = with(viewModel) {
+        csListData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
-//    private val resourcesProvider by inject<ResoucesProvider>()
-//
-//    private val adapter by lazy {
-//        ModelRecyclerAdapter<CSModel, CSListViewModel>(
-//            listOf(), viewModel, resourcesProvider,
-//            object : CSModelListener {
-//                override fun onClickItem(listModel: CSModel) {
-//                    val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
-//                    val bundle = Bundle()
-//                    bundle.putParcelable("data", data)
-//                    view?.let { it1 ->
-//                        Navigation.findNavController(it1)
-//                            .navigate(R.id.action_CSFragment_to_CSDetailFragment, bundle)
-//                    }
-//
-//
-////                        val intent = Intent(context, CSDetailFragment::class.java).apply {
-////                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
-////                            putExtra(CS_CATEGORY_KEY,data)
-////                            putExtra("CSTitle", listModel.csTitle)
-////                            putExtra("CSContent", listModel.csContent)
-////                            putExtra("CSAuthor", listModel.csAuthor)
-////                            putExtra("CSid", listModel.id)
-//                    //                       }
-////                        startActivity(intent)
-//                }
-//            }
-//        )
-//
-//    }
+    private val args by navArgs<CSFragmentArgs>()
+
+    private val resourcesProvider by inject<ResoucesProvider>()
+
+    private val adapter by lazy {
+        ModelRecyclerAdapter<CSModel, CSListViewModel>(
+            listOf(), viewModel, resourcesProvider,
+            object : CSModelListener {
+                override fun onClickItem(listModel: CSModel) {
+                    val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
+                    val bundle = Bundle()
+                    bundle.putParcelable("data", data)
+                    view?.let { it1 ->
+                        Navigation.findNavController(it1)
+                            .navigate(R.id.action_CSFragment_to_CSDetailFragment, bundle)
+                    }
+
+
+//                        val intent = Intent(context, CSDetailFragment::class.java).apply {
+//                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
+//                            putExtra(CS_CATEGORY_KEY,data)
+//                            putExtra("CSTitle", listModel.csTitle)
+//                            putExtra("CSContent", listModel.csContent)
+//                            putExtra("CSAuthor", listModel.csAuthor)
+//                            putExtra("CSid", listModel.id)
+                    //                       }
+//                        startActivity(intent)
+                }
+            }
+        )
+
+    }
     override fun initViews() = with(binding) {
         super.initViews()
-//        viewModel.fetchData()
+        viewModel.fetchData()
 
 
-//        csTRecyclerView.adapter = adapter
-//        csTRecyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
+        csRecyclerView.adapter = adapter
+        csRecyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
         CSTextView.text = "고객센터"
 
-
-
-        if (::viewAdapter.isInitialized.not()) {
-            val csCategory = CSCategory.values()
-
-            val CSListfragmnet = csCategory.map {
-                CSListFragment.newInstance(it)
-            }
-
-            viewPagerCs.adapter = HomeListFragmentPagerAdapter(
-                this@CSFragment,
-                CSListfragmnet
-            )
-        }
-        viewPagerCs.offscreenPageLimit = 1
+//        if (::viewAdapter.isInitialized.not()) {
+//            val csCategory = CSCategory.values()
+//
+//            val CSListfragmnet = csCategory.map {
+//                CSListFragment.newInstance(it)
+//            }
+//
+//            viewPagerCs.adapter = HomeListFragmentPagerAdapter(
+//                this@CSFragment,
+//                CSListfragmnet
+//            )
+//        }
+//        viewPagerCs.offscreenPageLimit = 1
 
 
 
@@ -153,20 +159,10 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
         view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
+
     }
 
-    companion object {
-        const val CS_CATEGORY_KEY = "CSCategoryKey"
-        fun newInstance(csCategory: CSCategory): CSFragment {
-            val bundle = Bundle().apply {
-                putSerializable(CS_CATEGORY_KEY, csCategory)
-            }
 
-            return CSFragment().apply {
-                arguments = bundle
-            }
-        }
-    }
 }
 
 

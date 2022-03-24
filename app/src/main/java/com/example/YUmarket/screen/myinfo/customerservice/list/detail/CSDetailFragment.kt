@@ -21,7 +21,6 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
         super.initViews()
 
         val csData = arguments?.getParcelable<ImageData>("data")
-
         title.text = csData?.csTitle.toString()
         author.text = csData?.csAuthor.toString()
         content.text = csData?.csContent.toString()
@@ -29,7 +28,6 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
         uturn.setOnClickListener {
             changeFragment()
             backStack()
-
 
         }
 

@@ -36,7 +36,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
         binding.questionCenter.setOnClickListener {
             view?.let { it1 ->
                 Navigation.findNavController(it1)
-                    .navigate(R.id.action_CSCenterFragment_to_CSFragment)
+                    .navigate(CSCenterFragmentDirections.actionCSCenterFragmentToCSFragment())
             }
         }
 

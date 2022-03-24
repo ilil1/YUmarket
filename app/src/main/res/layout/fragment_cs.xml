@@ -12,31 +12,22 @@
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
         android:src="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="@id/CSTextView"
+        app:layout_constraintBottom_toTopOf="@id/filterScrollView_cs"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/CSTextView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginLeft="40dp"
+
         android:layout_marginTop="16dp"
         android:textColor="@color/color_dark_000000_ffffff"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/csback"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="고객센터" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/cs_finder"
-        android:layout_width="50dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/finder_icon"
-        app:layout_constraintEnd_toStartOf="@id/intentmyinfo"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/intentmyinfo"
@@ -57,11 +48,70 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CSTextView">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CSChipGroup"
+            android:paddingHorizontal="12dp"
+            android:visibility="gone"
+            app:checkedChip="@+id/chipLogin"
+            app:chipSpacingHorizontal="4dp"
+            app:chipSpacingVertical="6dp"
+            app:layout_constraintBottom_toTopOf="@id/viewPager_cs"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:visibility="gone"
+                app:chipIconEnabled="true"
+                tools:visibility="visible" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Use"
+                app:chipIconEnabled="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay"
+                app:chipIconEnabled="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Review"
+                app:chipIconEnabled="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order"
+                app:chipIconEnabled="true"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEtc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ETC"
+                app:chipIconEnabled="true" />
+
+        </com.google.android.material.chip.ChipGroup>
 
 
     </HorizontalScrollView>
@@ -76,13 +126,13 @@
         app:layout_constraintTop_toBottomOf="@id/filterScrollView_cs" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/csTRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/csRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterScrollView_cs"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +141,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editBtn"
