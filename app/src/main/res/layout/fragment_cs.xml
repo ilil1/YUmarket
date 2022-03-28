@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,6 +13,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
         android:src="@drawable/left"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/filterScrollView_cs"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -19,8 +21,7 @@
         android:id="@+id/CSTextView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/color_dark_000000_ffffff"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -41,6 +42,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/color_dark_000000_ffffff" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CSTextView"
+        app:tabGravity="fill"
+        app:tabIndicatorFullWidth="false"
+        app:tabMaxWidth="0dp"
+        app:tabMode="auto" />
 
     <HorizontalScrollView
         android:id="@+id/filterScrollView_cs"
@@ -71,7 +82,7 @@
                 android:id="@+id/chipLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="로그인"
                 android:visibility="gone"
                 app:chipIconEnabled="true"
                 tools:visibility="visible" />
@@ -80,35 +91,35 @@
                 android:id="@+id/chipUse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Use"
+                android:text="이용"
                 app:chipIconEnabled="true" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pay"
+                android:text="결제"
                 app:chipIconEnabled="true" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Review"
+                android:text="리뷰"
                 app:chipIconEnabled="true" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order"
+                android:text="주문"
                 app:chipIconEnabled="true"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipEtc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ETC"
+                android:text="기타"
                 app:chipIconEnabled="true" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -123,16 +134,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterScrollView_cs" />
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/csRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/csRecyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

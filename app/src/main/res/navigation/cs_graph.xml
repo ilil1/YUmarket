@@ -98,10 +98,6 @@
         <action
             android:id="@+id/action_CSFragment_to_CSDetailFragment"
             app:destination="@id/CSDetailFragment" />
-        <argument
-            android:name="csCategory"
-            app:argType="com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory"
-            android:defaultValue="TOTAL" />
     </fragment>
     <fragment
         android:id="@+id/emailFragment"

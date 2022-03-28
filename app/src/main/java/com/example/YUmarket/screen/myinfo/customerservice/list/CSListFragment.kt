@@ -10,7 +10,6 @@ import com.example.YUmarket.databinding.FragmentCsListBinding
 import com.example.YUmarket.model.customerservicelist.CSModel
 import com.example.YUmarket.model.customerservicelist.ImageData
 import com.example.YUmarket.screen.base.BaseFragment
-import com.example.YUmarket.screen.myinfo.customerservice.CSFragmentArgs
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.customerservice.CSModelListener
 import org.koin.android.ext.android.inject
@@ -29,12 +28,19 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
 
 
-
-    private val viewModel by viewModel<CSListViewModel> {
-        parametersOf(args.csCategory)
+        private val viewModel by viewModel<CSListViewModel> {
+        parametersOf(csCategory)
+    }
+    private val csCategory by lazy {
+        arguments?.getSerializable(CS_CATEGORY_KEY) as CSCategory
     }
 
-    private val args by navArgs<CSFragmentArgs>()
+
+//    private val viewModel by viewModel<CSListViewModel> {
+//       // parametersOf(args.csCategory)
+//    }
+//
+//   // private val args by navArgs<CSFragmentArgs>()
 
     override fun getViewBinding(): FragmentCsListBinding =
         FragmentCsListBinding.inflate(layoutInflater)

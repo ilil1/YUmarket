@@ -11,6 +11,7 @@ package com.example.YUmarket.screen.myinfo.customerservice
 
 import android.os.Bundle
 import androidx.core.view.get
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -27,7 +28,9 @@ import com.example.YUmarket.util.provider.ResoucesProvider
 import com.example.YUmarket.widget.adapter.HomeListFragmentPagerAdapter
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.customerservice.CSModelListener
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -36,12 +39,14 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     private lateinit var viewAdapter : HomeListFragmentPagerAdapter
 
-
+    private val activityViewModel by sharedViewModel<CSListViewModel>()
 
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
 
-    override fun observeData()  {}
+    override fun observeData() {
+
+    }
 
 
     override fun initViews() = with(binding) {
@@ -56,12 +61,20 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
                 CSListFragment.newInstance(it)
             }
 
-            viewPagerCs.adapter = HomeListFragmentPagerAdapter(
+            viewAdapter = HomeListFragmentPagerAdapter(
                 this@CSFragment,
                 CSListfragmnet
             )
+            viewPagerCs.adapter = viewAdapter
+            viewPagerCs.offscreenPageLimit = csCategory.size
+
+            TabLayoutMediator(tabLayout,viewPagerCs){
+                tab, position -> tab.setText(csCategory[position].categoryNameId)
+            }.attach()
+
+
         }
-        viewPagerCs.offscreenPageLimit = 1
+
 
 
 

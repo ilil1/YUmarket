@@ -28,6 +28,10 @@ class CSListViewModel(
 
     override fun fetchData(): Job = viewModelScope.launch {
         _csListData.value =
-            csRepository.findCsByCategory(CSCategory.TOTAL)
+            csRepository.findCsByCategory(CSCategory.LOGIN)
+        csRepository.findCsByCategory(CSCategory.REVIEW)
+        csRepository.findCsByCategory(CSCategory.ORDER)
+        csRepository.findCsByCategory(CSCategory.USE)
+        csRepository.findCsByCategory(CSCategory.ETC)
     }
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentCsCenterBinding
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.screen.myinfo.Method
+import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 
 /**
  * @author HeeTae Heo(main),
@@ -32,6 +34,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
+
 
         binding.questionCenter.setOnClickListener {
             view?.let { it1 ->
