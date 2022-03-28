@@ -32,7 +32,7 @@ val appModule = module {
 
 
     factory { (csCategory: CSCategory) ->
-        CSListViewModel(get())
+        CSListViewModel(csCategory,get())
     }
 
     //CSDetailViewModel 선언 매개변수 하나 get()

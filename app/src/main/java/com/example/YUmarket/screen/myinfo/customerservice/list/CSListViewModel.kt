@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
  */
 
 class CSListViewModel(
+    private val csCategory: CSCategory,
     private val csRepository: CSRepository
 ) : BaseViewModel() {
     private val _csListData = MutableLiveData<List<CSModel>>()
@@ -27,11 +28,14 @@ class CSListViewModel(
 
 
     override fun fetchData(): Job = viewModelScope.launch {
-        _csListData.value =
-            csRepository.findCsByCategory(CSCategory.LOGIN)
-        csRepository.findCsByCategory(CSCategory.REVIEW)
-        csRepository.findCsByCategory(CSCategory.ORDER)
-        csRepository.findCsByCategory(CSCategory.USE)
-        csRepository.findCsByCategory(CSCategory.ETC)
+        _csListData.value = when (csCategory) {
+            CSCategory.LOGIN -> csRepository.findCsByCategory(CSCategory.LOGIN)
+            CSCategory.REVIEW -> csRepository.findCsByCategory(CSCategory.REVIEW)
+            CSCategory.ORDER -> csRepository.findCsByCategory(CSCategory.ORDER)
+            CSCategory.USE -> csRepository.findCsByCategory(CSCategory.USE)
+            CSCategory.ETC -> csRepository.findCsByCategory(CSCategory.ETC)
+        }
     }
+
+
 }

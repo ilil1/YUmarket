@@ -27,8 +27,7 @@ import org.koin.core.parameter.parametersOf
 class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
 
-
-        private val viewModel by viewModel<CSListViewModel> {
+    private val viewModel by viewModel<CSListViewModel> {
         parametersOf(csCategory)
     }
     private val csCategory by lazy {
@@ -68,6 +67,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
                     }
 
 
+
 //                        val intent = Intent(context, CSDetailFragment::class.java).apply {
 //                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
 //                            putExtra(CS_CATEGORY_KEY,data)
@@ -83,9 +83,14 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 
     }
 
-    override fun initViews() = with(viewModel) {
-        super.initViews()
+    override fun initState() = with(viewModel) {
         fetchData()
+        super.initState()
+    }
+
+    override fun initViews() = with(viewModel) {
+
+        super.initViews()
         binding.csRecyclerView.adapter = adapter
         binding.csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
 
@@ -106,6 +111,9 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
     }
 
     override fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 }
 

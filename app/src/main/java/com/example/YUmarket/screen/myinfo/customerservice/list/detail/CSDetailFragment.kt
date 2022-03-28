@@ -19,7 +19,6 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-
         val csData = arguments?.getParcelable<ImageData>("data")
         title.text = csData?.csTitle.toString()
         author.text = csData?.csAuthor.toString()

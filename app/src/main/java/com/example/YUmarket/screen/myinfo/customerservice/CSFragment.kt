@@ -41,19 +41,15 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     private val activityViewModel by sharedViewModel<CSListViewModel>()
 
+
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
 
-    override fun observeData() {
-
-    }
+    override fun observeData() {}
 
 
-    override fun initViews() = with(binding) {
-        super.initViews()
 
-        CSTextView.text = "고객센터"
-
+    private fun initviewPager() = with(binding){
         if (::viewAdapter.isInitialized.not()) {
             val csCategory = CSCategory.values()
 
@@ -69,15 +65,17 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
             viewPagerCs.offscreenPageLimit = csCategory.size
 
             TabLayoutMediator(tabLayout,viewPagerCs){
-                tab, position -> tab.setText(csCategory[position].categoryNameId)
+                    tab, position -> tab.setText(csCategory[position].categoryNameId)
             }.attach()
 
 
         }
+    }
+    override fun initViews() = with(binding) {
+        super.initViews()
 
-
-
-
+        CSTextView.text = "고객센터"
+        initviewPager()
         intentmyinfo.setOnClickListener {
             intentMyinfo()
             doubleBackStack()
@@ -88,8 +86,6 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
                 Navigation.findNavController(it1)
                     .navigate(R.id.action_CSFragment_to_emailFragment)
             }
-
-
         }
         csback.setOnClickListener {
             backMove()
