@@ -59,13 +59,13 @@ object ViewHolderMapper {
 
 
             CellType.LIKE_MARKET_CELL -> LikeMarketViewHolder(
-                ViewholderLikeMarketListBinding.inflate(inflater),
+                ViewholderLikeMarketListBinding.inflate(inflater, parent, false),
                 viewModel as LikeListViewModel<LikeMarketModel>,
                 resourcesProvider
             )
 
             CellType.LIKE_ITEM_CELL -> LikeItemViewHolder(
-                ViewholderLikeItemListBinding.inflate(inflater),
+                ViewholderLikeItemListBinding.inflate(inflater, parent, false),
                 viewModel as LikeListViewModel<LikeItemModel>,
                 resourcesProvider
             )
