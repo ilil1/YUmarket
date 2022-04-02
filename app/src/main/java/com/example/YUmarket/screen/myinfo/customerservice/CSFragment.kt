@@ -48,7 +48,6 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
     override fun observeData() {}
 
 
-
     private fun initviewPager() = with(binding){
         if (::viewAdapter.isInitialized.not()) {
             val csCategory = CSCategory.values()
@@ -76,6 +75,7 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
         CSTextView.text = "고객센터"
         initviewPager()
+
         intentmyinfo.setOnClickListener {
             intentMyinfo()
             doubleBackStack()
@@ -89,7 +89,9 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
         }
         csback.setOnClickListener {
             backMove()
+            backStack()
         }
+
     }
 
     private fun intentMyinfo() {

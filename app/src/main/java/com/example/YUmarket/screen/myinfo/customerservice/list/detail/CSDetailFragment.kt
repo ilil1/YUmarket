@@ -45,6 +45,9 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
         view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
     }
 
 
