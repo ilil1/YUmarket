@@ -41,6 +41,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
                 Navigation.findNavController(it1)
                     .navigate(CSCenterFragmentDirections.actionCSCenterFragmentToCSFragment())
             }
+
         }
 
         binding.centerNumber.setOnClickListener {

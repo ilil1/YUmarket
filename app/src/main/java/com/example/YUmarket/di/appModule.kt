@@ -11,6 +11,7 @@ import com.example.YUmarket.screen.home.homelist.HomeCategory
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.like.LikeViewModel
 import com.example.YUmarket.screen.map.MapViewModel
+import com.example.YUmarket.screen.myinfo.customerservice.CSFragment
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
@@ -31,16 +32,16 @@ val appModule = module {
     *   csCategory factory                     */
 
 
+
     factory { (csCategory: CSCategory) ->
         CSListViewModel(csCategory,get())
     }
 
-    //CSDetailViewModel 선언 매개변수 하나 get()
+
 
 
     viewModel { MainViewModel(get(),get()) }
     viewModel { OrderListViewModel() }
-
     viewModel { LikeViewModel() }
     viewModel { MapViewModel() }
 
@@ -61,7 +62,7 @@ val appModule = module {
 
 
     single { Dispatchers.IO }
-
+    single { Dispatchers.Main }
 
 
 

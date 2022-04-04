@@ -12,6 +12,7 @@ import com.example.YUmarket.model.customerservicelist.ImageData
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.customerservice.CSModelListener
+import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -61,13 +62,13 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
                     val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
                     val bundle = Bundle()
                     bundle.putParcelable("data", data)
+                    view?.let{
+                        backStack()
+                    }
                     view?.let { it1 ->
                         Navigation.findNavController(it1)
-                            .navigate(R.id.action_CSFragment_to_CSDetailFragment, bundle)
+                            .navigate(R.id.action_CSCenterFragment_to_CSDetailFragment, bundle)
                     }
-
-
-
 //                        val intent = Intent(context, CSDetailFragment::class.java).apply {
 //                           val data = ImageData(listModel.csTitle,listModel.csContent,listModel.csAuthor)
 //                            putExtra(CS_CATEGORY_KEY,data)
@@ -79,6 +80,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
 //                        startActivity(intent)
                 }
             }
+
         )
 
     }
@@ -93,6 +95,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
         super.initViews()
         binding.csRecyclerView.adapter = adapter
         binding.csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
+
 
 
     }

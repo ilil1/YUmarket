@@ -14,8 +14,6 @@ import androidx.core.view.get
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentCsBinding
 import com.example.YUmarket.model.customerservicelist.ImageData
@@ -23,6 +21,7 @@ import com.example.YUmarket.model.customerservicelist.CSModel
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment
+import com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment.Companion.CS_CATEGORY_KEY
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.YUmarket.util.provider.ResoucesProvider
 import com.example.YUmarket.widget.adapter.HomeListFragmentPagerAdapter
@@ -41,11 +40,16 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     private val activityViewModel by sharedViewModel<CSListViewModel>()
 
+   // private val args by navArgs<CSFragmentArgs>()
 
+    private val viewModel by viewModel<CSListViewModel>()
+
+    private var csCategory = CSCategory.LOGIN
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
 
-    override fun observeData() {}
+    override fun observeData(){}
+
 
 
     private fun initviewPager() = with(binding){
@@ -61,6 +65,7 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
                 CSListfragmnet
             )
             viewPagerCs.adapter = viewAdapter
+
             viewPagerCs.offscreenPageLimit = csCategory.size
 
             TabLayoutMediator(tabLayout,viewPagerCs){

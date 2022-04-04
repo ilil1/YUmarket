@@ -51,6 +51,9 @@
             app:popUpToInclusive="true"
             android:id="@+id/action_CSCenterFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
+        <action
+            android:id="@+id/action_CSCenterFragment_to_CSDetailFragment"
+            app:destination="@id/CSDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
