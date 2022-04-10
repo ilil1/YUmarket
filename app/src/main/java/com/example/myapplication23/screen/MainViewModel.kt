@@ -5,14 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication23.R
 import com.example.myapplication23.data.entity.location.LocationLatLngEntity
 import com.example.myapplication23.data.entity.location.MapSearchInfoEntity
-import com.example.myapplication23.data.repository.map.MapRepository
+import com.example.myapplication23.data.repository.map.MapApiRepository
 import com.example.myapplication23.screen.base.BaseViewModel
 import com.example.myapplication23.util.LocationData
 import com.example.myapplication23.util.LocationState
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val mapRepository: MapRepository
+    private val mapApiRepository: MapApiRepository
 ) : BaseViewModel() {
 
     val mainStateLiveData = MutableLiveData<MainState>(MainState.Uninitialized)
@@ -32,7 +32,7 @@ class MainViewModel(
 
         val currentLocation = locationLatLngEntity
 
-        val addressInfo = mapRepository.getReverseGeoInformation(locationLatLngEntity)
+        val addressInfo = mapApiRepository.getReverseGeoInformation(locationLatLngEntity)
 
         addressInfo?.let { addressInfo ->
             val mapSearchInfoEntityResult = MapSearchInfoEntity(

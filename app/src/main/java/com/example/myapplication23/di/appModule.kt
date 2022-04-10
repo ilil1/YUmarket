@@ -2,8 +2,8 @@ package com.example.myapplication23.di
 
 import aop.fastcampus.part6.chapter01.screen.mylocation.MyLocationViewModel
 import com.example.myapplication23.data.entity.location.MapSearchInfoEntity
-import com.example.myapplication23.data.repository.map.DefaultMapRepository
-import com.example.myapplication23.data.repository.map.MapRepository
+import com.example.myapplication23.data.repository.map.DefaultMapApiRepository
+import com.example.myapplication23.data.repository.map.MapApiRepository
 import com.example.myapplication23.data.repository.restaurant.DefaultRestaurantRepository
 import com.example.myapplication23.data.repository.restaurant.RestaurantRepository
 import com.example.myapplication23.screen.MainViewModel
@@ -46,7 +46,7 @@ val appModule = module {
     single(named("map")) { provideMapRetrofit(get(), get()) }
     single { provideMapApiService(get(qualifier = named("map"))) }
 
-    single<MapRepository> { DefaultMapRepository(get(), get()) }
+    single<MapApiRepository> { DefaultMapApiRepository(get(), get()) }
     single<ResourcesProvider> { DefaultResourcesProvider(androidContext()) }
 
     single { Dispatchers.IO }
