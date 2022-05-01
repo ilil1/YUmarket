@@ -17,7 +17,7 @@ class RestaurantViewHolder(
 
     override fun bindData(listModel: HomeItemModel) {
         super.bindData(listModel)
-        binding.restaurantTitle.text = listModel.title
+      //  binding.restaurantTitle.text = listModel.title
     }
 
     override fun bindViews(listModel: HomeItemModel, listener: AdapterListener) {

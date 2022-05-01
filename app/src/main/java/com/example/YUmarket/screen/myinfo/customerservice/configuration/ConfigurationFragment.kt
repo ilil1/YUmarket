@@ -44,7 +44,7 @@ class ConfigurationFragment : BaseFragment<FragmentConfigurationBinding>() {
         binding.configurationLeft.setOnClickListener { backMove() }
     }
 
-    override fun backStack() {
+    private fun backStack() {
         view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }

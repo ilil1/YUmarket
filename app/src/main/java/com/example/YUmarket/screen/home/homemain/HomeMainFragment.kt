@@ -1,0 +1,231 @@
+package com.example.YUmarket.screen.home.homemain
+
+
+import com.example.YUmarket.util.provider.ResoucesProvider
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.YUmarket.R
+import com.example.YUmarket.databinding.FragmentHomeMainBinding
+import com.example.YUmarket.model.homelist.HomeItemModel
+import com.example.YUmarket.model.homelist.TownMarketModel
+import com.example.YUmarket.model.homelist.category.HomeListCategory
+import com.example.YUmarket.screen.MainState
+import com.example.YUmarket.screen.MainViewModel
+import com.example.YUmarket.screen.base.BaseFragment
+import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
+import com.example.YUmarket.widget.adapter.listener.home.HomeItemListener
+import com.example.YUmarket.widget.adapter.listener.home.TownMarketListener
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
+
+
+class HomeMainFragment
+    : BaseFragment<FragmentHomeMainBinding>(),
+    AdapterView.OnItemSelectedListener {
+
+    private val viewModel by viewModel<HomeMainViewModel>()
+    private val activityViewModel by sharedViewModel<MainViewModel>()
+
+    private val resourcesProvider by inject<ResoucesProvider>()
+
+    override fun getViewBinding(): FragmentHomeMainBinding =
+        FragmentHomeMainBinding.inflate(layoutInflater)
+
+    // Spinner에 사용될 HomeListCategory List
+    // drop(1)을 하여 동네마켓 항목은 제외
+    private val categories = HomeListCategory.values().drop(1)
+
+    override fun observeData() = with(viewModel) {
+        // marketData가 변경되면 update
+        marketData.observe(viewLifecycleOwner) {
+            when (it) {
+                // TODO 22.01.19 add more state handle logics
+
+                is HomeMainState.Uninitialized -> {
+
+                }
+
+                is HomeMainState.Loading -> {
+
+                }
+
+                is HomeMainState.Success<*> -> {
+                    nearbyMarketAdapter.submitList(it.modelList)
+                }
+
+                is HomeMainState.Error -> {
+                    Toast.makeText(
+                        context,
+                        R.string.cannot_load_data,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                else -> Unit
+            }
+        }
+
+        itemData.observe(viewLifecycleOwner) {
+            when (it) {
+                // TODO 22.01.25 add more state handle logics
+                is HomeMainState.Uninitialized -> {
+
+                }
+
+                is HomeMainState.Loading -> {
+
+                }
+
+                is HomeMainState.ListLoaded -> with(binding.newSaleItemSpinner) {
+                    viewModel.setItemFilter(categories[selectedItemPosition])
+                }
+
+                is HomeMainState.Success<*> -> {
+                    newSaleItemsAdapter.submitList(it.modelList)
+                }
+
+                is HomeMainState.Error -> {
+                    Toast.makeText(
+                        context,
+                        R.string.cannot_load_data,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        // 위치 정보를 불러오고 fetchData
+        activityViewModel.locationData.observe(viewLifecycleOwner) {
+            // get list after get location
+            if (it is MainState.Success) {
+                viewModel.fetchData()
+            }
+        }
+    }
+
+    private val nearbyMarketAdapter by lazy {
+        ModelRecyclerAdapter<TownMarketModel, HomeMainViewModel>(
+            listOf(),
+            viewModel,
+            resourcesProvider,
+            object : TownMarketListener {
+                // RecyclerView의 Item을 클릭할때
+                override fun onClickItem(model: TownMarketModel) {
+                    // TODO 22.01.18 start detail market activity when clicked
+                    Toast.makeText(context, model.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+
+    private val newSaleItemsAdapter by lazy {
+        ModelRecyclerAdapter<HomeItemModel, HomeMainViewModel>(
+            listOf(),
+            viewModel,
+            resourcesProvider,
+            object : HomeItemListener {
+                override fun onClickItem(model: HomeItemModel) {
+                    // TODO 22.01.25 start detail market activity when clicked
+                    Toast.makeText(context, model.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+
+    override fun initViews() {
+
+        super.initViews()
+
+        // Spinner의 Adapter에 사용할 List
+        // 마켓의 업종을 나타내는 String
+        val adapterList = categories.map {
+            getString(it.categoryNameId)
+        }
+
+        with(binding) {
+            // 새로운 할인상품에 사용할 Spinner의 Adapter 설정
+            newSaleItemSpinner.adapter = ArrayAdapter(
+                requireContext(),
+                R.layout.support_simple_spinner_dropdown_item,
+                adapterList
+            )
+
+            // 현재 Fragment가 AdapterView.OnItemSelectedListener를 상속받아
+            // Item이 선택됐을때 무엇을 할지 정의함
+            newSaleItemSpinner.onItemSelectedListener = this@HomeMainFragment
+
+            // 근처 마켓 RecyclerView 설정
+            nearbyMarketRecyclerView.adapter = nearbyMarketAdapter
+
+            // 한줄에 2개씩 띄우도록 설정(spanCount)
+            nearbyMarketRecyclerView.layoutManager = GridLayoutManager(
+                requireContext(),
+                2,
+                GridLayoutManager.VERTICAL,
+                false
+            )
+
+            // 더보기를 누르면 마켓을 List로 띄워주는 Fragment로 이동
+            showMoreTextView.setOnClickListener {
+                findNavController().navigate(
+                    HomeMainFragmentDirections.actionHomeMainFragmentToMap()
+                )
+
+            }
+
+            newSaleItemRecyclerView.adapter = newSaleItemsAdapter
+//            newSaleItemRecyclerView.addItemDecoration(
+//                DividerItemDecoration(
+//                    context, LinearLayoutManager.HORIZONTAL
+//                )
+//            )
+
+            setCategoryButtonListener()
+        }
+
+    }
+
+    /**
+     * 카테고리 버튼별 동작을 Navigation을 이용하여 설정
+     */
+    private fun setCategoryButtonListener() = with(binding) {
+        val navController = findNavController()
+        val buttonList = listOf(
+            foodCategoryListButton, martCategoryListButton, serviceCategoryListButton,
+            fashionCategoryListButton, accessoryCategoryListButton, etcCategoryListButton
+        )
+
+        categories.forEachIndexed { index, homeListCategory ->
+            buttonList[index].setOnClickListener {
+                navController.navigate(
+                    HomeMainFragmentDirections
+                        .actionHomeMainFragmentToHomeFragment(homeListCategory)
+                )
+            }
+        }
+    }
+
+    /**
+     * Spinner에서 Item을 선택할때 동작 설정
+     */
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
+        viewModel.setItemFilter(categories[position])
+
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    private fun backStack() {
+        view?.let { it1 ->
+            Navigation.findNavController(it1).popBackStack()
+        }
+
+    }
+}

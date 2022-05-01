@@ -19,5 +19,5 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
         }
     }
 
-    override fun backStack() {}
+
 }

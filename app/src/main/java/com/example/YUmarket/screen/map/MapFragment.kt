@@ -17,7 +17,5 @@ class MapFragment : BaseFragment<FragmentMapBinding>() {
         fun newInstance() = MapFragment()
     }
 
-    override fun backStack() {
 
-    }
 }

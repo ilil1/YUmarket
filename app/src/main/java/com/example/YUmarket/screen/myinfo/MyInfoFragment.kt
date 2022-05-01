@@ -153,7 +153,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
         }
     }
 
-    override fun backStack() {
+    private fun backStack() {
         activity?.finish()
     }
 

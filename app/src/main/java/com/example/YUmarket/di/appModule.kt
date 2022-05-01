@@ -6,12 +6,12 @@ import com.example.YUmarket.data.repository.myinfo.CSRepository
 import com.example.YUmarket.data.repository.myinfo.DefaultCSRepository
 import com.example.YUmarket.data.repository.restaurant.DefaultHomeRepository
 import com.example.YUmarket.data.repository.restaurant.HomeRepository
+import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.screen.MainViewModel
-import com.example.YUmarket.screen.home.homelist.HomeCategory
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
+import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.like.LikeViewModel
 import com.example.YUmarket.screen.map.MapViewModel
-import com.example.YUmarket.screen.myinfo.customerservice.CSFragment
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
@@ -25,8 +25,8 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    factory { (homeCategory: HomeCategory) ->
-        HomeListViewModel(homeCategory, get())
+    factory { (homeListCategory: HomeListCategory) ->
+        HomeListViewModel(homeListCategory, get())
     }
     /*  CSViewModel 추가  의존성 주입   factory추가
     *   csCategory factory                     */
@@ -39,9 +39,10 @@ val appModule = module {
 
 
 
-
+    viewModel {HomeMainViewModel(get())}
     viewModel { MainViewModel(get(),get()) }
     viewModel { OrderListViewModel() }
+
     viewModel { LikeViewModel() }
     viewModel { MapViewModel() }
 
@@ -49,7 +50,7 @@ val appModule = module {
     single<HomeRepository> { DefaultHomeRepository() }
 
     // mockList 의존성 주입
-    single<CSRepository>{DefaultCSRepository(get())}
+    single<CSRepository>{ DefaultCSRepository(get()) }
     single<ResoucesProvider>{ DefaultResourcesProvider(androidContext())}
 
     single { buildOkHttpClient() }
@@ -64,6 +65,10 @@ val appModule = module {
     single { Dispatchers.IO }
     single { Dispatchers.Main }
 
+    single { provideDB(androidContext()) }
+    single { provideBasketDao(get()) }
+    single { provideLikeItemDao(get()) }
+    single { provideLikeMarketDao(get()) }
 
 
 }

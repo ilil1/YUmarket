@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.YUmarket.databinding.FragmentHomeListBinding
+import com.example.YUmarket.model.Model
 import com.example.YUmarket.model.homelist.HomeItemModel
+import com.example.YUmarket.model.homelist.TownMarketModel
+import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
-import com.example.YUmarket.widget.adapter.listener.home.HomeListListener
+import com.example.YUmarket.widget.adapter.listener.home.HomeItemListener
+import com.example.YUmarket.widget.adapter.listener.home.TownMarketListener
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.android.ext.android.inject
@@ -18,25 +22,39 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
     override fun getViewBinding(): FragmentHomeListBinding =
         FragmentHomeListBinding.inflate(layoutInflater)
 
-    private val homeCategory: HomeCategory by lazy {
-        arguments?.getSerializable(HOME_CATEGORY_KEY) as HomeCategory
+    private val homeListCategory: HomeListCategory by lazy {
+        arguments?.getSerializable(HOME_LIST_CATEGORY_KEY) as HomeListCategory
     }
 
     private val viewModel by viewModel<HomeListViewModel> {
-        parametersOf(homeCategory)
+        parametersOf(homeListCategory)
     }
 
     private val resourcesProvider by inject<ResoucesProvider>()
 
     private val adapter by lazy {
-        ModelRecyclerAdapter<HomeItemModel, HomeListViewModel>(
-            listOf(),
-            viewModel,
-            resourcesProvider,
-            object: HomeListListener {
-                override fun onClickItem(Model: HomeItemModel) {
-                    // TODO change to detail activity
-                    showMessage(Model.toString())
+        ModelRecyclerAdapter<Model, HomeListViewModel>(
+            listOf(), viewModel, resourcesProvider,
+            adapterListener = when (homeListCategory) {
+                HomeListCategory.TOWN_MARKET -> {
+                    object : TownMarketListener {
+                        override fun onClickItem(model: TownMarketModel) = Unit
+                    }
+                }
+
+                else -> {
+                    object : HomeItemListener {
+                        override fun onClickItem(model: HomeItemModel) {
+                            // TODO startActivity
+                            when(homeListCategory) {
+                                HomeListCategory.FOOD -> Toast.makeText(requireContext(), "Food!", Toast.LENGTH_SHORT).show()
+                                HomeListCategory.MART -> Toast.makeText(requireContext(), "Mart!", Toast.LENGTH_SHORT).show()
+                                HomeListCategory.SERVICE -> Toast.makeText(requireContext(), "Service!", Toast.LENGTH_SHORT).show()
+                                HomeListCategory.FASHION-> Toast.makeText(requireContext(), "Fashion!", Toast.LENGTH_SHORT).show()
+                                HomeListCategory.ACCESSORY -> Toast.makeText(requireContext(), "Accessory!", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 }
             }
         )
@@ -56,17 +74,17 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
 
 
     override fun observeData() = with(viewModel) {
-        homeListData.observe(viewLifecycleOwner) {
+        homeListLiveData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }
 
     companion object {
-        const val HOME_CATEGORY_KEY = "HomeCategoryKey"
+        const val HOME_LIST_CATEGORY_KEY = "HomeListCategorykey"
 
-        fun newInstance(homeCategory: HomeCategory) : HomeListFragment {
+        fun newInstance(homeListCategory: HomeListCategory) : HomeListFragment {
             val bundle = Bundle().apply {
-                putSerializable(HOME_CATEGORY_KEY, homeCategory)
+                putSerializable(HOME_LIST_CATEGORY_KEY, homeListCategory)
             }
 
             return HomeListFragment().apply {
@@ -75,6 +93,4 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
         }
     }
 
-    override fun backStack() {
-    }
 }

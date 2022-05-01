@@ -10,6 +10,10 @@ import com.example.YUmarket.screen.base.BaseViewModel
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 
 import com.example.YUmarket.widget.adapter.viewholder.cs.CSViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.home.HomeItemModelViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.home.TownMarketViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.homemain.NearbyMarketViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.homemain.NewSaleItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.restaurant.RestaurantViewHolder
 
 object ViewHolderMapper {
@@ -24,27 +28,32 @@ object ViewHolderMapper {
         val inflater = LayoutInflater.from(parent.context)
 
         return when (type) {
-            CellType.HOME_ITEM_CELL -> {
-                RestaurantViewHolder(
-                    ViewholderRestaurantBinding.inflate(inflater),
+            CellType.HOME_MAIN_MARKET_CELL -> {
+                NearbyMarketViewHolder(
+                    ViewholderNearbyMarketBinding.inflate(inflater),
                     viewModel,
                     resourcesProvider
+                )
+            }
 
+            CellType.HOME_MAIN_ITEM_CELL -> {
+                NewSaleItemViewHolder(
+                    ViewholderNewSaleItemBinding.inflate(inflater),
+                    viewModel, resourcesProvider
                 )
             }
 
             CellType.HOME_TOWN_MARKET_CELL -> {
-                RestaurantViewHolder(
-                    ViewholderRestaurantBinding.inflate(inflater),
+                TownMarketViewHolder(
+                    ViewholderTownMarketBinding.inflate(inflater),
                     viewModel,
                     resourcesProvider
-
-                    )
+                )
             }
 
-            CellType.HOME_CELL -> {
-                RestaurantViewHolder(
-                    ViewholderRestaurantBinding.inflate(inflater),
+            CellType.HOME_ITEM_CELL -> {
+                HomeItemModelViewHolder(
+                    ViewholderHomeItemBinding.inflate(inflater),
                     viewModel,
                     resourcesProvider
                 )
@@ -55,7 +64,7 @@ object ViewHolderMapper {
                     ViewholderCsItemBinding.inflate(inflater),
                     viewModel,
                     resourcesProvider
-                    )
+                )
             }
 
 

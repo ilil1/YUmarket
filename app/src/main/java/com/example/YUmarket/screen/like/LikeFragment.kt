@@ -18,7 +18,5 @@ class LikeFragment
         fun newInstance() = LikeFragment()
     }
 
-    override fun backStack() {
 
-    }
 }

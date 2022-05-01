@@ -15,11 +15,11 @@ enum class CSCategory(
     @StringRes val categoryNameId: Int,
     @StringRes val categoryTypeId: Int
 ) {
-    LOGIN(R.string.login, R.string.login_type),
-    USE(R.string.use, R.string.use_type),
-    ORDER(R.string.order, R.string.order_type),
-    REVIEW(R.string.review, R.string.review_type),
-    ETC(R.string.etc, R.string.etc_type)
+    LOGIN(R.string.cs_login, R.string.cs_login_type),
+    USE(R.string.cs_use, R.string.cs_use_type),
+    ORDER(R.string.cs_order, R.string.cs_order_type),
+    REVIEW(R.string.cs_review, R.string.cs_review_type),
+    ETC(R.string.cs_etc, R.string.cs_etc_type)
 
 
 }
