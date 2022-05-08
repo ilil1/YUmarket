@@ -6,19 +6,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
-import com.example.YUmarket.data.repository.map.MapRepository
+import com.example.YUmarket.data.repository.map.MapApiRepository
 import com.example.YUmarket.screen.base.BaseViewModel
 import com.example.YUmarket.util.provider.ResourcesProvider
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val mapRepository: MapRepository,
+    private val mapApiRepository: MapApiRepository,
     private val resourcesProvider: ResourcesProvider
 ) : BaseViewModel() {
-
-    //    val mainStateLiveData = MutableLiveData<MainState>(MainState.Uninitialized)
-
     private val _locationData = MutableLiveData<MainState>(MainState.Uninitialized)
     val locationData: LiveData<MainState> = _locationData
 
@@ -31,7 +27,7 @@ class MainViewModel(
 
         val currentLocation = locationLatLngEntity
 
-        val addressInfo = mapRepository.getReverseGeoInformation(locationLatLngEntity)
+        val addressInfo = mapApiRepository.getReverseGeoInformation(locationLatLngEntity)
 
         addressInfo?.let { addressInfoResult ->
             _locationData.value = MainState.Success(
