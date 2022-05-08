@@ -1,10 +1,7 @@
 package com.example.YUmarket.data.repository.map
 
-import com.example.YUmarket.data.entity.location.LocationLatLngEntity
-import com.example.YUmarket.data.response.address.AddressInfo
+import com.example.YUmarket.model.map.MapMarketModel
 
 interface MapRepository {
-    suspend fun getReverseGeoInformation(
-        locationLatLngEntity: LocationLatLngEntity
-    ): AddressInfo?
+    fun getMarkets(): List<MapMarketModel>
 }
