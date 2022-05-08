@@ -17,6 +17,7 @@ import com.example.YUmarket.widget.adapter.viewholder.homemain.NearbyMarketViewH
 import com.example.YUmarket.widget.adapter.viewholder.homemain.NewSaleItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.like.LikeItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.like.LikeMarketViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.map.MapViewPagerViewHolder
 
 object ViewHolderMapper {
     @Suppress("UNCHECKED_CAST")
@@ -64,9 +65,17 @@ object ViewHolderMapper {
                 resourcesProvider
             )
 
+
             CellType.LIKE_ITEM_CELL -> LikeItemViewHolder(
                 ViewholderLikeItemListBinding.inflate(inflater, parent, false),
                 viewModel as LikeListViewModel<LikeItemModel>,
+                resourcesProvider
+            )
+
+
+            CellType.MAP_ITEM_CELL -> MapViewPagerViewHolder(
+                ViewholderMapViewpagerBinding.inflate(inflater, parent, false),
+                viewModel,
                 resourcesProvider
             )
 
