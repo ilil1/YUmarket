@@ -270,12 +270,13 @@ class HomeMainFragment
 
         // Spinner의 Adapter에 사용할 List
         // 마켓의 업종을 나타내는 String
-        val adapterList = categories.map {
-            getString(it.categoryNameId)
-        }
+//        val adapterList = categories.map {
+//            getString(it.categoryNameId)
+//        }
 
         with(binding) {
 
+            searchView.isSubmitButtonEnabled = true
             // 광고 auto slide
 //            val adapter = ViewPagerAdapter()
 //            pager.adapter = adapter
@@ -283,15 +284,15 @@ class HomeMainFragment
 //            val thread = Thread(PagerRunnable())
 //            thread.start()
 
-//            val spannable = SpannableStringBuilder(binding.season.text)
-//            spannable.setSpan(
-//                StyleSpan(Typeface.BOLD),
-//                14,
-//                18,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//            )
+           val spannable = SpannableStringBuilder(popular.text)
+            spannable.setSpan(
+                StyleSpan(Typeface.BOLD),
+              10,
+                13,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
 
-
+            popular.text = spannable
             // 근처 마켓 RecyclerView 설정
             nearbyMarketRecyclerView.adapter = nearbyMarketAdapter
 
@@ -319,8 +320,8 @@ class HomeMainFragment
             // 한줄에 2개씩 띄우도록 설정(spanCount)
             nearbyMarketRecyclerView.layoutManager = GridLayoutManager(
                 requireContext(),
-                2,
-                GridLayoutManager.VERTICAL,
+                1,
+                GridLayoutManager.HORIZONTAL,
                 false
             )
 
@@ -366,3 +367,12 @@ class HomeMainFragment
 
     }
 }
+
+//검색 뒤로가기 할때 쓰임
+//override fun onBackPressed() {
+//    if (!home_search_searchView.isIconified) {
+//        home_search_searchView.isIconified = true
+//    } else {
+//        super.onBackPressed()
+//    }
+//}
