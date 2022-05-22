@@ -11,6 +11,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.location.LocationProvider
+import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -124,6 +125,11 @@ class MainActivity
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun initViews() = with(binding) {
 
@@ -131,7 +137,9 @@ class MainActivity
         // by 정남진
         bottomNav.setupWithNavController(navController)
 
+        binding.locationTitleTextView.setOnClickListener {
 
+        }
 
 
 //        locationTitleTextView.setOnClickListener {
