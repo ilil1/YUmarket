@@ -2,8 +2,10 @@ package com.example.YUmarket.screen
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ContentProviderClient
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ConfigurationInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -11,7 +13,12 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.location.LocationProvider
+import android.net.http.SslError
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.view.View
+import android.webkit.*
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -23,10 +30,16 @@ import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
+import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
     : BaseActivity<ActivityMainBinding>() {
+
+
+    private val handler = Handler()
+
 
     companion object {
         val locationPermissions = arrayOf(
@@ -131,16 +144,39 @@ class MainActivity
 
     }
 
+
+
+
     override fun initViews() = with(binding) {
 
         // 22.01.19 BottomNavigationView의 동작을 Controller를 이용하여 설정
         // by 정남진
         bottomNav.setupWithNavController(navController)
 
-        binding.locationTitleTextView.setOnClickListener {
+
+
+        wView.settings.apply {
+
+            javaScriptEnabled = true
+            javaScriptCanOpenWindowsAutomatically = true
+            setSupportMultipleWindows(true)
+
+        }
+        wView.apply {
+            webViewClient = client
+           addJavascriptInterface(AndroidBridge(), "TestApp")
 
         }
 
+      val url = "http://3.38.211.77/search.php"
+
+
+       //wView.loadUrl("https://www.naver.com")
+        wView.loadUrl(url)
+        locationTitleTextView.setOnClickListener {
+            Sliding()
+        }
+    }
 
 //        locationTitleTextView.setOnClickListener {
 //            viewModel.getMapSearchInfo()?.let { mapInfo ->
@@ -151,8 +187,26 @@ class MainActivity
 //                )
 //            }
 //        }
-    }
 
+
+    private val client: WebViewClient = object : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
+            return false
+        }
+
+        // TODO : 제거?
+        override fun onReceivedSslError(
+            view: WebView?,
+            handler: SslErrorHandler?,
+            error: SslError?
+        ) {
+            handler?.proceed()
+        }
+    }
 
     private fun getMyLocation() {
         if (::locationManager.isInitialized.not()) {
@@ -205,4 +259,36 @@ class MainActivity
             }
         }
     }
+
+    private fun Sliding() {
+        val slidePanel = binding.mainFrame
+
+        val state = slidePanel.panelState
+        if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+        } else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        }
+    }
+
+
+    private inner class AndroidBridge { // 웹에서 JavaScript로 android 함수를 호출할 수 있도록 도와줌
+        @JavascriptInterface
+        open fun setAddress(arg1: String?, arg2: String?, arg3: String?) { // search.php에서 호출되는 함수
+            handler.post {
+                setResult(
+                    Activity.RESULT_OK,
+//                    Intent().apply {
+//                        putExtra(
+//                          //  MainViewModel.MY_LOCATION_KEY,
+//                            String.format("%s %s", arg2, arg3),
+//                        )
+//                    },
+                )
+                finish()
+            }
+        }
+    }
+
+
 }
