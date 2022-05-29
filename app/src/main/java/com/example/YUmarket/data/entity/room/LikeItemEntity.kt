@@ -11,5 +11,7 @@ data class LikeItemEntity(
     val marketName: String,
     val marketDistance: Float,
     val saleRatio: Int,
-    val price: Int
+    val price: Int,
+    val imageUrl: String
 )
+

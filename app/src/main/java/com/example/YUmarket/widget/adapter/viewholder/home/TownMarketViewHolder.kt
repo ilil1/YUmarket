@@ -1,5 +1,6 @@
 package com.example.YUmarket.widget.adapter.viewholder.home
 
+
 import com.example.YUmarket.util.provider.ResoucesProvider
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.ViewholderTownMarketBinding
@@ -34,7 +35,7 @@ class TownMarketViewHolder(
             likeCountTextView.text = "1" // data
             reviewCountTextView.text = "1" // data
 
-           // likeTextView.text = resourcesProvider.getString(R.string.like)
+            // likeTextView.text = resourcesProvider.getString(R.string.like)
             reviewTextView.text = resourcesProvider.getString(R.string.review)
 
             when(model.isMarketOpen) {

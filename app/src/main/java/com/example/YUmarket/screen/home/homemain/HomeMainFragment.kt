@@ -1,6 +1,5 @@
 package com.example.YUmarket.screen.home.homemain
 
-
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Handler

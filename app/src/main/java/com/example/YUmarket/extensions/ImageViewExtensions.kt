@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 
-
 private val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
 
 fun ImageView.clear() = Glide.with(context).clear(this)

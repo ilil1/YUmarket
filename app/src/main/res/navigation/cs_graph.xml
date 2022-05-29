@@ -128,9 +128,9 @@
     <argument android:name="list"
         app:argType="com.example.YUmarket.model.customerservicelist.ImageData"/>
 
-<!--    <fragment-->
-<!--        android:id="@+id/CSListFragment"-->
-<!--        tools:layout="@layout/fragment_cs_list"-->
-<!--        android:name="com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment"-->
-<!--        android:label="CSListFragment" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/CSListFragment"-->
+    <!--        tools:layout="@layout/fragment_cs_list"-->
+    <!--        android:name="com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment"-->
+    <!--        android:label="CSListFragment" />-->
 </navigation>

@@ -1,5 +1,4 @@
 package com.example.YUmarket.model.homelist.category
-
 import androidx.annotation.StringRes
 import com.example.YUmarket.R
 

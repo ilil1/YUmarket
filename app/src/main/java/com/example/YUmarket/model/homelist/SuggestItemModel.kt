@@ -1,5 +1,6 @@
 package com.example.YUmarket.model.homelist
 
+
 import com.example.YUmarket.model.CellType
 import com.example.YUmarket.model.Model
 import com.example.YUmarket.model.homelist.category.SuggestCategory

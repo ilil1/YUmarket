@@ -27,5 +27,18 @@
     <string name="distance_unit_kilometer">km</string>
     <string name="distance_unit_meter">m</string>
 
+    <string name="like_market">찜한 마켓</string>
+    <string name="like_item">찜한 상품</string>
 
+    <string name="distance_format">%1$.1fkm</string>
+    <string name="like_item_market_and_distance_format">%1$s | %2$.1fkm</string>
+    <string name="discount_percent_format">%1$d%%</string>
+    <string name="price_format">%1$,d원</string>
+
+    <string name="POI_food_beverage">음식점;</string>
+    <string name="POI_service">서비스;</string>
+    <string name="POI_fashion_accessories">패션;</string>
+    <string name="POI_supermarket">편의점;슈퍼마켓;</string>
+    <string name="POI_fashion_clothes">의류;</string>
+    <string name="POI_etc">주차장;숙박</string>
 </resources>

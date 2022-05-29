@@ -12,7 +12,6 @@ import com.example.YUmarket.databinding.ActivitySuggestBinding
 import com.example.YUmarket.databinding.FragmentSuggestBinding
 import com.example.YUmarket.screen.MainActivity
 import com.example.YUmarket.screen.base.BaseActivity
-import com.example.YUmarket.screen.home.homemain.HomeMainFragmentDirections
 import org.koin.experimental.builder.getArguments
 
 class HomeSuggestActivity : BaseActivity<ActivitySuggestBinding>() {

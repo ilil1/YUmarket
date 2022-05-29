@@ -1,5 +1,4 @@
 package com.example.YUmarket.widget.adapter.viewholder.homemain
-
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.ViewholderNewSaleItemBinding
 import com.example.YUmarket.extensions.clear

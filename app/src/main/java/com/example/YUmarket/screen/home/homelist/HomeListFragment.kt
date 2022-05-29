@@ -1,5 +1,6 @@
 package com.example.YUmarket.screen.home.homelist
 
+
 import com.example.YUmarket.util.provider.ResoucesProvider
 import android.os.Bundle
 import android.widget.Toast
@@ -61,8 +62,8 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
     }
 
     override fun initViews() = with(binding) {
-    restaurantRecyclerView.adapter = adapter
-    restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
+        restaurantRecyclerView.adapter = adapter
+        restaurantRecyclerView.layoutManager = LinearLayoutManager(this@HomeListFragment.context)
 
         // TODO delete
 

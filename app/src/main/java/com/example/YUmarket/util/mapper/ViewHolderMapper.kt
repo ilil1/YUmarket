@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import com.example.YUmarket.databinding.*
 import com.example.YUmarket.model.CellType
 import com.example.YUmarket.model.Model
+import com.example.YUmarket.model.like.LikeItemModel
+import com.example.YUmarket.model.like.LikeMarketModel
 import com.example.YUmarket.screen.base.BaseViewModel
+import com.example.YUmarket.screen.like.LikeListViewModel
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 
 import com.example.YUmarket.widget.adapter.viewholder.cs.CSViewHolder
@@ -14,6 +17,9 @@ import com.example.YUmarket.widget.adapter.viewholder.home.HomeItemModelViewHold
 import com.example.YUmarket.widget.adapter.viewholder.home.TownMarketViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.homemain.NearbyMarketViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.homemain.NewSaleItemViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.like.LikeItemViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.like.LikeMarketViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.map.MapViewPagerViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.restaurant.RestaurantViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.suggest.SuggestViewHolder
 
@@ -74,6 +80,25 @@ object ViewHolderMapper {
                     resourcesProvider
                 )
             }
+            CellType.LIKE_MARKET_CELL -> LikeMarketViewHolder(
+                ViewholderLikeMarketListBinding.inflate(inflater, parent, false),
+                viewModel as LikeListViewModel<LikeMarketModel>,
+                resourcesProvider
+            )
+
+
+            CellType.LIKE_ITEM_CELL -> LikeItemViewHolder(
+                ViewholderLikeItemListBinding.inflate(inflater, parent, false),
+                viewModel as LikeListViewModel<LikeItemModel>,
+                resourcesProvider
+            )
+
+
+            CellType.MAP_ITEM_CELL -> MapViewPagerViewHolder(
+                ViewholderMapViewpagerBinding.inflate(inflater, parent, false),
+                viewModel,
+                resourcesProvider
+            )
 
 
 

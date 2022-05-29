@@ -1,5 +1,6 @@
 package com.example.YUmarket.screen.home.homemain
 
+
 import androidx.annotation.StringRes
 import com.example.YUmarket.model.Model
 
@@ -18,4 +19,3 @@ sealed class HomeMainState {
         @StringRes val errorMessage: Int
     ) : HomeMainState()
 }
-

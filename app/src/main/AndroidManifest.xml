@@ -18,13 +18,12 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MyApplication23">
+
         <activity
             android:name="com.example.YUmarket.screen.MainActivity"
             android:exported="true"
             android:configChanges="uiMode"
-
             >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SENDTO"/>
@@ -33,6 +32,18 @@
         </activity>
         <activity android:name="com.example.YUmarket.screen.myinfo.MyInfoActivity"/>
         <activity android:name=".screen.home.suggest.HomeSuggestActivity"/>
+        <activity
+            android:name=".screen.map.MapProductInfo.MapProductInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".screen.myLocation.SearchAddressActivity"
+            android:exported="true" />
+        <activity android:name=".screen.map.MapLocationSetting.MapLocationSettingActivity" />
+        <activity android:name=".screen.myLocation.MyLocationActivity" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="ktudrgdtrw" />
     </application>
 
 

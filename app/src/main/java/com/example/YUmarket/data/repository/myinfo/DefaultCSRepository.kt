@@ -63,13 +63,13 @@ class DefaultCSRepository(
 
             CSCategory.REVIEW -> listOf(
                 CSModel(
-                3,
-                CellType.CUSTOMER_SERVICE_CELL,
-                0,
-                csTitle = "   리뷰오류시 이용방법                                        ",
-                csCategory = CSCategory.REVIEW,
-                csAuthor = "관리자",
-                csContent = "이 글은 리뷰오류시 이용방법 입니다"
+                    3,
+                    CellType.CUSTOMER_SERVICE_CELL,
+                    0,
+                    csTitle = "   리뷰오류시 이용방법                                        ",
+                    csCategory = CSCategory.REVIEW,
+                    csAuthor = "관리자",
+                    csContent = "이 글은 리뷰오류시 이용방법 입니다"
                 )
             )
 
@@ -153,12 +153,3 @@ class DefaultCSRepository(
         return emptyList()
     }
 }
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,13 @@
 package com.example.YUmarket.data.db.dao
 
+
 import androidx.room.*
 import com.example.YUmarket.data.entity.room.LikeItemEntity
-
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.Query
 
 @Dao
 interface LikeItemDao {
@@ -10,7 +15,10 @@ interface LikeItemDao {
     @Query("select * from LikeItemEntity order by id desc")
     suspend fun getAll(): List<LikeItemEntity>
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+
+
     suspend fun insert(item: LikeItemEntity)
 
     @Delete

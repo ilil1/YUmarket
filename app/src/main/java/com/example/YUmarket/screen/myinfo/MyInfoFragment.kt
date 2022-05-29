@@ -1,5 +1,6 @@
 package com.example.YUmarket.screen.myinfo
 
+
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.res.Configuration
@@ -30,6 +31,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
 
     private lateinit var getResultImage: ActivityResultLauncher<Intent>
+
 
 
     private fun popUp() {
@@ -154,6 +156,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
     private fun backStack() {
         activity?.finish()
     }
+}
 
 
 
@@ -173,4 +176,3 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 //    }
 
 
-}
