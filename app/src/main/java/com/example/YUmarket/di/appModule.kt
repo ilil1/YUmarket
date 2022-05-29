@@ -1,7 +1,5 @@
 package com.example.YUmarket.di
 
-import android.content.Context
-import android.location.LocationManager
 import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
 import com.example.YUmarket.data.repository.home.DefaultHomeRepository
@@ -77,6 +75,7 @@ val appModule = module {
     single { provideBasketDao(get()) }
     single { provideLikeItemDao(get()) }
     single { provideLikeMarketDao(get()) }
+    single { provideAddressHistoryDao(get()) }
 
     single<BasketRepository> { DefaultBasketRepository(get(), get()) }
 

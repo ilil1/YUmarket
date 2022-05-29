@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
 class MapProductInfoActivity : BaseActivity<ActivityMapProductInfoBinding>() {
 
     override fun initViews(){
-        val item = intent.extras?.getParcelable<MapItemModel>("model")
+        val item = intent.extras?.getParcelable<MapItemModel>(MAP_ITEM_MODEL_KEY)
 
         with(binding){
             if (item != null) {
@@ -26,15 +26,13 @@ class MapProductInfoActivity : BaseActivity<ActivityMapProductInfoBinding>() {
     override fun getViewBinding(): ActivityMapProductInfoBinding =
         ActivityMapProductInfoBinding.inflate(layoutInflater)
 
-    override fun observeData() {
-        TODO("Not yet implemented")
-    }
+    override fun observeData() = Unit
 
     companion object {
         private const val MAP_ITEM_MODEL_KEY = "MAP_ITEM_MODEL_KEY"
 
         fun newIntent(context: Context, mapItemModel: MapItemModel) =
-            Intent(context, this::class.java).apply {
+            Intent(context, MapProductInfoActivity::class.java).apply {
                 putExtra(MAP_ITEM_MODEL_KEY, mapItemModel)
             }
     }

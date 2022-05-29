@@ -15,3 +15,6 @@ fun provideLikeItemDao(database: YUMarketDB) =
 
 fun provideLikeMarketDao(database: YUMarketDB) =
     database.likeMarketDao
+
+fun provideAddressHistoryDao(database: YUMarketDB) =
+    database.addressHistoryDao

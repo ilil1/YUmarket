@@ -8,6 +8,7 @@ import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.data.repository.map.MapApiRepository
 import com.example.YUmarket.screen.base.BaseViewModel
+import com.example.YUmarket.screen.map.MapState
 import com.example.YUmarket.util.provider.ResourcesProvider
 import kotlinx.coroutines.launch
 
@@ -18,7 +19,14 @@ class MainViewModel(
     private val _locationData = MutableLiveData<MainState>(MainState.Uninitialized)
     val locationData: LiveData<MainState> = _locationData
 
-    fun getMapSearchInfo() {
+    @Suppress("CAST_NEVER_SUCCEEDS")
+    fun getMapSearchInfo(): MapSearchInfoEntity? {
+        when (locationData.value) {
+            is MainState.Success -> {
+                return (locationData.value as MainState.Success).mapSearchInfoEntity
+            }
+        }
+        return null
     }
 
     fun getReverseGeoInformation(

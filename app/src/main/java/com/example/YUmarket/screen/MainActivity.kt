@@ -12,8 +12,11 @@ import androidx.navigation.NavHost
 import androidx.navigation.ui.setupWithNavController
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
+import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
+import com.example.YUmarket.screen.map.MapLocationSetting.MapLocationSettingActivity.Companion.MY_LOCATION_KEY
+import com.example.YUmarket.screen.myLocation.MyLocationActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
@@ -50,12 +53,13 @@ class MainActivity
             }
         }
 
-//    private val changeLocationLauncher =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { results ->
-//            result.data?.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)?.let { myLocationInfo ->
-//                viewModel.loadReverseGeoInformation(myLocationInfo.locationLatLng)
-//            }
-//        }
+    private val changeLocationLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { results ->
+            results.data?.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)
+                ?.let { myLocationInfo ->
+                    viewModel.getReverseGeoInformation(myLocationInfo.locationLatLng)
+                }
+        }
 
     private lateinit var locationManager: LocationManager
     private lateinit var myLocationListener: MyLocationListener
@@ -66,7 +70,7 @@ class MainActivity
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun observeData() = with(binding) {
-            viewModel.locationData.observe(this@MainActivity) {
+        viewModel.locationData.observe(this@MainActivity) {
             when (it) {
                 is MainState.Uninitialized -> {
                     getMyLocation()
@@ -93,16 +97,16 @@ class MainActivity
         // 22.01.19 BottomNavigationView의 동작을 Controller를 이용하여 설정
         // by 정남진
         bottomNav.setupWithNavController(navController)
-
-//        locationTitleTextView.setOnClickListener {
-//            viewModel.getMapSearchInfo()?.let { mapInfo ->
-//                changeLocationLauncher.launch(
-//                    MyLocationActivity.newIntent(
-//                        requireContext(), mapInfo
-//                    )
-//                )
-//            }
-//        }
+        locationTitleTextView.setOnClickListener {
+            viewModel.getMapSearchInfo()?.let { mapInfo ->
+                changeLocationLauncher.launch(
+                    MyLocationActivity.newIntent(
+                        this@MainActivity, mapInfo
+                    )
+                )
+            }
+            Toast.makeText(this@MainActivity, "ㄱㄷ", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

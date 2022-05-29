@@ -13,9 +13,10 @@ import com.example.YUmarket.databinding.ActivitySearchAddressBinding
 import com.example.YUmarket.screen.map.MapLocationSetting.MapLocationSettingActivity.Companion.MY_LOCATION_KEY
 
 class SearchAddressActivity : AppCompatActivity() {
-    private lateinit var binding : ActivitySearchAddressBinding
+    private lateinit var binding: ActivitySearchAddressBinding
 
     private val handler = Handler()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,22 +37,22 @@ class SearchAddressActivity : AppCompatActivity() {
             webViewClient = client
             addJavascriptInterface(AndroidBridge(), "TestApp")
             webChromeClient = chromeClient
-            
-            // 스터디방에서만 가능
-            loadUrl("http://180.189.88.41:80/search.php")
+
+            loadUrl("http://3.34.141.236/search.php")
         }
     }
 
-    private inner class AndroidBridge {
+    // TODO : search.php에서 arg1 매개변수 안넣게 하기
+    private inner class AndroidBridge { // 웹에서 JavaScript로 android 함수를 호출할 수 있도록 도와줌
         @JavascriptInterface
-        fun setAddress(arg1: String?, arg2: String?, arg3: String?) {
+        open fun setAddress(arg1: String?, arg2: String?, arg3: String?) { // search.php에서 호출되는 함수
             handler.post {
                 setResult(
                     Activity.RESULT_OK,
                     Intent().apply {
                         putExtra(
                             MY_LOCATION_KEY,
-                            String.format("(%s) %s %s", arg1, arg2, arg3),
+                            String.format("%s %s", arg2, arg3),
                         )
                     },
                 )
@@ -60,19 +61,33 @@ class SearchAddressActivity : AppCompatActivity() {
         }
     }
 
+    // TODO : 제거?
     private val client: WebViewClient = object : WebViewClient() {
-        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
             return false
         }
 
-        override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+        // TODO : 제거?
+        override fun onReceivedSslError(
+            view: WebView?,
+            handler: SslErrorHandler?,
+            error: SslError?
+        ) {
             handler?.proceed()
         }
     }
 
     private val chromeClient = object : WebChromeClient() {
 
-        override fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?): Boolean {
+        override fun onCreateWindow(
+            view: WebView?,
+            isDialog: Boolean,
+            isUserGesture: Boolean,
+            resultMsg: Message?
+        ): Boolean {
 
             val newWebView = WebView(this@SearchAddressActivity).apply {
                 settings.javaScriptEnabled = true
@@ -80,11 +95,20 @@ class SearchAddressActivity : AppCompatActivity() {
             setContentView(newWebView)
 
             newWebView.webChromeClient = object : WebChromeClient() {
-                override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
+                override fun onJsAlert(
+                    view: WebView,
+                    url: String,
+                    message: String,
+                    result: JsResult
+                ): Boolean {
                     super.onJsAlert(view, url, message, result)
 
                     // 선택한 주소 출력
-                    Toast.makeText(this@SearchAddressActivity, result.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SearchAddressActivity,
+                        "결과 : " + result.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                     return true
                 }
