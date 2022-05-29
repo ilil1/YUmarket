@@ -10,7 +10,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import aop.fastcampus.part6.chapter01.screen.mylocation.MyLocationState
-import aop.fastcampus.part6.chapter01.screen.mylocation.MyLocationViewModel
 import com.example.YUmarket.data.db.dao.AddressHistoryDao
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
