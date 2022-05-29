@@ -1,5 +1,6 @@
 package com.example.YUmarket.di
 
+import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
 import com.example.YUmarket.data.repository.home.DefaultHomeRepository
@@ -20,6 +21,7 @@ import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.like.LikeListViewModel
 import com.example.YUmarket.screen.map.MapViewModel
+import com.example.YUmarket.screen.myLocation.MyLocationViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
 import com.example.YUmarket.util.provider.DefaultResourcesProvider
 import com.example.YUmarket.util.provider.ResourcesProvider
@@ -52,6 +54,10 @@ val appModule = module {
                 qualifier = named("likeItemRepository")
             )
         )
+    }
+
+    viewModel { (mapSearchInfoEntity: MapSearchInfoEntity) ->
+        MyLocationViewModel(mapSearchInfoEntity, get())
     }
 
     viewModel { MapViewModel(get()) }
