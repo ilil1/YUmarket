@@ -1,11 +1,11 @@
-package aop.fastcampus.part6.chapter01.screen.mylocation
+package com.example.YUmarket.screen.myLocation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import aop.fastcampus.part6.chapter01.screen.mylocation.MyLocationState
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.data.repository.map.MapApiRepository
-import com.example.YUmarket.data.repository.map.MapRepository
 import com.example.YUmarket.screen.base.BaseViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
