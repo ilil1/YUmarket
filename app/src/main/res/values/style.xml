@@ -3,7 +3,14 @@
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
         <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
 
+
+
+    <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 </resources>

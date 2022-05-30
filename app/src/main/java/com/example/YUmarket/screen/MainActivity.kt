@@ -45,6 +45,11 @@ class MainActivity
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+
     // Navigation에 사용할 Controller
     private val navController by lazy {
         val hostContainer =

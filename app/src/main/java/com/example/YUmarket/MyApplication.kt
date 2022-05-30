@@ -22,10 +22,6 @@ class MyApplication : Application() {
             modules(appModule)
         }
 
-
-
-
-
     }
 
     override fun onTerminate() {
