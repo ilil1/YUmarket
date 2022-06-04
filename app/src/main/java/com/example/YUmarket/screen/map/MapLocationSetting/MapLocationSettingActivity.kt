@@ -1,8 +1,12 @@
 package com.example.YUmarket.screen.map.MapLocationSetting
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.widget.Toast
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
@@ -15,6 +19,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 // 핀을 끌어서 옮길때마다 위치 정보 받아서 주소 보여줌
 class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBinding>() {
     var isCurAddressNull = true
+
+    private lateinit var locationManager: LocationManager
+    private lateinit var locationListener: LocationListener
+
+    private lateinit var cur: Location
 
     private lateinit var tMapView: TMapView
     private val viewModel by viewModel<MapLocationSettingViewModel>()
@@ -66,8 +75,28 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
             //setResult(Activity.RESULT_CANCELED)
             finish()
         }
+
+        binding.btnSetCur.setOnClickListener {
+            cur ?.let {
+                Toast.makeText(this, "아직 현재위치를 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            tMapView.setLocationPoint(cur.longitude, cur.latitude)
+            tMapView.setCenterPoint(cur.longitude, cur.latitude)
+
+            isCurAddressNull = true
+
+            viewModel.getReverseGeoInformation(
+                LocationLatLngEntity(
+                    cur.latitude,
+                    cur.longitude
+                )
+            )
+        }
     }
 
+    @SuppressLint("MissingPermission")
     private fun initMap() = with(binding) {
         tMapView = TMapView(this@MapLocationSettingActivity).apply {
             setSKTMapApiKey("l7xx47edb2787b5040fc8e004c19e85c0053")
@@ -83,6 +112,27 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
             }
         }
 
+        locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        locationListener = LocationListener { l ->
+            cur = l
+            cur.longitude = l.longitude
+            cur.latitude = l.latitude
+        }
+
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            1000,
+            1f,
+            locationListener
+        )
+        locationManager.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            1000,
+            1f,
+            locationListener
+        )
+
         TMap.addView(tMapView)
         val entity = intent.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)
 
@@ -90,26 +140,10 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
         // 뒤로가기를 하면 그냥 뷰모델에 반영없이 뒤로가기 하는거고
         // 이 위치로 주소설정을 하면 뷰모델에 반영
 
-        //val lon = mainViewModel.getMapSearchInfo()?.locationLatLng!!.longitude
-        //val lat = mainViewModel.getMapSearchInfo()?.locationLatLng!!.latitude
-
-
-        //viewModel.getReverseGeoInformation(LocationLatLngEntity(lat, lon))
-
-        //val t = viewModel.getMapSearchInfo()
-
-        //if(t != null)
-        //  viewModel.MapLocationSettingStateLiveData.value = MapLocationSettingState.Success(
-        //    t
-        //)
-
         tvCurAddress.text = entity?.fullAddress ?: "정보없음"
 
-// TODO: 2022.05.01 get current location using intent
-//        val curLocation = mainViewModel.getMapSearchInfo()?.locationLatLng
-//
-//        tMapView.setLocationPoint(curLocation!!.longitude, curLocation!!.latitude)
-//        tMapView.setCenterPoint(curLocation!!.longitude, curLocation!!.latitude)
+        tMapView.setLocationPoint(entity?.locationLatLng!!.longitude, entity?.locationLatLng.latitude)
+        tMapView.setCenterPoint(entity?.locationLatLng!!.longitude, entity?.locationLatLng.latitude)
     }
 
     override fun observeData() = with(viewModel) {

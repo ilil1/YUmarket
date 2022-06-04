@@ -24,33 +24,4 @@ class MyLocationViewModel(
             mapSearchInfoEntity
         )
     }
-
-    fun changeLocationInfo(
-        locationLatLngEntity: LocationLatLngEntity
-    ) = viewModelScope.launch {
-        val addressInfo = mapApiRepository.getReverseGeoInformation(locationLatLngEntity)
-        addressInfo?.let { info ->
-            myLocationStateLiveData.value = MyLocationState.Success(
-                MapSearchInfoEntity(
-                    fullAddress = info.fullAddress ?: "주소 정보 없음",
-                    name = info.buildingName ?: "빌딩정보 없음",
-                    locationLatLng = locationLatLngEntity
-                )
-            )
-        } ?: kotlin.run {
-
-        }
-    }
-
-    fun confirmSelectLocation() = viewModelScope.launch {
-        when(val data = myLocationStateLiveData.value) {
-            is MyLocationState.Success -> {
-                //userRepository.insertUserLocation(data.mapSearchInfoEntity.locationLatLng)
-                myLocationStateLiveData.value = MyLocationState.Confirm(
-                    data.mapSearchInfoEntity
-                )
-            }
-        }
-    }
-
 }

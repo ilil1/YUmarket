@@ -25,8 +25,16 @@
             android:layout_marginTop="20dp"
             />
 
-
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_setCur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 위치"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="20dp"
+/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

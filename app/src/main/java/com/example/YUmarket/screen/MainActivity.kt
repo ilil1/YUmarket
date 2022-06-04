@@ -1,26 +1,39 @@
 package com.example.YUmarket.screen
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.UiThread
+import androidx.core.view.get
 import androidx.core.view.isGone
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavHost
 import androidx.navigation.ui.setupWithNavController
-import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
 import com.example.YUmarket.screen.map.MapLocationSetting.MapLocationSettingActivity.Companion.MY_LOCATION_KEY
 import com.example.YUmarket.screen.myLocation.MyLocationActivity
+import com.google.android.gms.maps.SupportMapFragment
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.*
 import org.koin.android.viewmodel.ext.android.viewModel
+
+import com.example.YUmarket.R
+import com.example.YUmarket.databinding.FragmentMapBinding
+import com.google.android.gms.maps.MapFragment
+
 
 class MainActivity
     : BaseActivity<ActivityMainBinding>() {
+
+    private lateinit var curLoc :Location
 
     companion object {
         val locationPermissions = arrayOf(
@@ -69,6 +82,7 @@ class MainActivity
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
+
     override fun observeData() = with(binding) {
         viewModel.locationData.observe(this@MainActivity) {
             when (it) {
@@ -83,6 +97,8 @@ class MainActivity
                 is MainState.Success -> {
                     locationLoading.isGone = true
                     locationTitleTextView.text = it.mapSearchInfoEntity.fullAddress
+                    viewModel.setDestinationLocation(it.mapSearchInfoEntity.locationLatLng)
+
                 }
 
                 is MainState.Error -> {
@@ -92,7 +108,23 @@ class MainActivity
         }
     }
 
+    @SuppressLint("ResourceType")
     override fun initViews() = with(binding) {
+       // var m = FragmentMapBinding.inflate(layoutInflater).mapView
+       // FragmentMapBinding.inflate(layoutInflater).mapView.getMapAsync(this@MainActivity)
+
+
+      //  var m = supportFragmentManager.findFragmentById(R.id.fragment_map) as com.naver.maps.map.MapFragment?
+       // m?.getMapAsync(this@MainActivity)
+/*
+        val fragmentManager: FragmentManager = supportFragmentManager
+        fragmentManager.beginTransaction().add(R.id.fragmentContainer, MapFragment(), "MapFragment").commitAllowingStateLoss()
+
+        var a = fragmentManager.findFragmentByTag("MapFragment") as MapFragment?
+        var b =a?.mapView
+        b?.getMapAsync(this@MainActivity)
+
+ */
 
         // 22.01.19 BottomNavigationView의 동작을 Controller를 이용하여 설정
         // by 정남진
@@ -144,6 +176,8 @@ class MainActivity
 
     inner class MyLocationListener : LocationListener {
         override fun onLocationChanged(location: Location) {
+            curLoc = location
+            viewModel.setCurrentLocation(curLoc)
 //            binding.locationTitleTextView.text = "${location.latitude}, ${location.longitude}"
             viewModel.getReverseGeoInformation(
                 LocationLatLngEntity(
@@ -161,4 +195,7 @@ class MainActivity
             }
         }
     }
+
+
+
 }

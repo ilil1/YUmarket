@@ -45,13 +45,13 @@ import org.koin.android.viewmodel.ext.android.viewModel
 // https://github.com/foreknowledge/my-places
 // https://navermaps.github.io/android-map-sdk/guide-ko/2-1.html
 
-class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
-    private val viewModel by viewModel<MapViewModel>()
-    private val activityViewModel by sharedViewModel<MainViewModel>()
+class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
+    //private val viewModel by viewModel<MapViewModel>()
+    private val viewModel by sharedViewModel<MainViewModel>()
     private val resourcesProvider by inject<ResourcesProvider>()
 
     private val viewPagerAdapter by lazy {
-        object : ModelRecyclerAdapter<MapItemModel, MapViewModel>(
+        object : ModelRecyclerAdapter<MapItemModel, MainViewModel>(
             listOf(), viewModel, resourcesProvider,
             object : MapItemListAdapterListener {
                 override fun onClickItem(mapItemModel: MapItemModel) {
@@ -83,8 +83,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
         }
     }
 
-    private lateinit var markers: List<Marker>
-
     companion object {
         const val TAG = "MapFragment"
 
@@ -93,33 +91,18 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
 
     }
 
+    private lateinit var map: NaverMap
     private lateinit var layout: View
 
     private var filterCategoryOptions = mutableListOf<CheckBox>()
     private var filterCategoryChecked = mutableListOf<Boolean>()
 
-    private var map: NaverMap? = null
+    //private var map: NaverMap? = null
 
     /**
      * 지도에서 사용할 목적지 마커
      */
-    private val destMarker: Marker = Marker(
-        MarkerIcons.BLACK
-    ).apply {
-        zIndex = 111
-        iconTintColor = Color.parseColor("#FA295B")
-        width = 100
-        height = 125
-    }
-        /**
-         * destMarker를 가져올 때마다 위치를 destLocation으로 설정
-         */
-        get() = field.apply {
-            position = LatLng(
-                viewModel.destLocation.latitude,
-                viewModel.destLocation.longitude
-            )
-        }
+
 
     private lateinit var locationSource: FusedLocationSource
     private lateinit var geocoder: Geocoder
@@ -177,7 +160,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
         }
 
         // MainViewModel에서 value 수정할때마다 호출
-        activityViewModel.locationData.observe(viewLifecycleOwner) {
+        viewModel.locationData.observe(viewLifecycleOwner) {
             when (it) {
                 is MainState.Uninitialized -> {
 
@@ -198,13 +181,10 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
 
     private fun onSuccess(state: MapState.Success) {
         val markets = state.markets
-        markers = markets.mapIndexed(::createMarketMarkerOnMap)
 
-        for (marker in markers) {
-            Log.d(
-                "TAG",
-                "observeData: $map, ${marker.tag}, ${marker.position.latitude}, ${marker.position.longitude}"
-            )
+        viewModel.setMarkers(markets.mapIndexed(::createMarketMarkerOnMap))
+
+        for (marker in viewModel.getMarkers()) {
 
             marker.setOnClickListener {
                 // idx로는 setOnClickListener에서 마커의 index를 못찾아서 고유값인 zIndex로 대체
@@ -389,10 +369,38 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
         initMap()
         initDialog()
         initViewPager()
+        var m =viewModel.getMap()
+        //m?.cameraPosition =
+        //    CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
+/*
+        mapView.getMapAsync(this@MapFragment)
+        val fm = supportFragmentManager
+        val mapFragment = fm.findFragmentById(R.id.mapFragment) as com.naver.maps.map.MapFragment?
+            ?: com.naver.maps.map.MapFragment.newInstance().also {
+                fm.beginTransaction().add(R.id.mapFragment, it).commit()
+                Toast.makeText(this@MainActivity, "홈", Toast.LENGTH_LONG).show()
+                //fm.beginTransaction().hide(it).commit()
+            }
+
+
+ */
+
+        mapView.getMapAsync(this@MapFragment)
+
+
+        binding.btnCloseMarkers.setOnClickListener {
+            viewModel.getMarkers().forEach { marker ->
+                marker.map = null
+            }
+            binding.viewPager2.visibility = View.GONE
+            binding.fbtnCloseViewPager.visibility = View.GONE
+            infoWindow?.close()
+            binding.btnCloseMarkers.visibility = View.GONE
+        }
 
         btnCurLocation.setOnClickListener {
             try {
-                map?.cameraPosition =
+                viewModel.getMap()?.cameraPosition =
                     CameraPosition(
                         LatLng(
                             viewModel.curLocation.latitude,
@@ -406,7 +414,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
 
         btnDestLocation.setOnClickListener {
             try {
-                map?.cameraPosition =
+                viewModel.getMap()?.cameraPosition =
                     CameraPosition(
                         LatLng(
                             viewModel.destLocation.latitude,
@@ -455,6 +463,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
             다음은 1000개의 마커를 백그라운드 스레드에서 생성하고 속성을 지정한 후 메인 스레드에서 지도에 추가하는 예제입니다.
         */
 
+            binding.btnCloseMarkers.visibility = View.VISIBLE
             searchAround()
         }
     }
@@ -474,7 +483,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
      * 네이버 지도상 마커를 모두 없애는 method
      */
     private fun deleteMarkers() {
-        for (marker in markers) {
+        for (marker in viewModel.getMarkers()) {
             marker.map = null
         }
     }
@@ -483,8 +492,8 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
      * 네이버 지도상에 마커를 표시
      */
     private fun showMarkersOnMap() {
-        for (marker in markers) {
-            marker.map = map
+        for (marker in viewModel.getMarkers()) {
+            marker.map = viewModel.getMap()
         }
     }
 
@@ -494,26 +503,14 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
         icon = MarkerIcons.BLACK
         tag = market.name
         this.zIndex = zIndex
-        map = this@MapFragment.map
-    }
-
-    @SuppressLint("MissingPermission")
-// https://community.openapi.sk.com/t/topic/12591
-    private fun updateLocation(location: LocationLatLngEntity) {
-        // 위치 업데이트 될 때마다 목적지 마커 초기화
-        viewModel.destLocation = location
-
-        map?.cameraPosition = CameraPosition(
-            LatLng(
-                viewModel.curLocation.latitude,
-                viewModel.curLocation.longitude
-            ), 15.0
-        )
+        map = viewModel.getMap()
     }
 
     @SuppressLint("MissingPermission")
     private fun initMap() = with(binding) {
-        mapView.getMapAsync(this@MapFragment)
+
+       // viewModel.getMap()?.cameraPosition =
+       //     CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
 
         locationManager =
             requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -534,13 +531,17 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: NaverMap) {
+
+        Toast.makeText(context, "맵 초기화 완료", Toast.LENGTH_LONG).show()
+
         this.map = map.apply {
-            locationSource = this@MapFragment.locationSource
+            locationSource = this.locationSource
             locationTrackingMode = LocationTrackingMode.NoFollow
             uiSettings.isLocationButtonEnabled = true
             uiSettings.isScaleBarEnabled = true
             uiSettings.isCompassEnabled = true
         }
+        viewModel.setMap(this.map)
 
 //        observeData()
 
@@ -549,16 +550,16 @@ class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
          */
 
         try {
-            map.cameraPosition = CameraPosition(
-                LatLng(
-                    viewModel.curLocation.latitude,
-                    viewModel.curLocation.longitude
-                ), 15.0
-            )
+            viewModel.updateLocation(LocationLatLngEntity(viewModel.getCurrentLocation().latitude, viewModel.getCurrentLocation().longitude))
+
+            //map.cameraPosition =
+            //    CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
+
         } catch (ex: Exception) {
             Toast.makeText(context, "위치 초기화 중", Toast.LENGTH_SHORT).show()
         }
 
-        searchAround()
+        //searchAround()
     }
+
 }

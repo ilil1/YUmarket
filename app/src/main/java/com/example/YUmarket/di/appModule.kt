@@ -20,11 +20,13 @@ import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.like.LikeListViewModel
+import com.example.YUmarket.screen.map.MapLocationSetting.MapLocationSettingViewModel
 import com.example.YUmarket.screen.map.MapViewModel
 import com.example.YUmarket.screen.myLocation.MyLocationViewModel
 import com.example.YUmarket.screen.orderlist.OrderListViewModel
 import com.example.YUmarket.util.provider.DefaultResourcesProvider
 import com.example.YUmarket.util.provider.ResourcesProvider
+import com.naver.maps.map.NaverMap
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -37,8 +39,9 @@ val appModule = module {
         HomeListViewModel(homeListCategory, get())
     }
 
-    viewModel { MainViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
     viewModel { OrderListViewModel() }
+    viewModel { MapLocationSettingViewModel(get()) }
 
     viewModel(named(LikeCategory.MARKET)) {
         LikeListViewModel<LikeMarketModel>(
@@ -60,7 +63,7 @@ val appModule = module {
         MyLocationViewModel(mapSearchInfoEntity, get())
     }
 
-    viewModel { MapViewModel(get()) }
+    //viewModel { MapViewModel(get()) }
     viewModel { HomeMainViewModel(get()) }
 
     single<HomeRepository> { DefaultHomeRepository() }
@@ -72,8 +75,9 @@ val appModule = module {
     single { provideMapApiService(get(qualifier = named("map"))) }
 
     single<MapApiRepository> { DefaultMapApiRepository(get(), get()) }
-    single<MapRepository> { DefaultMapRepository() }
 
+    single<MapRepository> { DefaultMapRepository() }
+    //single<MapRepository> { DefaultMapRepository() }
     single { Dispatchers.IO }
     single { Dispatchers.Main }
 
