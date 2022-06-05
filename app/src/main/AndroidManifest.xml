@@ -39,9 +39,11 @@
         </activity>
         <activity android:name=".screen.myinfo.MyInfoActivity" />
         <activity android:name=".screen.home.suggest.HomeSuggestActivity" />
+        <activity android:name=".screen.login.SignUpActivity"/>
         <activity
             android:name=".screen.map.MapProductInfo.MapProductInfoActivity"
             android:exported="true" />
+        <activity android:name=".screen.login.LoginActivity"/>
         <activity
             android:name=".screen.myLocation.SearchAddressActivity"
             android:exported="true" />

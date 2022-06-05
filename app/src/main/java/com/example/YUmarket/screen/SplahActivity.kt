@@ -7,6 +7,7 @@ import android.os.Handler
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.ActivitySplahBinding
 import com.example.YUmarket.screen.base.BaseActivity
+import com.example.YUmarket.screen.login.LoginActivity
 
 class SplahActivity : BaseActivity<ActivitySplahBinding>() {
     override fun getViewBinding(): ActivitySplahBinding =
@@ -18,7 +19,7 @@ class SplahActivity : BaseActivity<ActivitySplahBinding>() {
         super.onCreate(savedInstanceState)
 
         Handler().postDelayed({
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
                        finish()
