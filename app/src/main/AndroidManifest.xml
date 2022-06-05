@@ -18,7 +18,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".screen.SplahActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Splash">
             <intent-filter>
 
             <action android:name="android.intent.action.MAIN"/>

@@ -21,7 +21,7 @@ class SplahActivity : BaseActivity<ActivitySplahBinding>() {
             val intent = Intent(this,MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
-            finish()
+                       finish()
         },DURATION)
     }
     companion object{

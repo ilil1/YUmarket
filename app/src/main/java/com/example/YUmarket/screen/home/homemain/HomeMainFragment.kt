@@ -325,10 +325,10 @@ class HomeMainFragment
         viewPager2 = binding.pager
 
         val slideritems: MutableList<SliderItem> = ArrayList()
-        slideritems.add(SliderItem(R.drawable.airfilter))
-        slideritems.add(SliderItem(R.drawable.spring))
-        slideritems.add(SliderItem(R.drawable.housefix))
-        slideritems.add(SliderItem(R.drawable.homeapplicances))
+        slideritems.add(SliderItem(R.drawable.adimage))
+        slideritems.add(SliderItem(R.drawable.adimage))
+        slideritems.add(SliderItem(R.drawable.adimage))
+        slideritems.add(SliderItem(R.drawable.adimage))
 
 
         viewPager2.adapter = SliderAdater(slideritems, viewPager2)

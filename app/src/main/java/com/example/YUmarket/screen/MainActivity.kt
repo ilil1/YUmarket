@@ -31,11 +31,16 @@ import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
+import com.example.YUmarket.screen.map.MapLocationSetting.MapLocationSettingActivity
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
     : BaseActivity<ActivityMainBinding>() {
+
+
+    private val handler = Handler()
+    private var doubleBackToExit = false
 
     companion object {
         val locationPermissions = arrayOf(
@@ -112,10 +117,36 @@ class MainActivity
     }
 
     override fun initViews() = with(binding) {
-
+        val url = "http://54.180.157.241/search.php"
         // 22.01.19 BottomNavigationView의 동작을 Controller를 이용하여 설정
         // by 정남진
         bottomNav.setupWithNavController(navController)
+
+
+//        wView.settings.apply {
+//
+//            javaScriptEnabled = true
+//            javaScriptCanOpenWindowsAutomatically = true
+//            setSupportMultipleWindows(true)
+//
+//        }
+//        wView.apply {
+//            webViewClient = client
+//            // addJavascriptInterface(AndroidBridge(), "TestApp")
+//            webChromeClient = chromeClient
+//            loadUrl(url)
+//        }
+//
+
+
+
+
+        //wView.loadUrl("https://www.naver.com")
+
+        locationTitleTextView.setOnClickListener {
+            Sliding()
+        }
+    }
 
 //        locationTitleTextView.setOnClickListener {
 //            viewModel.getMapSearchInfo()?.let { mapInfo ->
@@ -126,8 +157,53 @@ class MainActivity
 //                )
 //            }
 //        }
+
+    override fun onBackPressed() {
+
+
+        if (doubleBackToExit) {
+            finishAffinity()
+        } else {
+            Toast.makeText(this, "종료하서려면 뒤로가기를 한번더 눌러주세요", Toast.LENGTH_SHORT).show()
+            doubleBackToExit = true
+            runDelayed(1500L) {
+                doubleBackToExit = false
+            }
+        }
+    }
+//        locationTitleTextView.setOnClickListener {
+//            viewModel.getMapSearchInfo()?.let { mapInfo ->
+//                changeLocationLauncher.launch(
+//                    MyLocationActivity.newIntent(
+//                        requireContext(), mapInfo
+//                    )
+//                )
+//            }
+//        }
+
+
+    private fun runDelayed(millis: Long, function: () -> Unit) {
+        Handler(Looper.getMainLooper()).postDelayed(function, millis)
     }
 
+    private val client: WebViewClient = object : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
+            return false
+        }
+
+        // TODO : 제거?
+        override fun onReceivedSslError(
+            view: WebView?,
+            handler: SslErrorHandler?,
+            error: SslError?
+        ) {
+            handler?.proceed()
+        }
+    }
 
     private fun getMyLocation() {
         if (::locationManager.isInitialized.not()) {
@@ -158,6 +234,60 @@ class MainActivity
                 LocationManager.NETWORK_PROVIDER,
                 minTime, minDistance, myLocationListener
             )
+        }
+    }
+
+    private fun Sliding() {
+        val slidePanel = binding.mainFrame
+
+        val state = slidePanel.panelState
+        if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+        } else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        }
+    }
+
+    private inner class AndroidBridge {
+        @JavascriptInterface
+        fun setAddress(arg1: String?, arg2: String?, arg3: String?) {
+            handler.post {
+                setResult(
+                    Activity.RESULT_OK,
+                    Intent().apply {
+                        putExtra(
+                            MapLocationSettingActivity.MY_LOCATION_KEY,
+                            String.format("(%s) %s %s", arg1, arg2, arg3),
+                        )
+                    },
+                )
+                finish()
+            }
+        }
+    }
+    private val chromeClient = object : WebChromeClient() {
+
+        override fun onCreateWindow(view: WebView?, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message?): Boolean {
+
+            val newWebView = WebView(applicationContext).apply {
+                settings.javaScriptEnabled = true
+            }
+            setContentView(newWebView)
+
+            newWebView.webChromeClient = object : WebChromeClient() {
+                override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
+                    super.onJsAlert(view, url, message, result)
+
+                    // 선택한 주소 출력
+                    Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_SHORT).show()
+
+                    return true
+                }
+            }
+            (resultMsg!!.obj as WebView.WebViewTransport).webView = newWebView
+            resultMsg.sendToTarget()
+
+            return true
         }
     }
 
