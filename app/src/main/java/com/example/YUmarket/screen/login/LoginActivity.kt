@@ -10,6 +10,7 @@ import com.example.YUmarket.R
 import com.example.YUmarket.databinding.ActivityLoginBinding
 import com.example.YUmarket.screen.MainActivity
 import com.example.YUmarket.screen.base.BaseActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity :BaseActivity<ActivityLoginBinding>(){
 
@@ -25,12 +26,17 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>(){
 
             //Log.d("Login","Attept login with email/pw: $email/***")
 
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
-//            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
-//                .addOnCompleteListener()
-//                .add
+           FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
+               .addOnCompleteListener{it ->
+                   if(it.isSuccessful){
+                       Toast.makeText(this,"위드마켓에 오신것을 환영합니다.",Toast.LENGTH_SHORT).show()
+                       startActivity(Intent(this,MainActivity::class.java))
+                       finish()
+                   }else{
+                       Toast.makeText(this,"이메일 및 비밀번호를 확인해주세요",Toast.LENGTH_SHORT).show()
+                   }
+               }
+
         }
 
         binding.sign.setOnClickListener {

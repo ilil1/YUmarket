@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <ImageView
         android:id="@+id/back"
         android:layout_width="30dp"
@@ -62,6 +64,7 @@
         android:id="@+id/editpassword"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:layout_marginTop="10dp"
         android:hint="비밀번호를 입력해주세요"
         app:layout_constraintStart_toStartOf="@id/password"
@@ -108,12 +111,12 @@
         app:layout_constraintStart_toStartOf="@id/name_phone"
         app:layout_constraintTop_toBottomOf="@id/name_phone" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/send_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/radius"
+        android:background="@drawable/radius_btn"
         android:text="인증번호 전송"
         android:textColor="@color/white"
         android:textSize="10sp"
@@ -131,12 +134,12 @@
         app:layout_constraintStart_toStartOf="@id/editphone"
         app:layout_constraintTop_toBottomOf="@id/editphone" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/radius"
+        android:background="@drawable/radius_btn"
         android:text="인증하기"
         android:textColor="@color/white"
         android:textSize="10sp"
@@ -144,17 +147,18 @@
         app:layout_constraintEnd_toEndOf="@id/confirm" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_btn"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/radius"
+        app:layout_constraintWidth_percent="0.8"
+        android:background="@drawable/radius_btn"
+        android:backgroundTint="@color/base_grey"
         android:text="가입하기"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
