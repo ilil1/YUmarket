@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
-
             app:queryHint="검색어를 입력해주세요"
             android:background="@drawable/radius" />
 
@@ -25,7 +24,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="190dp" />
+            android:layout_height="wrap_content" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

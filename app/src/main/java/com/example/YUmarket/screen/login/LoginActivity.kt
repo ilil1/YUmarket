@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.Toast
 import com.example.YUmarket.R
@@ -11,15 +14,19 @@ import com.example.YUmarket.databinding.ActivityLoginBinding
 import com.example.YUmarket.screen.MainActivity
 import com.example.YUmarket.screen.base.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.sothree.slidinguppanel.SlidingUpPanelLayout
 
 class LoginActivity :BaseActivity<ActivityLoginBinding>(){
 
-
+    private var auth : FirebaseAuth? = null
     private var doubleBackToExit = false
+    private var checkEye =0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
         binding.login.setOnClickListener {
             val email = binding.editId.text.toString()
             val password = binding.editPassword.text.toString()
@@ -43,10 +50,47 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>(){
             registerMove()
         }
 
-
+        binding.find.setOnClickListener {
+            Sliding()
+        }
+        binding.sendReset.setOnClickListener {
+            resetPassword()
+        }
+        binding.eye.setOnClickListener {
+            showAndHide()
+        }
 
     }
 
+    override fun initViews() {
+        super.initViews()
+
+
+
+    }
+    private fun showAndHide(){
+        if(checkEye == 0){
+            binding.editPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            binding.eye.setImageResource(R.drawable.eyes_show)
+            checkEye = 1
+        }else{
+            binding.editPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            binding.eye.setImageResource(R.drawable.eyes)
+            checkEye = 0
+        }
+    }
+
+
+    private fun Sliding() {
+        val slidePanel = binding.loginframe
+
+        val state = slidePanel.panelState
+        if (state == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+        } else if (state == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            slidePanel.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+        }
+    }
 
     override fun getViewBinding(): ActivityLoginBinding  =
         ActivityLoginBinding.inflate(layoutInflater)
@@ -75,6 +119,23 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>(){
     }
     private fun runDelayed(millis: Long, function: () -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(function, millis)
+    }
+
+    private fun resetPassword(){
+        val email = binding.editReset.text.toString().trim()
+
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(applicationContext,"이메일을 입력해주세요",Toast.LENGTH_SHORT).show()
+        }else{
+            auth!!.sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        Toast.makeText(this,"이메일을 확인해주세요",Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this,"메일이 정상적으로 보내지지않았습니다. 다시 시도해주세여",Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
     }
 
 }

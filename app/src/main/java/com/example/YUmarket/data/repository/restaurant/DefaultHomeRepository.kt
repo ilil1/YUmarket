@@ -53,7 +53,7 @@ import com.example.YUmarket.model.homelist.category.HomeListDetailCategory
                 "롯데리아 영남대 DT",
                 false,
                 LocationLatLngEntity(128.0, 36.0),
-                "https://picsum.photos/200",
+                "https://velog.velcdn.com/images/heetaeheo/post/2bfdcf89-2224-4155-a06d-bfb22f8f1ef8/image.png",
                 0.10f
             )
         )

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit
 class SignUpActivity : BaseActivity<ActivitySignupBinding>() {
 
 
-
+    private var checkEye =0
     var number: String = ""
     private var doubleBackToExit = false
 
@@ -125,6 +127,22 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>() {
             back()
         }
 
+        eye.setOnClickListener {
+            showAndHide()
+        }
+
+    }
+
+    private fun showAndHide(){
+        if(checkEye == 0){
+            binding.editpassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            binding.eye.setImageResource(R.drawable.eyes_show)
+            checkEye = 1
+        }else{
+            binding.editpassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            binding.eye.setImageResource(R.drawable.eyes)
+            checkEye = 0
+        }
     }
 
     //verifies if the code matches sent by firebase

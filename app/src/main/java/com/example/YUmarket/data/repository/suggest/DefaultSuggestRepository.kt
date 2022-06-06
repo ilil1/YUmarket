@@ -13,7 +13,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 0,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/79cff16b-4e9a-456d-86d8-cc189a5fb6a0/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/5e922b43-5fbf-478a-b3f8-b441937cba37/image.png",
                 "필터청소",
                 0.7f,
                 SuggestCategory.SEASON_SPRING
@@ -21,7 +21,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 1,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/8beb62c0-1455-467d-9411-b2b53c4502e9/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/7c3f2b09-08cb-4b36-9515-c63122c3aaaf/image.png",
                 "에어컨 수리",
                 0.5F,
                 SuggestCategory.SEASON_SPRING
@@ -49,14 +49,6 @@ class DefaultSuggestRepository : SuggestRepository {
     override fun fixMarket(): List<SuggestItemModel> {
         val mockList = listOf(
             SuggestItemModel(
-                6,
-                CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/92f2b5e7-55b0-4ad9-9d92-fdf617c3ce14/image.png",
-                "봄",
-                0f,
-                SuggestCategory.SEASON_SPRING
-            ),
-            SuggestItemModel(
                 0,
                 CellType.SUGGEST_CELL,
                 "https://velog.velcdn.com/images/heetaeheo/post/79cff16b-4e9a-456d-86d8-cc189a5fb6a0/image.jpg",
@@ -67,7 +59,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 1,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/8beb62c0-1455-467d-9411-b2b53c4502e9/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/5e922b43-5fbf-478a-b3f8-b441937cba37/image.png",
                 "에어컨 수리",
                 0.5F,
                 SuggestCategory.SEASON_SPRING
@@ -136,7 +128,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 0,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/f99ef524-b4d0-4f0e-a2e4-fe152f033224/image.png",
+                "https://velog.velcdn.com/images/heetaeheo/post/15d68f46-d77d-4855-8f1c-b79cb2f344a5/image.png",
                 "꽃집",
                 2.7f,
                 SuggestCategory.ANNIVERSARY
@@ -144,7 +136,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 1,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/249325f6-fb68-4fdf-8c4b-88aa9cd1f673/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/d01a1d2b-c11f-4ed2-a000-7db06a7b8ce6/image.png",
                 "케이크",
                 1.2f,
                 SuggestCategory.ANNIVERSARY
@@ -152,7 +144,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 2,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/39d9c60d-665c-4379-aa2c-3937b35a6815/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/eef318df-f989-4eb0-b75a-55b8e3301dcd/image.png",
                 "파티룸",
                 0.9f,
                 SuggestCategory.ANNIVERSARY
@@ -160,7 +152,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 3,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/686b7fb1-d815-48e1-b39f-061d79362654/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/b65be986-91ab-427d-ae9e-259c05d239db/image.png",
                 "장난감 가게",
                 1.5f,
                 SuggestCategory.ANNIVERSARY
@@ -176,7 +168,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 5,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/f369733b-6d8b-4f30-bca4-59143c7eb355/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/e4b0a8ab-66e2-4f8d-a983-85324f5c0133/image.png",
                 "쥬얼리",
                 1.5f,
                 SuggestCategory.ANNIVERSARY
@@ -190,7 +182,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 0,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/d39565b9-b914-4e4b-8a20-ba6bc891f72e/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/17288dbc-e6bf-48be-be7d-259ff6191161/image.png",
                 "노래 레슨",
                 2.7f,
                 SuggestCategory.HOBBY
@@ -198,7 +190,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 1,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/ffbfe8ea-c718-476e-a9bb-dc480d0b97dd/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/2119a66f-75a4-4252-a60a-ab8765f86a78/image.png",
                 "골프",
                 1.2f,
                 SuggestCategory.HOBBY
@@ -206,7 +198,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 2,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/e4b188ef-97bd-42cf-8f10-a0a47a3a23df/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/ec6b067e-26d3-4f62-8339-847217298810/image.png",
                 "영상 편집",
                 0.9f,
                 SuggestCategory.HOBBY
@@ -214,7 +206,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 3,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/834ea989-a13d-4705-8ea0-d58b724c60ba/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/ec6b067e-26d3-4f62-8339-847217298810/image.png",
                 "요리 교실",
                 1.5f,
                 SuggestCategory.HOBBY
@@ -222,7 +214,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 4,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/4b17ae0e-088a-41a3-9e2c-cb9e6775fef4/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/d91cc826-4bf1-44da-9cd8-4e0cb6c85f97/image.png",
                 "헬스",
                 3.5f,
                 SuggestCategory.HOBBY
@@ -230,7 +222,7 @@ class DefaultSuggestRepository : SuggestRepository {
             SuggestItemModel(
                 5,
                 CellType.SUGGEST_CELL,
-                "https://velog.velcdn.com/images/heetaeheo/post/f207d53b-3cff-4fb7-aeed-1d07fb2b65d7/image.jpg",
+                "https://velog.velcdn.com/images/heetaeheo/post/90adff0f-7948-4eb0-b32b-022537958673/image.png",
                 "필라테스",
                 0.4f,
                 SuggestCategory.HOBBY
