@@ -1,6 +1,6 @@
 package com.example.YUmarket.util.mapper
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.YUmarket.databinding.*
@@ -15,6 +15,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.cs.CSViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.home.HomeItemModelViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.home.TownMarketViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.homedetail.SaleItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.homemain.NearbyMarketViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.homemain.NewSaleItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.like.LikeItemViewHolder
@@ -29,7 +30,7 @@ object ViewHolderMapper {
         parent: ViewGroup,
         type: CellType,
         viewModel: BaseViewModel,
-        resourcesProvider: ResoucesProvider
+        resourcesProvider: ResourcesProvider
     ): ModelViewHolder<M> {
 
         val inflater = LayoutInflater.from(parent.context)
@@ -80,12 +81,20 @@ object ViewHolderMapper {
                     resourcesProvider
                 )
             }
+
+            CellType.HOME_DETAIL_ITEM_CELL -> {
+                SaleItemViewHolder(
+                    ViewholderSaleItemBinding.inflate(inflater),
+                    viewModel,
+                    resourcesProvider
+                )
+            }
+
             CellType.LIKE_MARKET_CELL -> LikeMarketViewHolder(
                 ViewholderLikeMarketListBinding.inflate(inflater, parent, false),
                 viewModel as LikeListViewModel<LikeMarketModel>,
                 resourcesProvider
             )
-
 
             CellType.LIKE_ITEM_CELL -> LikeItemViewHolder(
                 ViewholderLikeItemListBinding.inflate(inflater, parent, false),

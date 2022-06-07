@@ -2,6 +2,7 @@ package com.example.YUmarket.model
 
 
 enum class CellType {
+    HOME_DETAIL_ITEM_CELL,
     HOME_MAIN_MARKET_CELL,
     HOME_MAIN_ITEM_CELL,
     HOME_TOWN_MARKET_CELL,

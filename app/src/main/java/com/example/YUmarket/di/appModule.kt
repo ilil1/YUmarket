@@ -1,5 +1,6 @@
 package com.example.YUmarket.di
 
+import com.example.YUmarket.data.entity.home.TownMarketEntity
 import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
 import com.example.YUmarket.data.repository.like.DefaultLikeItemRepository
@@ -20,6 +21,8 @@ import com.example.YUmarket.data.repository.suggest.SuggestRepository
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.model.like.LikeCategory
 import com.example.YUmarket.screen.MainViewModel
+import com.example.YUmarket.screen.home.homedetail.HomeMarketDetailViewModel
+import com.example.YUmarket.screen.home.homedetail.menu.HomeMarketMenuViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.like.LikeListViewModel
@@ -27,7 +30,7 @@ import com.example.YUmarket.screen.map.MapViewModel
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
 import com.example.YUmarket.util.provider.DefaultResourcesProvider
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -43,11 +46,17 @@ val appModule = module {
     /*  CSViewModel 추가  의존성 주입   factory추가
     *   csCategory factory                     */
 
-
+    single<ResourcesProvider> { DefaultResourcesProvider(androidContext()) }
 
     factory { (csCategory: CSCategory) ->
         CSListViewModel(csCategory,get())
     }
+
+    viewModel { (townMarketEntity: TownMarketEntity) ->
+        HomeMarketDetailViewModel(townMarketEntity)
+    }
+
+    viewModel { HomeMarketMenuViewModel(get()) }
 
     viewModel(named(LikeCategory.MARKET)) {
         LikeListViewModel<LikeMarketModel>(
@@ -76,7 +85,6 @@ val appModule = module {
     single<SuggestRepository> {DefaultSuggestRepository()}
     // mockList 의존성 주입
     single<CSRepository>{ DefaultCSRepository(get()) }
-    single<ResoucesProvider>{ DefaultResourcesProvider(androidContext())}
 
     single { buildOkHttpClient() }
     single { provideGsonConverterFactory() }

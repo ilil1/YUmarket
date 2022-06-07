@@ -1,6 +1,6 @@
 package com.example.YUmarket.widget.adapter.viewholder.restaurant
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.databinding.ViewholderRestaurantBinding
 import com.example.YUmarket.model.homelist.HomeItemModel
 import com.example.YUmarket.screen.base.BaseViewModel
@@ -11,7 +11,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 class RestaurantViewHolder(
     private val binding: ViewholderRestaurantBinding,
     viewModel: BaseViewModel,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ) : ModelViewHolder<HomeItemModel>(binding, viewModel,resourcesProvider) {
     override fun reset() = Unit
 

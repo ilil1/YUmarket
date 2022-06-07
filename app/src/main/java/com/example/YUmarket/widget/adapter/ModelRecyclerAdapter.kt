@@ -2,7 +2,7 @@ package com.example.YUmarket.widget.adapter
 
 
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.YUmarket.model.CellType
@@ -16,7 +16,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 open class ModelRecyclerAdapter<M : Model, VM : BaseViewModel>(
     private var modelList: List<Model>,
     private val viewModel: VM,
-    private val resourcesProvider: ResoucesProvider,
+    private val resourcesProvider: ResourcesProvider,
     private val adapterListener: AdapterListener
 ) : ListAdapter<Model, ModelViewHolder<M>>(Model.DIFF_CALLBACK) {
 

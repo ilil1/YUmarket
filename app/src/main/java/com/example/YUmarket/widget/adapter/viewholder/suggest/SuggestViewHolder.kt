@@ -1,7 +1,7 @@
 package com.example.YUmarket.widget.adapter.viewholder.suggest
 
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.databinding.ViewholderSuggestSeasonBinding
 import com.example.YUmarket.extensions.clear
 import com.example.YUmarket.extensions.load
@@ -14,7 +14,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 class SuggestViewHolder(
     private val binding : ViewholderSuggestSeasonBinding,
     viewModel : BaseViewModel,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ) : ModelViewHolder<SuggestItemModel>(binding, viewModel,resourcesProvider)
 {
     override fun reset() = with(binding){

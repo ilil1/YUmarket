@@ -23,7 +23,7 @@ import com.example.YUmarket.screen.MainState
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.base.BaseFragment
 import com.example.YUmarket.screen.map.MapProductInfo.MapProductInfoActivity
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.map.MapItemListAdapterListener
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
@@ -48,7 +48,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
     private val viewModel by viewModel<MapViewModel>()
     private val activityViewModel by sharedViewModel<MainViewModel>()
-    private val resourcesProvider by inject<ResoucesProvider>()
+    private val resourcesProvider by inject<ResourcesProvider>()
 
     private val viewPagerAdapter by lazy {
         object : ModelRecyclerAdapter<MapItemModel, MapViewModel>(

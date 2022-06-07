@@ -6,7 +6,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-interface ResoucesProvider {
+interface ResourcesProvider {
 
     fun getString(@StringRes resId: Int): String
 

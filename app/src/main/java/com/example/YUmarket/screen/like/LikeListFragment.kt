@@ -8,7 +8,7 @@ import com.example.YUmarket.model.like.LikeCategory
 import com.example.YUmarket.model.like.LikeItemModel
 import com.example.YUmarket.model.like.LikeMarketModel
 import com.example.YUmarket.screen.base.BaseFragment
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.like.LikeListener
 import org.koin.android.ext.android.inject
@@ -24,7 +24,7 @@ class LikeListFragment<T : Model> : BaseFragment<FragmentLikeListBinding>() {
     }
 
     private lateinit var viewModel: LikeListViewModel<T>
-    private val resourcesProvider by inject<ResoucesProvider>()
+    private val resourcesProvider by inject<ResourcesProvider>()
 
     private val adapter by lazy {
         ModelRecyclerAdapter<T, LikeListViewModel<T>>(

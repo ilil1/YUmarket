@@ -1,7 +1,7 @@
 package com.example.YUmarket.widget.adapter.viewholder.home
 
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.ViewholderTownMarketBinding
 import com.example.YUmarket.extensions.clear
@@ -16,7 +16,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 class TownMarketViewHolder(
     private val binding: ViewholderTownMarketBinding,
     viewModel: BaseViewModel,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ): ModelViewHolder<TownMarketModel>(binding, viewModel, resourcesProvider) {
 
     override fun reset() = with(binding) {

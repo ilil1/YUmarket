@@ -1,7 +1,7 @@
 package com.example.YUmarket.screen.home.homelist
 
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,7 +31,7 @@ class HomeListFragment : BaseFragment<FragmentHomeListBinding>() {
         parametersOf(homeListCategory)
     }
 
-    private val resourcesProvider by inject<ResoucesProvider>()
+    private val resourcesProvider by inject<ResourcesProvider>()
 
     private val adapter by lazy {
         ModelRecyclerAdapter<Model, HomeListViewModel>(

@@ -6,7 +6,7 @@ import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
@@ -26,6 +26,7 @@ import com.example.YUmarket.model.suggest.SliderItem
 import com.example.YUmarket.screen.MainState
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.base.BaseFragment
+import com.example.YUmarket.screen.home.homedetail.HomeMarketDetailActivity
 import com.example.YUmarket.screen.home.suggest.HomeSuggestActivity
 import com.example.YUmarket.widget.SliderAdater
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
@@ -42,14 +43,13 @@ class HomeMainFragment
     : BaseFragment<FragmentHomeMainBinding>(),
     AdapterView.OnItemSelectedListener {
 
-
     private lateinit var viewPager2: ViewPager2
     private val sliderHandler = Handler()
 
     private val viewModel by viewModel<HomeMainViewModel>()
     private val activityViewModel by sharedViewModel<MainViewModel>()
 
-    private val resourcesProvider by inject<ResoucesProvider>()
+    private val resourcesProvider by inject<ResourcesProvider>()
 
     override fun getViewBinding(): FragmentHomeMainBinding =
         FragmentHomeMainBinding.inflate(layoutInflater)
@@ -58,10 +58,8 @@ class HomeMainFragment
     // drop(1)을 하여 동네마켓 항목은 제외
     private val categories = HomeListCategory.values().drop(1)
 
-
     override fun observeData() = with(viewModel) {
         // marketData가 변경되면 update
-
 
         marketData.observe(viewLifecycleOwner) {
             when (it) {
@@ -198,6 +196,9 @@ class HomeMainFragment
                 // RecyclerView의 Item을 클릭할때
                 override fun onClickItem(model: TownMarketModel) {
                     // TODO 22.01.18 start detail market activity when clicked
+                    startActivity(
+                        HomeMarketDetailActivity.newIntent(requireContext(), model.toEntity())
+                    )
                     Toast.makeText(context, model.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -454,7 +455,13 @@ class HomeMainFragment
         view?.let { it1 ->
             Navigation.findNavController(it1).popBackStack()
         }
+    }
 
+    companion object {
+        const val TAG = "HomeMainFragment"
+        const val TownMarket_KEY = "TownMarket"
+
+        fun newInstance() = HomeMainFragment()
     }
 }
 

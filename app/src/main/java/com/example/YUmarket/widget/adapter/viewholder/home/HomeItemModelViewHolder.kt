@@ -2,7 +2,7 @@ package com.example.YUmarket.widget.adapter.viewholder.home
 
 
 import com.example.YUmarket.R
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.databinding.ViewholderHomeItemBinding
 import com.example.YUmarket.extensions.clear
 import com.example.YUmarket.extensions.load
@@ -18,7 +18,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 class HomeItemModelViewHolder(
     private val binding: ViewholderHomeItemBinding,
     viewModel: BaseViewModel,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ) : ModelViewHolder<HomeItemModel>(binding, viewModel, resourcesProvider) {
 
 

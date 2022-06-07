@@ -1,6 +1,6 @@
 package com.example.YUmarket.screen.myinfo.customerservice.list
 
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import android.os.Bundle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -51,7 +51,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
         }
     }
 
-    private val resourcesProvider by inject<ResoucesProvider>()
+    private val resourcesProvider by inject<ResourcesProvider>()
 
 
     private val adapter by lazy {

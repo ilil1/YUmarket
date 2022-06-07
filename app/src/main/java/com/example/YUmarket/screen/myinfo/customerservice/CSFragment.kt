@@ -23,7 +23,6 @@ import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListFragment.Companion.CS_CATEGORY_KEY
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
-import com.example.YUmarket.util.provider.ResoucesProvider
 import com.example.YUmarket.widget.adapter.HomeListFragmentPagerAdapter
 import com.example.YUmarket.widget.adapter.ModelRecyclerAdapter
 import com.example.YUmarket.widget.adapter.listener.customerservice.CSModelListener

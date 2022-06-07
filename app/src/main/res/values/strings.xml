@@ -41,4 +41,11 @@
     <string name="POI_supermarket">편의점;슈퍼마켓;</string>
     <string name="POI_fashion_clothes">의류;</string>
     <string name="POI_etc">주차장;숙박</string>
+    <string name="menu">상품정보</string>
+    <string name="shopinform">가게정보</string>
+    <string name="call">전화</string>
+    <string name="share">공유</string>
+    <string name="like">찜</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

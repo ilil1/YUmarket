@@ -9,7 +9,7 @@ import com.example.YUmarket.extensions.load
 import com.example.YUmarket.model.map.MapItemModel
 import com.example.YUmarket.model.map.MapMarketModel
 import com.example.YUmarket.screen.base.BaseViewModel
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.widget.adapter.listener.AdapterListener
 import com.example.YUmarket.widget.adapter.listener.map.MapItemListAdapterListener
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
@@ -20,7 +20,7 @@ import kotlin.math.roundToInt
 class MapViewPagerViewHolder(
     private val binding: ViewholderMapViewpagerBinding,
     viewModel: BaseViewModel,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ) : ModelViewHolder<MapItemModel>(binding, viewModel, resourcesProvider) {
 
     lateinit var market: MapMarketModel

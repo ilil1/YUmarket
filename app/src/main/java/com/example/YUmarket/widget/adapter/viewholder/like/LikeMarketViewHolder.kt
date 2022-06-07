@@ -6,7 +6,7 @@ import com.example.YUmarket.extensions.clear
 import com.example.YUmarket.extensions.load
 import com.example.YUmarket.model.like.LikeMarketModel
 import com.example.YUmarket.screen.like.LikeListViewModel
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.widget.adapter.listener.AdapterListener
 import com.example.YUmarket.widget.adapter.listener.like.LikeListener
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
@@ -14,7 +14,7 @@ import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 class LikeMarketViewHolder(
     private val binding: ViewholderLikeMarketListBinding,
     viewModel: LikeListViewModel<LikeMarketModel>,
-    resourcesProvider: ResoucesProvider
+    resourcesProvider: ResourcesProvider
 ) : ModelViewHolder<LikeMarketModel>(binding, viewModel, resourcesProvider) {
     override fun reset() =
         binding.likeMarketImageView.clear()

@@ -1,8 +1,8 @@
 package com.example.YUmarket.screen
 
-import android.content.res.loader.ResourcesProvider
+
 import androidx.lifecycle.*
-import com.example.YUmarket.util.provider.ResoucesProvider
+import com.example.YUmarket.util.provider.ResourcesProvider
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val mapApiRepository: MapApiRepository,
-    private val resourcesProvider: ResoucesProvider
+    private val resourcesProvider: ResourcesProvider
 ) : BaseViewModel() {
     private val _locationData = MutableLiveData<MainState>(MainState.Uninitialized)
     val locationData: LiveData<MainState> = _locationData

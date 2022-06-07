@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 
 class DefaultResourcesProvider(
     private val context: Context
-): ResoucesProvider {
+): ResourcesProvider {
 
     override fun getString(resId: Int): String = context.getString(resId)
 

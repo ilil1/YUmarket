@@ -26,12 +26,10 @@ import androidx.core.view.isGone
 import androidx.navigation.NavHost
 import androidx.navigation.ui.setupWithNavController
 import com.example.YUmarket.MyApplication
-
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.databinding.ActivityMainBinding
 import com.example.YUmarket.screen.base.BaseActivity
-import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity
@@ -42,13 +40,7 @@ class MainActivity
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
-
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
 
     // Navigation에 사용할 Controller
     private val navController by lazy {
