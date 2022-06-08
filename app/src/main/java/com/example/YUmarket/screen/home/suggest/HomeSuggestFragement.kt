@@ -33,13 +33,15 @@ class HomeSuggestFragement : BaseFragment<FragmentSuggestBinding>() {
         name.text = data.toString()
 
         back.setOnClickListener {
-            activity?.let {
-                var intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-            }
-            backStack()
+//            activity?.let {
+//                var intent = Intent(context, MainActivity::class.java)
+//                startActivity(intent)
+//            }
+//            backStack()(
+            activity?.finish()
         }
     }
+
 
 
     private fun backStack() {

@@ -1,4 +1,4 @@
-package com.example.YUmarket.screen.like
+package com.example.YUmarket.screen.myinfo.like
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

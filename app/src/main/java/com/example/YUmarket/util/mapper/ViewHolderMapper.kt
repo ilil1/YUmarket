@@ -9,7 +9,7 @@ import com.example.YUmarket.model.Model
 import com.example.YUmarket.model.like.LikeItemModel
 import com.example.YUmarket.model.like.LikeMarketModel
 import com.example.YUmarket.screen.base.BaseViewModel
-import com.example.YUmarket.screen.like.LikeListViewModel
+import com.example.YUmarket.screen.myinfo.like.LikeListViewModel
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
 
 import com.example.YUmarket.widget.adapter.viewholder.cs.CSViewHolder
@@ -20,7 +20,6 @@ import com.example.YUmarket.widget.adapter.viewholder.homemain.NewSaleItemViewHo
 import com.example.YUmarket.widget.adapter.viewholder.like.LikeItemViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.like.LikeMarketViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.map.MapViewPagerViewHolder
-import com.example.YUmarket.widget.adapter.viewholder.restaurant.RestaurantViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.suggest.SuggestViewHolder
 
 object ViewHolderMapper {

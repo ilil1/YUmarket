@@ -10,7 +10,7 @@
         android:icon="@drawable/chatting"
         android:title="@string/chatting" />
     <item
-        android:id="@+id/like"
+        android:id="@+id/store"
         android:icon="@drawable/store"
         android:title="@string/store" />
     <item

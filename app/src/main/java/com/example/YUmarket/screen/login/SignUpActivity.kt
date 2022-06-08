@@ -223,24 +223,11 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>() {
     }
 
     private fun back() {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        //startActivity(Intent(this,LoginActivity::class.java))
+        this.finish()
     }
 
-    override fun onBackPressed() {
 
-
-        if (doubleBackToExit) {
-            finishAffinity()
-        } else {
-            Toast.makeText(this, "종료하서려면 뒤로가기를 한번더 눌러주세요", Toast.LENGTH_SHORT).show()
-            doubleBackToExit = true
-            runDelayed(1500L) {
-                doubleBackToExit = false
-            }
-        }
-    }
 
     private fun runDelayed(millis: Long, function: () -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(function, millis)

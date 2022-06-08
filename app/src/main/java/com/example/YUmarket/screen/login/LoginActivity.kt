@@ -101,7 +101,6 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>(){
     private fun registerMove(){
         val intent = Intent(this,SignUpActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     override fun onBackPressed() {

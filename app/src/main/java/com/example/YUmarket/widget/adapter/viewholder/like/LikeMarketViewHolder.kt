@@ -5,7 +5,7 @@ import com.example.YUmarket.databinding.ViewholderLikeMarketListBinding
 import com.example.YUmarket.extensions.clear
 import com.example.YUmarket.extensions.load
 import com.example.YUmarket.model.like.LikeMarketModel
-import com.example.YUmarket.screen.like.LikeListViewModel
+import com.example.YUmarket.screen.myinfo.like.LikeListViewModel
 import com.example.YUmarket.util.provider.ResoucesProvider
 import com.example.YUmarket.widget.adapter.listener.AdapterListener
 import com.example.YUmarket.widget.adapter.listener.like.LikeListener

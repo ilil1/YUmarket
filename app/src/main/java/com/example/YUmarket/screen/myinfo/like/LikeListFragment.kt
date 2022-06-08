@@ -1,4 +1,4 @@
-package com.example.YUmarket.screen.like
+package com.example.YUmarket.screen.myinfo.like
 
 import android.widget.Toast
 import androidx.core.os.bundleOf

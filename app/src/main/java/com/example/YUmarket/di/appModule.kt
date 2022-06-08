@@ -22,7 +22,7 @@ import com.example.YUmarket.model.like.LikeCategory
 import com.example.YUmarket.screen.MainViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
-import com.example.YUmarket.screen.like.LikeListViewModel
+import com.example.YUmarket.screen.myinfo.like.LikeListViewModel
 import com.example.YUmarket.screen.map.MapViewModel
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSListViewModel
