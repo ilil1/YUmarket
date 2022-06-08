@@ -117,7 +117,7 @@ class MainActivity
     }
 
     override fun initViews() = with(binding) {
-        val url = "http://54.180.157.241/search.php"
+        val url = "http://52.78.239.146/search.php"
         // 22.01.19 BottomNavigationView의 동작을 Controller를 이용하여 설정
         // by 정남진
         bottomNav.setupWithNavController(navController)
