@@ -25,13 +25,13 @@
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@id/ImageView"
         app:layout_constraintStart_toStartOf="@id/ImageView"
         app:layout_constraintTop_toBottomOf="@id/ImageView"
-        tools:layout_editor_absoluteY="134dp"
+
         tools:text="스토어 이름"
          />
 

@@ -8,7 +8,9 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import com.example.YUmarket.util.provider.ResoucesProvider
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -332,10 +334,11 @@ class HomeMainFragment
 
 
         viewPager2.adapter = SliderAdater(slideritems, viewPager2)
-
+        viewPager2.setLayoutParams(LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         viewPager2.clipToPadding = false
         viewPager2.offscreenPageLimit = 4
         viewPager2.clipChildren = false
+
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
         val compositePageTransformer = CompositePageTransformer()

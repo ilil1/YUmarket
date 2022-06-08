@@ -41,4 +41,10 @@
     <string name="POI_supermarket">편의점;슈퍼마켓;</string>
     <string name="POI_fashion_clothes">의류;</string>
     <string name="POI_etc">주차장;숙박</string>
+
+
+    <string name="spring"><b>다가오는 봄</b>, 필요한 서비스를 찾아보세요</string>
+    <string name="hobby_string">우리 동네에서 인기 있는 <b>취미활동</b>이에요</string>
+    <string name="nearly"><b>가까운 곳</b>에서 빠르게 거래해보세요</string>
+    <string name="annival"><b>5월의 기념일</b>을 준비해보세요</string>
 </resources>

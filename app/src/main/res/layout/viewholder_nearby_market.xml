@@ -19,6 +19,7 @@
         android:id="@+id/nearbyMarketTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:ellipsize="end"
         android:maxLines="1"
         app:layout_constraintEnd_toStartOf="@id/nearbyMarketDistance"
@@ -30,6 +31,7 @@
         android:id="@+id/nearbyMarketDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nearbyMarketImageView"
         tools:text="1.2km" />
