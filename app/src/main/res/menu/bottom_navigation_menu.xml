@@ -7,7 +7,7 @@
         android:title="@string/home" />
     <item
         android:id="@+id/order_list"
-        android:icon="@drawable/chatting"
+        android:icon="@drawable/chat"
         android:title="@string/chatting" />
     <item
         android:id="@+id/store"

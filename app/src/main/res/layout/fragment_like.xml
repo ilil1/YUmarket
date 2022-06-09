@@ -18,6 +18,7 @@
         android:id="@+id/likeFragmentTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabTextColor="@color/base"
         app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="fill"
         app:tabIndicatorFullWidth="false"

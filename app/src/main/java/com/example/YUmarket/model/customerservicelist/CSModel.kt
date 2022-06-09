@@ -20,7 +20,8 @@ data class CSModel(
     val csCategory: CSCategory,
     val csTitle: String,
     val csAuthor:String,
-    val csContent:String
+    val csContentTitle:String,
+    val csContentBody:String
 ): Model(id,type)
 
 

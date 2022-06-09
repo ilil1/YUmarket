@@ -16,41 +16,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/block"
-    tools:layout_marginTop="10dp"
-   >
+    android:id="@+id/block">
 
     <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/question_text"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:textColor="@color/color_dark_000000_ffffff"
         android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="@id/block"
-        app:layout_constraintBottom_toBottomOf="@id/block"
-        app:layout_constraintStart_toStartOf="@id/block" />
+        android:hint="text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/color_dark_000000_ffffff"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@id/block"
-        app:layout_constraintEnd_toEndOf="@id/block" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/right"
+    <LinearLayout
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="2dp"
+        app:layout_constraintStart_toStartOf="@id/block"
         app:layout_constraintEnd_toEndOf="@id/block"
-        app:layout_constraintBottom_toBottomOf="@id/block"
-        app:layout_constraintRight_toLeftOf="@id/block"
-        app:layout_constraintTop_toTopOf="@id/block"
-        app:tint="@color/color_dark_000000_ffffff" />
+        app:layout_constraintBottom_toBottomOf="@+id/block"
+        android:background="@color/base_grey" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </LinearLayout>

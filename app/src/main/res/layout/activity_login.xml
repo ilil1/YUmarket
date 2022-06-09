@@ -21,13 +21,13 @@
 
         <TextView
             android:id="@+id/with"
-            android:layout_width="208dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="440dp"
             android:text="위드마켓과      즐거운 거래해요"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="33sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:layout_marginTop="50dp"
             android:text="아이디"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/with"
             app:layout_constraintTop_toBottomOf="@id/with" />
 
@@ -60,7 +60,7 @@
             android:layout_marginTop="30dp"
             android:text="비밀번호"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/with"
             app:layout_constraintTop_toBottomOf="@id/editId" />
 
@@ -115,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="아이디 / 비밀번호 찾기"
+            android:text="비밀번호 찾기"
             android:textSize="14sp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/login"
@@ -126,8 +126,8 @@
         <View
             android:id="@+id/cross"
             android:layout_width="3px"
-            android:layout_height="100px"
-            android:layout_marginTop="10dp"
+            android:layout_height="70px"
+            android:layout_marginTop="20dp"
             android:background="#C6C6C6"
             app:layout_constraintBottom_toBottomOf="@id/find"
             app:layout_constraintStart_toStartOf="@id/login"

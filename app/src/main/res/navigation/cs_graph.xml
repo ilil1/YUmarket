@@ -23,6 +23,10 @@
         <action
             android:id="@+id/action_myInfoFragment_to_personalFragment"
             app:destination="@id/personalFragment" />
+        <action
+            android:id="@+id/action_myInfoFragment_to_likeFragment"
+            app:destination="@id/likeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/termsFragment"
@@ -127,6 +131,25 @@
     </fragment>
     <argument android:name="list"
         app:argType="com.example.YUmarket.model.customerservicelist.ImageData"/>
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.example.YUmarket.screen.myinfo.like.LikeFragment"
+        tools:layout="@layout/fragment_like"
+        android:label="LikeFragment" >
+        <action
+            android:id="@+id/action_likeFragment_to_likeListFragment"
+            app:destination="@id/likeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/likeListFragment"
+        tools:layout="@layout/fragment_like_list"
+        android:name="com.example.YUmarket.screen.myinfo.like.LikeListFragment"
+        android:label="LikeListFragment" >
+        <action
+            android:id="@+id/action_likeListFragment_to_likeFragment"
+            app:destination="@id/likeFragment" />
+    </fragment>
+
 
     <!--    <fragment-->
     <!--        android:id="@+id/CSListFragment"-->

@@ -1,11 +1,20 @@
 package com.example.YUmarket.screen.myinfo.customerservice.center
 
+import android.app.ActionBar
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
+import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,6 +22,7 @@ import androidx.navigation.Navigation
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentCsCenterBinding
 import com.example.YUmarket.screen.base.BaseFragment
+import com.example.YUmarket.screen.myinfo.CustomDialog
 import com.example.YUmarket.screen.myinfo.Method
 import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 
@@ -26,6 +36,7 @@ import com.example.YUmarket.screen.myinfo.customerservice.list.CSCategory
 
 class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
 
+    lateinit var windowManager : WindowManager.LayoutParams
 
     override fun getViewBinding(): FragmentCsCenterBinding =
         FragmentCsCenterBinding.inflate(layoutInflater)
@@ -79,6 +90,29 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
     }
 
     private fun callYU() {
+
+//        val dialog = Dialog(requireActivity())
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setCancelable(true)
+//        dialog.setContentView(R.layout.custom_dialog)
+//        val bodytext = dialog.findViewById(R.id.center_text) as TextView
+//        bodytext.text = "000-1111-2222"
+//        val toptext = dialog.findViewById(R.id.name) as TextView
+//        toptext.text = "위드마켓"
+//        val call = dialog.findViewById(R.id.red_btn) as Button
+//        val cancle = dialog.findViewById(R.id.back) as ImageView
+//        val icon = dialog.findViewById(R.id.icon) as ImageView
+//        dialog.show()
+//
+//
+//
+//        call.setOnClickListener {
+//            Marketcall()
+//        }
+//        cancle.setOnClickListener {
+//            dialog.dismiss()
+//        }
+
         val items = "000-1111-2222"
         val alertDialog = AlertDialog.Builder(context)
             .setTitle("YU Market")
@@ -92,6 +126,7 @@ class CSCenterFragment : BaseFragment<FragmentCsCenterBinding>() {
                     Toast.makeText(context, "통화를 취소했습니다.", Toast.LENGTH_SHORT).show()
                 })
             .show()
+
 
     }
 

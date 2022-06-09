@@ -28,7 +28,6 @@ class CSViewHolder(
         super.bindData(listModel)
         with(binding) {
             questionText.text = listModel.csTitle
-            author.text = listModel.csAuthor
 
         }
     }

@@ -132,7 +132,8 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
         binding.back.setOnClickListener { back() }
 
 
-
+        binding.heart.setOnClickListener { openHeart() }
+        binding.heart.setOnClickListener { openHeart()  }
 
         getResultImage = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -223,6 +224,13 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
     private fun backStack() {
         activity?.finish()
+    }
+
+    private fun openHeart(){
+        view?.let { it1 ->
+            Navigation.findNavController(it1)
+                .navigate(R.id.action_myInfoFragment_to_likeFragment)
+        }
     }
 }
 

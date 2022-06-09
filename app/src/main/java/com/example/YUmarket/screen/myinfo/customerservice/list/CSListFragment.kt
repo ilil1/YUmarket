@@ -59,7 +59,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
             listOf(), viewModel, resourcesProvider,
             object : CSModelListener {
                 override fun onClickItem(listModel: CSModel) {
-                    val data = ImageData(listModel.csTitle, listModel.csContent, listModel.csAuthor)
+                    val data = ImageData(listModel.csTitle, listModel.csContentTitle,listModel.csContentBody,listModel.csAuthor)
                     val bundle = Bundle()
                     bundle.putParcelable("data", data)
                     view?.let{
@@ -95,6 +95,7 @@ class CSListFragment : BaseFragment<FragmentCsListBinding>() {
         super.initViews()
         binding.csRecyclerView.adapter = adapter
         binding.csRecyclerView.layoutManager = LinearLayoutManager(this@CSListFragment.context)
+
 
 
 

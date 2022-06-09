@@ -12,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
-        android:src="@drawable/left"
+        android:src="@drawable/back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/filterScrollView_cs"
         app:layout_constraintStart_toStartOf="parent" />
@@ -22,30 +22,21 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/color_dark_000000_ffffff"
+        android:textColor="@color/base"
         android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="고객센터" />
+        tools:text="자주하는질문" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/intentmyinfo"
-        android:layout_width="50dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/white"
-        android:src="@drawable/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/color_dark_000000_ffffff" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#F3F3F3"
+        app:tabBackground="@drawable/tab_color_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CSTextView"
         app:tabGravity="fill"
@@ -73,6 +64,7 @@
             app:checkedChip="@+id/chipLogin"
             app:chipSpacingHorizontal="4dp"
             app:chipSpacingVertical="6dp"
+            android:background="#F3F3F3"
             app:layout_constraintBottom_toTopOf="@id/viewPager_cs"
             app:selectionRequired="true"
             app:singleSelection="true"
@@ -82,6 +74,7 @@
                 android:id="@+id/chipLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="로그인"
                 android:visibility="gone"
                 app:chipIconEnabled="true"
@@ -91,6 +84,7 @@
                 android:id="@+id/chipUse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="이용"
                 app:chipIconEnabled="true" />
 
@@ -98,6 +92,7 @@
                 android:id="@+id/chipPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="결제"
                 app:chipIconEnabled="true" />
 
@@ -105,6 +100,7 @@
                 android:id="@+id/chipReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="리뷰"
                 app:chipIconEnabled="true" />
 
@@ -112,6 +108,7 @@
                 android:id="@+id/chipOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="주문"
                 app:chipIconEnabled="true"/>
 
@@ -119,6 +116,7 @@
                 android:id="@+id/chipEtc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="기타"
                 app:chipIconEnabled="true" />
 
@@ -158,40 +156,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editBtnContainer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/editBtn"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_margin="24dp"
-            android:background="@color/teal_200"
-            android:elevation="16dp"
-            android:src="@drawable/pencil"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/color_dark_ffffff_000000" />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="15dp"
-            android:elevation="16dp"
-            android:text="1:1문의"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/color_dark_ffffff_000000"
-            android:textSize="8sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/editBtn"
-            app:layout_constraintEnd_toEndOf="@id/editBtn"
-            app:layout_constraintStart_toStartOf="@id/editBtn"
-            app:layout_constraintTop_toTopOf="@id/editBtn" />
+
+        <ImageButton
+            android:id="@+id/editBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.3"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/radius_myinfo"
+            android:src="@drawable/chat"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

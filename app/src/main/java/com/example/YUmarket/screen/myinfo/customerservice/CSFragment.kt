@@ -76,13 +76,9 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
     override fun initViews() = with(binding) {
         super.initViews()
 
-        CSTextView.text = "고객센터"
+        CSTextView.text = "자주하는 질문"
         initviewPager()
 
-        intentmyinfo.setOnClickListener {
-            intentMyinfo()
-            doubleBackStack()
-        }
 
         editBtn.setOnClickListener {
             view?.let { it1 ->

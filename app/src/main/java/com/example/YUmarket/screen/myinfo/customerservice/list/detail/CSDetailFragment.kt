@@ -21,8 +21,9 @@ class CSDetailFragment : BaseFragment<FragmentDetailBinding>() {
         super.initViews()
         val csData = arguments?.getParcelable<ImageData>("data")
         title.text = csData?.csTitle.toString()
-        author.text = csData?.csAuthor.toString()
-        content.text = csData?.csContent.toString()
+        contentTitle.text = csData?.csContentTitle.toString()
+        contentBody.text = csData?.csContentBody.toString()
+
 
         uturn.setOnClickListener {
             changeFragment()
