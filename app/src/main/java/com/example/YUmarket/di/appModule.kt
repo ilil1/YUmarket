@@ -2,6 +2,8 @@ package com.example.YUmarket.di
 
 import com.example.YUmarket.data.repository.basket.BasketRepository
 import com.example.YUmarket.data.repository.basket.DefaultBasketRepository
+import com.example.YUmarket.data.repository.chat.ChatRepository
+import com.example.YUmarket.data.repository.chat.DefaultChatRepository
 import com.example.YUmarket.data.repository.like.DefaultLikeItemRepository
 import com.example.YUmarket.data.repository.like.DefaultLikeMarketRepository
 import com.example.YUmarket.data.repository.like.LikeListRepository
@@ -20,6 +22,7 @@ import com.example.YUmarket.data.repository.suggest.SuggestRepository
 import com.example.YUmarket.model.homelist.category.HomeListCategory
 import com.example.YUmarket.model.like.LikeCategory
 import com.example.YUmarket.screen.MainViewModel
+import com.example.YUmarket.screen.chat.ChatViewModel
 import com.example.YUmarket.screen.home.homelist.HomeListViewModel
 import com.example.YUmarket.screen.home.homemain.HomeMainViewModel
 import com.example.YUmarket.screen.myinfo.like.LikeListViewModel
@@ -68,9 +71,10 @@ val appModule = module {
     viewModel {HomeMainViewModel(get(),get())}
     viewModel { MainViewModel(get(),get()) }
     viewModel { MapViewModel(get()) }
+    viewModel {ChatViewModel(get())}
 
 
-
+    single<ChatRepository>{ DefaultChatRepository(get()) }
 
     single<HomeRepository> { DefaultHomeRepository() }
     single<SuggestRepository> {DefaultSuggestRepository()}

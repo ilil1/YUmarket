@@ -10,5 +10,6 @@ enum class CellType {
     SUGGEST_CELL,
     LIKE_MARKET_CELL,
     LIKE_ITEM_CELL,
-    MAP_ITEM_CELL
+    MAP_ITEM_CELL,
+    CHATTING_CELL
 }

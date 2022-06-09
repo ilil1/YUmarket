@@ -51,6 +51,7 @@
             android:exported="true" />
         <activity android:name=".screen.map.MapLocationSetting.MapLocationSettingActivity" />
         <activity android:name=".screen.myLocation.MyLocationActivity" />
+        <activity android:name=".screen.chat.ChatActivity"/>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

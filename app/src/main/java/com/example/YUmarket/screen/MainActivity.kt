@@ -123,20 +123,20 @@ class MainActivity
         bottomNav.setupWithNavController(navController)
 
 
-//        wView.settings.apply {
-//
-//            javaScriptEnabled = true
-//            javaScriptCanOpenWindowsAutomatically = true
-//            setSupportMultipleWindows(true)
-//
-//        }
-//        wView.apply {
-//            webViewClient = client
-//            // addJavascriptInterface(AndroidBridge(), "TestApp")
-//            webChromeClient = chromeClient
-//            loadUrl(url)
-//        }
-//
+        wView.settings.apply {
+
+            javaScriptEnabled = true
+            javaScriptCanOpenWindowsAutomatically = true
+            setSupportMultipleWindows(true)
+
+        }
+        wView.apply {
+            webViewClient = client
+            addJavascriptInterface(AndroidBridge(), "TestApp")
+            webChromeClient = chromeClient
+            loadUrl(url)
+        }
+
 
 
 

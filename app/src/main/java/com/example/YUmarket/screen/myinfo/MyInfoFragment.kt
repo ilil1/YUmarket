@@ -133,7 +133,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding>() {
 
 
         binding.heart.setOnClickListener { openHeart() }
-        binding.heart.setOnClickListener { openHeart()  }
+        binding.heartText.setOnClickListener { openHeart()  }
 
         getResultImage = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()

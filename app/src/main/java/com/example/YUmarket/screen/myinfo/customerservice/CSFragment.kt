@@ -42,7 +42,6 @@ class CSFragment : BaseFragment<FragmentCsBinding>() {
 
     private val viewModel by viewModel<CSListViewModel>()
 
-    private var csCategory = CSCategory.LOGIN
     override fun getViewBinding(): FragmentCsBinding =
         FragmentCsBinding.inflate(layoutInflater)
 

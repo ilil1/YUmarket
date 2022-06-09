@@ -11,6 +11,7 @@ import com.example.YUmarket.model.like.LikeMarketModel
 import com.example.YUmarket.screen.base.BaseViewModel
 import com.example.YUmarket.screen.myinfo.like.LikeListViewModel
 import com.example.YUmarket.widget.adapter.viewholder.ModelViewHolder
+import com.example.YUmarket.widget.adapter.viewholder.chat.ChatViewHolder
 
 import com.example.YUmarket.widget.adapter.viewholder.cs.CSViewHolder
 import com.example.YUmarket.widget.adapter.viewholder.home.HomeItemModelViewHolder
@@ -95,6 +96,11 @@ object ViewHolderMapper {
 
             CellType.MAP_ITEM_CELL -> MapViewPagerViewHolder(
                 ViewholderMapViewpagerBinding.inflate(inflater, parent, false),
+                viewModel,
+                resourcesProvider
+            )
+            CellType.CHATTING_CELL -> ChatViewHolder(
+                ViewholderChatlistBinding.inflate(inflater,parent,false),
                 viewModel,
                 resourcesProvider
             )
