@@ -9,12 +9,18 @@ import android.location.Geocoder
 import android.location.LocationListener
 import android.location.LocationManager
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.YUmarket.R
 import com.example.YUmarket.data.entity.location.LocationLatLngEntity
+import com.example.YUmarket.data.repository.home.DefaultHomeRepository
+import com.example.YUmarket.data.repository.map.DefaultMapRepository
+import com.example.YUmarket.data.repository.map.MapRepository
 import com.example.YUmarket.databinding.DialogFilterBinding
 import com.example.YUmarket.databinding.FragmentMapBinding
 import com.example.YUmarket.model.map.MapItemModel
@@ -45,7 +51,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 // https://github.com/foreknowledge/my-places
 // https://navermaps.github.io/android-map-sdk/guide-ko/2-1.html
 
-class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
+class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapReadyCallback {
     //private val viewModel by viewModel<MapViewModel>()
     private val viewModel by sharedViewModel<MainViewModel>()
     private val resourcesProvider by inject<ResourcesProvider>()
@@ -151,7 +157,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 }
 
                 // 마커 정보를 다 가져오면 지도에 출력
-                is MapState.Success -> onSuccess(it)
+                is MapState.Success -> {}//onSuccess(it)
 
                 is MapState.Error -> {
                     // TODO: 2022.04.10 handle error
@@ -170,7 +176,10 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
 
                 }
 
-                is MainState.Success -> updateLocation(it.mapSearchInfoEntity.locationLatLng)
+                is MainState.Success -> {
+                    updateLocation(it.mapSearchInfoEntity.locationLatLng)
+                    removeAllMarkers()
+                }
 
                 is MainState.Error -> {
 
@@ -179,12 +188,18 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
         }
     }
 
+    // TODO 지우기
+    /*
     private fun onSuccess(state: MapState.Success) {
-        val markets = state.markets
 
-        viewModel.setMarkers(markets.mapIndexed(::createMarketMarkerOnMap))
+        if(!viewModel.getMarkers().isNullOrEmpty())
+            removeAllMarkers()
 
-        for (marker in viewModel.getMarkers()) {
+        //val markets = state.markets
+
+        //viewModel.setMarkers(markets.mapIndexed(::createMarketMarkerOnMap))
+
+        for (marker in viewModel.getMarkers()!!) {
 
             marker.setOnClickListener {
                 // idx로는 setOnClickListener에서 마커의 index를 못찾아서 고유값인 zIndex로 대체
@@ -202,6 +217,33 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 // 여기서 오픈한 말풍선은 fbtnViewPager2를 클릭하면 제거
                 viewPagerAdapter.registerStore(markets[marker.zIndex])
                 // binding.viewPager2.adapter = viewPagerAdapter
+                binding.viewPager2.visibility = View.VISIBLE
+                binding.fbtnCloseViewPager.visibility = View.VISIBLE
+                true
+            }
+        }
+    }
+     */
+
+    private fun setMarkerListener(markets : List<MapMarketModel>){
+        for (marker in viewModel.getMarkers()!!) {
+
+            marker.setOnClickListener {
+                // idx로는 setOnClickListener에서 마커의 index를 못찾아서 고유값인 zIndex로 대체
+                this@MapFragment.infoWindow?.close()
+
+                this@MapFragment.infoWindow = InfoWindow()
+                this@MapFragment.infoWindow?.adapter =
+                    object : InfoWindow.DefaultTextAdapter(requireContext()) {
+                        override fun getText(infoWindow: InfoWindow): CharSequence {
+                            return infoWindow.marker?.tag as CharSequence
+                        }
+                    }
+                this@MapFragment.infoWindow?.open(marker)
+
+                // 여기서 오픈한 말풍선은 fbtnViewPager2를 클릭하면 제거
+                viewPagerAdapter.registerStore(markets[marker.zIndex])
+                //binding.viewPager2.adapter = viewPagerAdapter
                 binding.viewPager2.visibility = View.VISIBLE
                 binding.fbtnCloseViewPager.visibility = View.VISIBLE
                 true
@@ -230,45 +272,65 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 icon = OverlayImage.fromResource(R.drawable.marker_m)
                 iconTintColor = Color.parseColor("#46F5FF")
             }
-
-            else -> {
+            1L -> {
                 icon = OverlayImage.fromResource(R.drawable.marker_r)
                 iconTintColor = Color.parseColor("#FFCB41")
             }
-//
-//            2L -> {
-//                icon = OverlayImage.fromResource(R.drawable.marker_s)
-//                iconTintColor = Color.parseColor("#886AFF")
-//            }
-//            3L -> {
-//                icon = OverlayImage.fromResource(R.drawable.marker_e)
-//                iconTintColor = Color.parseColor("#04B404")
-//            }
-//            4L -> {
-//                icon = OverlayImage.fromResource(R.drawable.marker_f)
-//                iconTintColor = Color.parseColor("#8A0886")
-//            }
-//            5L -> {
-//                icon = OverlayImage.fromResource(R.drawable.marker_f)
-//                iconTintColor = Color.parseColor("#0B2F3A")
-//            }
+            2L -> {
+                icon = OverlayImage.fromResource(R.drawable.marker_s)
+                iconTintColor = Color.parseColor("#886AFF")
+            }
+            3L -> {
+                icon = OverlayImage.fromResource(R.drawable.marker_e)
+                iconTintColor = Color.parseColor("#04B404")
+            }
+            4L -> {
+                icon = OverlayImage.fromResource(R.drawable.marker_f)
+                iconTintColor = Color.parseColor("#8A0886")
+            }
+            5L -> {
+                icon = OverlayImage.fromResource(R.drawable.marker_f)
+                iconTintColor = Color.parseColor("#0B2F3A")
+            }
         }
     }
 
     override fun initState() {
         if (!isFragmentInitialized) {
             locationSource = FusedLocationSource(this@MapFragment, LOCATION_PERMISSION_REQUEST_CODE)
-            isFragmentInitialized = true
+            //isFragmentInitialized = true
         }
 
         super.initState()
     }
 
+    private lateinit var chkAll: CheckBox
+
     private fun initDialog() {
         builder = AlertDialog.Builder(requireContext())
         builder.setCancelable(false)
 
-        with(dialogBinding) {
+        val displayRectangle = Rect()
+        val window = requireActivity().window
+        window.decorView.getWindowVisibleDisplayFrame(displayRectangle)
+
+        val inflater =
+            requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        layout = inflater.inflate(R.layout.dialog_filter, null)
+        layout.minimumWidth = ((displayRectangle.width() * 0.9f).toInt())
+        layout.minimumHeight = ((displayRectangle.height() * 0.9f).toInt())
+
+        chkAll = layout.findViewById(R.id.all)
+        filterCategoryOptions.add(layout.findViewById(R.id.food_beverage))
+        filterCategoryOptions.add(layout.findViewById(R.id.service))
+        filterCategoryOptions.add(layout.findViewById(R.id.fashion_accessories))
+        filterCategoryOptions.add(layout.findViewById(R.id.supermarket))
+        filterCategoryOptions.add(layout.findViewById(R.id.fashion_clothes))
+        filterCategoryOptions.add(layout.findViewById(R.id.etc))
+
+
+        //with(dialogBinding) {
+/*
             filterCategoryOptions.addAll(
                 arrayOf(
                     foodBeverage, service, fashionAccessories,
@@ -276,15 +338,31 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 )
             )
 
-            // 체크박스 누를때마다 돌면서 전부 true인지 확인하고, 전부 true이면 all의 체크 true
-            setFilterButtonsListener()
+ */
 
-            all.setOnClickListener {
-                for (item in filterCategoryOptions)
-                    item.isChecked = all.isChecked // 아이템마다 리스너 전부 동작
+            // 체크박스 누를때마다 돌면서 전부 true인지 확인하고, 전부 true이면 all의 체크 true
+                //setFilterButtonsListener()
+
+            for (checkBox in filterCategoryOptions) {
+                filterCategoryChecked.add(true)
+
+                checkBox.setOnClickListener { // checkOnListener안한 이유는 직접 터치하지 않고 체크박스의 체크를 설정할때 불필요하게 호출됨
+                    for (_checkBox in filterCategoryOptions)
+                        if (!_checkBox.isChecked) {
+                            chkAll.isChecked = false // 이떄 all 리스너 동작 -> all은 클릭 리스너로 바꿈
+                            return@setOnClickListener
+                        }
+
+                    chkAll.isChecked = true
+                }
             }
 
-            btnCloseFilter.setOnClickListener {
+            chkAll.setOnClickListener {
+                for (item in filterCategoryOptions)
+                    item.isChecked = chkAll.isChecked // 아이템마다 리스너 전부 동작
+            }
+
+            layout.findViewById<ImageButton>(R.id.btn_close_filter).setOnClickListener {
                 // 필터 열때 저장했던 체크정보 다시 UI에 적용
                 var check = true
 
@@ -293,7 +371,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                     if (!filterCategoryOptions[i].isChecked)
                         check = false
                 }
-                all.isChecked = check
+                chkAll.isChecked = check
 
                 //chkVisit.isChecked = filterCategoryOptions[7]
                 //switchShowOnSale.isChecked = filterCategoryOptions[8]
@@ -302,7 +380,10 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 (layout.parent as ViewGroup).removeView(layout)
             }
 
-            btnFilterApply.setOnClickListener {
+            layout.findViewById<Button>(R.id.btn_filter_apply).setOnClickListener {
+
+                binding.btnCloseMarkers.visibility = View.VISIBLE
+
                 var noChk = true
 
                 for (item in filterCategoryOptions)
@@ -319,13 +400,41 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                 for (i in 0 until filterCategoryOptions.size)
                     filterCategoryChecked[i] = filterCategoryOptions[i].isChecked
 
+
+
+                deleteMarkers()
+
+                // 가게 돌면서 가게 id에 해당하는게 true라면
+                var temp = arrayListOf<Marker>()
+                var i = 0
+                val markets = DefaultMapRepository().getMarkets()
+
+                repeat(markets.size) {
+                    if (filterCategoryChecked[markets[i].id.toInt()]) {
+                        temp += Marker().apply {
+                            position = LatLng(
+                                markets[i].location.latitude,
+                                markets[i].location.longitude
+                            )
+                            icon = MarkerIcons.BLACK
+                            tag = markets[i].name
+                            zIndex = i
+                        }
+                    }
+                    i++
+                }
+
+                viewModel.setMarkers(temp)
+
                 searchAround()
 
+                setMarkerListener(markets)
+
                 dialog.dismiss()
-//                (layout.parent as ViewGroup).removeView(layout)
+                (layout.parent as ViewGroup).removeView(layout)
             }
 
-            btnFilterReset.setOnClickListener {
+            layout.findViewById<Button>(R.id.btn_filter_reset).setOnClickListener {
                 // 어떤 하나의 체크박스만 체크하고 적용 -> 초기화 터치 -> x -> 필터
 
                 for (i in 0 until filterCategoryOptions.size) {
@@ -340,13 +449,15 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
                         check = false // 이떄 all 리스너 동작 -> all은 클릭 리스너로 바꿈
                     }
 
-                if (check) all.isChecked = true
+                if (check) chkAll.isChecked = true
 
 //                searchKeywords.clear()
             }
 
-            builder.setView(root).create()
-        }
+            builder.setView(layout)
+            builder.create()
+            //builder.setView(root).create()
+        //}
     }
 
     private fun setFilterButtonsListener() = with(dialogBinding) {
@@ -365,11 +476,21 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
         }
     }
 
+    private fun removeAllMarkers(){
+        viewModel.getMarkers()!!.forEach { marker ->
+            marker.map = null
+        }
+        binding.viewPager2.visibility = View.GONE
+        binding.fbtnCloseViewPager.visibility = View.GONE
+        infoWindow?.close()
+        binding.btnCloseMarkers.visibility = View.GONE
+    }
+
     override fun initViews() = with(binding) {
         initMap()
         initDialog()
         initViewPager()
-        var m =viewModel.getMap()
+        var m = viewModel.getMap()
         //m?.cameraPosition =
         //    CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
 /*
@@ -385,17 +506,37 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
 
  */
 
+        var temp = arrayListOf<Marker>()
+        var i = 0
+        val markets = DefaultMapRepository().getMarkets()
+
+        repeat(markets.size) {
+            if (filterCategoryChecked[markets[i].id.toInt()]) {
+                temp += Marker().apply {
+                    position = LatLng(
+                        markets[i].location.latitude,
+                        markets[i].location.longitude
+                    )
+                    icon = MarkerIcons.BLACK
+                    tag = markets[i].name
+                    zIndex = i
+                }
+            }
+            i++
+        }
+
+        viewModel.setMarkers(temp)
+
+        //searchAround()
+
+        setMarkerListener(markets)
+
+
         mapView.getMapAsync(this@MapFragment)
 
 
         binding.btnCloseMarkers.setOnClickListener {
-            viewModel.getMarkers().forEach { marker ->
-                marker.map = null
-            }
-            binding.viewPager2.visibility = View.GONE
-            binding.fbtnCloseViewPager.visibility = View.GONE
-            infoWindow?.close()
-            binding.btnCloseMarkers.visibility = View.GONE
+            removeAllMarkers()
         }
 
         btnCurLocation.setOnClickListener {
@@ -483,7 +624,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
      * 네이버 지도상 마커를 모두 없애는 method
      */
     private fun deleteMarkers() {
-        for (marker in viewModel.getMarkers()) {
+        for (marker in viewModel.getMarkers()!!) {
             marker.map = null
         }
     }
@@ -492,8 +633,11 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
      * 네이버 지도상에 마커를 표시
      */
     private fun showMarkersOnMap() {
-        for (marker in viewModel.getMarkers()) {
+        var i = 0
+        for (marker in viewModel.getMarkers()!!) {
             marker.map = viewModel.getMap()
+
+            setMarkerIconAndColor(marker, DefaultMapRepository().getMarkets()[marker.zIndex].id)
         }
     }
 
@@ -509,8 +653,8 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun initMap() = with(binding) {
 
-       // viewModel.getMap()?.cameraPosition =
-       //     CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
+        // viewModel.getMap()?.cameraPosition =
+        //     CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)
 
         locationManager =
             requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -550,7 +694,14 @@ class MapFragment : BaseFragment<FragmentMapBinding>() , OnMapReadyCallback {
          */
 
         try {
-            viewModel.updateLocation(LocationLatLngEntity(viewModel.getCurrentLocation().latitude, viewModel.getCurrentLocation().longitude))
+            viewModel.updateLocation(
+                LocationLatLngEntity(
+                    viewModel.getDestinationLocation().latitude,
+                    viewModel.getDestinationLocation().longitude
+                )
+            )
+            Toast.makeText(context, viewModel.getCurrentLocation().latitude.toString() +
+                viewModel.getCurrentLocation().longitude, Toast.LENGTH_SHORT).show()
 
             //map.cameraPosition =
             //    CameraPosition(LatLng(viewModel.destLocation.latitude, viewModel.destLocation.longitude), 15.0)

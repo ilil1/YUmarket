@@ -102,7 +102,6 @@ class MyLocationActivity :
                         saveRecentSearchItems(result)
                     }, 1000)
 
-
                         finish()
 /*
                     } catch (e: Exception) {
@@ -190,6 +189,7 @@ class MyLocationActivity :
         btnClear.setOnClickListener {
             runBlocking {
                 addressHistoryDao.deleteAllAddresses()
+
                 Toast.makeText(applicationContext, "전체 삭제 완료", Toast.LENGTH_LONG).show()
                 recentAddrAdapter.clear()
                 recentAddrAdapter.notifyDataSetChanged()

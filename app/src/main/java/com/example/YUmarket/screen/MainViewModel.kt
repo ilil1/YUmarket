@@ -2,6 +2,7 @@ package com.example.YUmarket.screen
 
 import android.graphics.Color
 import android.location.Location
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,7 +38,7 @@ class MainViewModel(
 
     lateinit var destLocation: LocationLatLngEntity
     lateinit var curLocation: Location
-    private lateinit var markers: List<Marker>
+    private var markers =  mutableListOf<Marker>()
 
     private var destMarker: Marker = Marker(
         MarkerIcons.BLACK
@@ -69,6 +70,10 @@ class MainViewModel(
         destLocation = loc
     }
 
+    fun getDestinationLocation() : LocationLatLngEntity {
+        return destLocation
+    }
+
     fun getDestinationMarker() : Marker {
         return destMarker
     }
@@ -96,10 +101,12 @@ class MainViewModel(
     }
 
     fun setMarkers(list : List<Marker>){
-        markers = list
+        markers.clear()
+        markers = list as MutableList
+        //Log.d("FDSAFSDAFSD", markers.size.toString())
     }
 
-    fun getMarkers() : List<Marker> {
+    fun getMarkers() : List<Marker>? {
         return markers
     }
 
@@ -138,7 +145,11 @@ class MainViewModel(
     }
 
     private fun deleteMarkers() {
-        for (marker in markers) {
+
+        if(markers.isNullOrEmpty())
+            return
+
+        for (marker in markers!!) {
             marker.map = null
         }
     }

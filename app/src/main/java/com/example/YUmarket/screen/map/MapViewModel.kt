@@ -11,7 +11,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MapViewModel(
-
 ) : BaseViewModel() {
 
 }

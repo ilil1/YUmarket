@@ -12,12 +12,15 @@ import com.example.YUmarket.data.entity.location.LocationLatLngEntity
 import com.example.YUmarket.data.entity.location.MapSearchInfoEntity
 import com.example.YUmarket.databinding.ActivityMapLocationSettingBinding
 import com.example.YUmarket.screen.base.BaseActivity
+import com.example.YUmarket.util.PreferenceManager
+import com.skt.Tmap.TMapGpsManager
 import com.skt.Tmap.TMapView
+import org.json.JSONObject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 // 핀을 끌어서 옮길때마다 위치 정보 받아서 주소 보여줌
-class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBinding>() {
+class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBinding>(){
     var isCurAddressNull = true
 
     private lateinit var locationManager: LocationManager
@@ -26,6 +29,7 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
     private lateinit var cur: Location
 
     private lateinit var tMapView: TMapView
+    private lateinit var tMapGPS: TMapGpsManager
     private val viewModel by viewModel<MapLocationSettingViewModel>()
 
     override fun getViewBinding() = ActivityMapLocationSettingBinding.inflate(layoutInflater)
@@ -77,26 +81,40 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
         }
 
         binding.btnSetCur.setOnClickListener {
-            cur ?.let {
+
+            val prefb = this.getSharedPreferences("locationData", MODE_PRIVATE)
+            val col_val: Collection<*> = prefb.all.values
+            val it_val = col_val.iterator()
+            val value = it_val.next() as String
+            val jsonObject = JSONObject(value)
+
+            var lat = jsonObject.getString("LATITUDE") as String
+            var lon = jsonObject.getString("LONGITUDE") as String
+
+
+/*
+            if(cur == null){
                 Toast.makeText(this, "아직 현재위치를 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            tMapView.setLocationPoint(cur.longitude, cur.latitude)
-            tMapView.setCenterPoint(cur.longitude, cur.latitude)
+ */
+
+
+            tMapView.setLocationPoint(lon.toDouble(), lat.toDouble())
+            tMapView.setCenterPoint(lon.toDouble(), lat.toDouble())
 
             isCurAddressNull = true
 
             viewModel.getReverseGeoInformation(
                 LocationLatLngEntity(
-                    cur.latitude,
-                    cur.longitude
+                    lat.toDouble(),
+                    lon.toDouble()
                 )
             )
         }
     }
 
-    @SuppressLint("MissingPermission")
     private fun initMap() = with(binding) {
         tMapView = TMapView(this@MapLocationSettingActivity).apply {
             setSKTMapApiKey("l7xx47edb2787b5040fc8e004c19e85c0053")
@@ -112,26 +130,15 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
             }
         }
 
-        locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        tMapGPS = TMapGpsManager(applicationContext);
 
-        locationListener = LocationListener { l ->
-            cur = l
-            cur.longitude = l.longitude
-            cur.latitude = l.latitude
-        }
+        // Initial Setting
+        tMapGPS.setMinTime(1000);
+        tMapGPS.setMinDistance(10F);
+        tMapGPS.setProvider(tMapGPS.provider);
+        //tMapGPS.setProvider(tMapGPS.GPS_PROVIDER);
 
-        locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            1000,
-            1f,
-            locationListener
-        )
-        locationManager.requestLocationUpdates(
-            LocationManager.NETWORK_PROVIDER,
-            1000,
-            1f,
-            locationListener
-        )
+        tMapGPS.OpenGps();
 
         TMap.addView(tMapView)
         val entity = intent.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)
@@ -168,4 +175,5 @@ class MapLocationSettingActivity : BaseActivity<ActivityMapLocationSettingBindin
             }
         }
     }
+
 }

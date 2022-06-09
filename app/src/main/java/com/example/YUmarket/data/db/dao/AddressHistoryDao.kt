@@ -17,6 +17,6 @@ interface AddressHistoryDao {
     @Delete
     suspend fun deleteAddress(address: AddressHistoryEntity)
 
-    @Query("delete from BasketEntity")
+    @Query("delete from AddressHistoryEntity")
     suspend fun deleteAllAddresses()
 }

@@ -27,6 +27,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 import com.example.YUmarket.R
 import com.example.YUmarket.databinding.FragmentMapBinding
+import com.example.YUmarket.util.PreferenceManager
 import com.google.android.gms.maps.MapFragment
 
 
@@ -68,9 +69,10 @@ class MainActivity
 
     private val changeLocationLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { results ->
-            results.data?.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)
-                ?.let { myLocationInfo ->
+            results.data?.getParcelableExtra<MapSearchInfoEntity>(MY_LOCATION_KEY)?.let { myLocationInfo ->
                     viewModel.getReverseGeoInformation(myLocationInfo.locationLatLng)
+                    viewModel.setDestinationLocation(myLocationInfo.locationLatLng)
+                    Toast.makeText(this, curLoc.toString(), Toast.LENGTH_SHORT).show()
                 }
         }
 
@@ -184,6 +186,19 @@ class MainActivity
                     latitude = location.latitude,
                     longitude = location.longitude
                 )
+            )
+            val lat = curLoc.latitude
+            val lon = curLoc.longitude
+
+            var save_form =
+                "{\"LATITUDE\":\"$lat\",\"LONGITUDE\":\"$lon\"}"
+
+            PreferenceManager.setTempUserString(application, "LOCATION", save_form)
+            PreferenceManager.setUserString(
+                application,
+                "LOCATION",
+                save_form,
+                "locationData"
             )
 
             removeLocationListener()
